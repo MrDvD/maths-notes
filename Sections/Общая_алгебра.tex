@@ -175,27 +175,36 @@ $$\frac{a}{\infty}=0\quad\quad\frac{b}{0}=\infty$$
 \newpage
 \subsection{Комплексные числа}
 
-{\ital Система комплéксных чисел} --- непрерывное поле $\langle\mathbb{C};\ +,
-\times\rangle$, в котором существует такая {\ital мнимая единица} $i$, что $i^2=-1$:
+{\bold Система комплéксных чисел} --- непрерывное поле $\langle\mathbb{C};\ +,
+\times\rangle$, в котором есть {\ital мнимая единица} $i$:
 % ---
-$$(a,b)\pm(c,d)=(a\pm c,b\pm d)$$
-$$(a,b)(c,d)=(ac-bd,bc+ad)$$
-$$1/z=\bar z/z\bar z=\bar z/\abs{z}\trsp^2$$\\
+$$i^2=-1$$
 % ---
-\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
-$z=a+bi$ & комплексное число;\\
-$\bar z=a-bi$ & комплексное число, {\ital сопряжённое} к $z$.
-\end{tabularc}
-
-Операция сопряжения {\ital дистрибутивна} относительно $+,\ \times$.
-
-Алгебраическая форма числа $z=(a,b)\in\mathbb{C}$ --- $a+bi$:
-
-\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
-$a=:\ren{z}$ & действительная часть $z$;\\
-$b=:\imn{z}$ & мнимая часть $z$.
-\end{tabularc}
+{\bold Плоскость комплексных чисел} --- декартова система координат $Oab$ с биективным соответствием вида:
 % ---
+$$z=a+bi\leftrightarrow M\langle a,b\rangle\equiv M\langle z\rangle$$
+% ---
+$Oa$ --- действительная ось {\ital\color{desc}($a\equiv\ren{z}$)};\\
+$Ob$ --- мнимая ось {\ital\color{desc}($b\equiv\imn{z}$)}.
+
+{\ital Модуль} $z\in\mathbb{C}$ --- расстояние от $O$ до $M(z)$:
+% ---
+$$\abs{z}=r=\abs{OM}=\sqrt{a^2+b^2}=z\bar{z}$$
+% ---
+Тригонометрическая форма $z\in\mathbb{C}$ ---
+% ---
+$$z=r(\cos\varphi+i\sin\varphi),\ \varphi\in(-\pi;\pi]$$\\
+
+\begin{tabularcx}{0pt}{0pt}{r @{ --- } L}{\textwidth}
+$\varphi\equiv\arg z$ & {\ital аргумент комплексного числа}, или угол, обра"=зованный $\overrightarrow{OM}$ с действительной осью.
+\end{tabularcx}
+
+{\bold Сопряжение} --- операция смены знака мнимой части $z\in\mathbb{C}$:
+% ---
+$$z=a+bi\to\bar{z}=a-bi$$
+% ---
+Она {\ital дистрибутивна} относительно $+,\ \times$.
+
 Извлечение квадратного корня из $z=a+bi$:
 % ---
 $$\sqrt{z}=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)
@@ -233,17 +242,6 @@ $$x=\pm\sqrt{\frac{\abs{z}+a}{2}},\quad y=\pm\sqrt{\frac{\abs{z}-a}{2}}$$
 $\sgnn{x}=-\sgnn{y}$. В общем виде это записывается так:
 % ---
 $$v=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)\qedb$$
-% ---
-Тригонометрическая форма числа $z\in\mathbb{C}$ --- $r(\cos\phi+i\sin\phi)$, где $r$ --- 
-модуль числа $z$, $\phi=:\arg z\in(-\pi;\pi]$ --- его аргумент {\ital (угол между 
-вектором числа $z$ и начальным радиусом)}:
-% ---
-$$\phi=\begin{cases}
-\arctg(\imn{z}/\ren{z}), &x\greater 0\\
-\arctg(\imn{z}/\ren{z})+\pi, &x\less 0,\ y\geq 0\\
-\arctg(\imn{z}/\ren{z})-\pi, &x\less 0,\ y\less 0\\
-\sgnb{\imn{z}}\pi/2, &x=0,\ y\neq 0
-\end{cases}$$
 % ---
 Произведение чисел $z_1,z_2\in\mathbb{C}$ --- число с модулем $\abs{z_1z_2}=$
 $\abs{\abs{z_1}\cdot\abs{z_2}}$ и аргументом $\arg(z_1z_2)=\arg z_1+\arg z_2$.
