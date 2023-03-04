@@ -1,0 +1,280 @@
+\section{Общая алгебра}
+
+\subsection{Соответствие}
+
+{\bold Соответствие} {\ital (бинарное отношение)} между множествами
+$X$~и $Y$ --- произвольное множество $\rho\subseteq X\times Y$.\par
+% ---
+Упрощённая запись $x\in X,\ y\in Y$, $\langle x, y\rangle\in\rho=:x\rho y$.\par
+
+\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
+$X\supseteq D_\rho$ & область определения {\ital (прообраз)} соответствия;\\
+$Y\supseteq E_\rho$ & область значений {\ital (образ)} соответствия.
+\end{tabularc} 
+
+Соответствие $\rho$ {\ital инъективно}, когда
+% ---
+$$\forall x_1,x_2\in D_\rho\ \exists y\in E_\rho\colon x_1\rho y,\ x_2\rho y\iff
+x_1=x_2.$$
+% ---
+Соответствие $\rho$ {\ital функционально}, когда
+% ---
+$$\forall x\in D_\rho\ \exists! y\in E_\rho\colon x\rho y.$$
+% ---
+Такое соответствие называется {\bold отображением} {\ital (функцией)}
+и обозначается:
+% ---
+$$\rho\colon X\xrightarrow{x\mapsto y} Y$$
+% ---
+Соответствие $\rho$ {\ital сюръективно}, когда
+% ---
+$$\forall y\in Y\ \exists x\in D_\rho\colon x\mapsto y.$$
+% ---
+Соответствие $\rho$ {\ital всюду определено}, когда
+% ---
+$$\forall x\in X\ \exists y\in E_\rho\colon x\mapsto y.$$
+
+\subsection{Свойства соответствий}
+
+Пусть $\ast\subseteq X\times X$, $\circ\subseteq X\times X$ --- произвольные
+соответствия.\par
+
+Соответствие $\ast$ {\ital ассоциативно}, когда
+% ---
+$$\forall x,y,z\in X\implies (x\ast y)\ast z=x\ast (y\ast z).$$
+% ---
+Соответствие $\ast$ {\ital коммутативно}, когда
+% ---
+$$\forall x,y\in X\implies x\ast y=y\ast x.$$
+% ---
+Соответствие $\ast$ {\ital дистрибутивно} относительно $\circ$, когда
+% ---
+$$\forall x,y,z\in X\implies
+\begin{cases}
+x\ast(y\circ z)=x\ast y\circ x\ast z\\
+(y\circ z)\ast x=y\ast x\circ z\ast x
+\end{cases}\hspace{-12pt}.$$
+
+\subsection{Композиция отображений}
+
+Для отображений $f\colon X\to Y,\ g\colon Y\to Z$ существует $h\colon X\to Z$,
+которое называется их {\bold композицией}.\par
+
+Упрощённая запись $\forall x\in X\ h(x)=g(f(x))=(g\circ f)(x)$.
+
+Композиция {\ital ассоциативна}, однако {\ital не коммутативна}.
+
+\subsection{Ограничение и продолжение}
+
+{\ital Ограничением} отображения $f\colon X\to Y$ на $S\subseteq D_f$ называется
+такое $f\vert_S\colon S\to Y$, что
+% ---
+$$\forall s\in S\colon f\vert_S(s)=f(s).$$
+% ---
+В свою очередь, $f$ является {\ital продолжением} отображения $f\vert_S$.\par
+
+\subsection{Метрическое пространство}
+
+{\ital Метрическое пространство} --- алгебраическая структура $\langle M;\ d\rangle$,
+где $d$ --- метрика.\par
+
+Метрика $d$ множества $M$ --- функция $d\colon M\times M\to R^+_0$, которая
+определяет {\ital расстояние} между его двумя элементами.\par
+
+Например, {\ital евклидова метрика} использует теорему Пифагора в $n$-мерном
+пространстве:
+% ---
+$$d(x,y)=\sqrt{\sum^{n}_{k=1}(x_k-y_k)^2}$$
+% ---
+Для метрического пространства $\langle M;\ d\rangle,\ x,y,z\in M$ выполня"=ются
+следующие {\ital аксиомы}:\par
+
+--- $d(x,y)=0\iff x=y$ --- {\ital тождество};\\
+--- $d(x,y)=d(y,x)$ --- {\ital симметрия};\\
+--- $d(x,y)\leq d(x,z) + d(y,z)$ --- {\ital «неравенство треугольника»}.
+
+\subsection{Алгебраическая операция}
+
+Отображение $\ast\colon X^n\to X$ называется $n$-местной {\ital алгебраичес"=кой 
+операцией} на $X$.\par
+
+{\ital Нейтральным} называется такой элемент $e\in X$, что
+% ---
+$$\forall x\in X\implies e\ast x=x\text{ и }x\ast e=x.$$
+% ---
+{\bold Левым} или {\bold правым} {\ital нейтральным} называется такой элемент
+$e\in X$, что
+% ---
+$$\forall x\in X\implies e\ast x=x\text{ или }x\ast e=x.$$
+% ---
+Если $x\ast y=e$, то $x$ --- {\bold левый} {\ital обратный} элемент к $y$, а $y$ ---
+{\bold правый} {\ital обратный} к $x$.\par
+
+Стоит отметить, что если $y\colon X\to Y$ и $x\colon Y\to X$ --- отображе"=ния, то $y$ 
+{\ital инъективно}, а $x$ {\ital сюръективно}.\par
+
+{\bold Доказательство.} По условию, множество $X$ накладывается на себя.
+Значит, $f$ {\ital всюду определено}.\par
+
+Так как $g$ функционально, то
+% ---
+$$\forall x_1,x_2\in X\ \exists y\in E_f\colon x_1fy,\ x_2fy\iff x_1=x_2,$$
+% ---
+то есть $f$ {\ital инъективно}.$\qedw$\par
+
+Когда $X$ накладывается на себя, то
+% ---
+$$\forall x\in E_g\ \exists y\in D_g\colon x\mapsto y,$$
+% ---
+то есть $g$ {\ital сюръективно}.$\qedb$
+
+Элементы $x$ и $y$ {\bold взаимно} {\ital обратны}, когда $x\ast y=y\ast x=e$.
+
+\newpage
+\subsection{Алгебраическая структура}
+
+{\bold Алгебраическая структура} {\ital (система)} --- множество $X$ с~введёнными на нём 
+алгебраическими операциями:
+% ---
+$$\langle X;\ \ast_1,\ast_2,\dots,\ast_n\rangle$$
+% ---
+{\ital Полугруппа} --- алгебраическая структура $\langle X;\ \ast\rangle$ с двухмест"=ной 
+ассоциативной операцией $\ast$.
+
+{\ital Группа} --- полугруппа, для которой существуют нейтраль"=ный и обратный элементы.
+\par
+
+{\ital Кольцо} --- коммутативная аддитивная группа, мультиплика"=тивная полугруппа, где
+$\times$ дистрибутивно относительно $+$.\par
+
+{\ital Поле} --- коммутативное кольцо с обратным элементом для $\times$.
+
+\subsection{Числовые системы}
+
+{\ital Система натуральных чисел} --- коммутативная аддитивная и мультипликативная полугруппа $\langle\mathbb{N};\ +,\times\rangle$.\par
+
+{\ital Система целых чисел} --- коммутативное кольцо $\langle\mathbb{Z};\ +,\times\rangle$.
+\par
+
+{\ital Система рациональных чисел} --- упорядоченное поле $\langle\mathbb{Q};\ +,\times
+\rangle$.\par
+
+{\ital Система действительных чисел} --- непрерывное упорядо"=ченное поле $\langle\mathbb
+{R};\ +,\times\rangle$.
+
+{\ital Проективно расширенная числовая прямая} --- расширение множества действительных 
+чисел $\widehat{\mathbb{R}}=\mathbb{R}\cup\{\infty\}$:
+% ---
+\begin{alignat*}{2}
+a\pm\infty&=\infty\pm a=\infty,\quad &&a\neq\infty\\
+b\cdot\infty&=\infty\cdot b=\infty, &&b\neq 0\\
+\end{alignat*}\\[-26pt]
+% ---
+$$\frac{a}{\infty}=0\quad\quad\frac{b}{0}=\infty$$
+
+\newpage
+\subsection{Комплексные числа}
+
+{\ital Система комплéксных чисел} --- непрерывное поле $\langle\mathbb{C};\ +,
+\times\rangle$, в котором существует такая {\ital мнимая единица} $i$, что $i^2=-1$:
+% ---
+$$(a,b)\pm(c,d)=(a\pm c,b\pm d)$$
+$$(a,b)(c,d)=(ac-bd,bc+ad)$$
+$$1/z=\bar z/z\bar z=\bar z/\abs{z}\trsp^2$$\\
+% ---
+\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
+$z=a+bi$ & комплексное число;\\
+$\bar z=a-bi$ & комплексное число, {\ital сопряжённое} к $z$.
+\end{tabularc}
+
+Операция сопряжения {\ital дистрибутивна} относительно $+,\ \times$.
+
+Алгебраическая форма числа $z=(a,b)\in\mathbb{C}$ --- $a+bi$:
+
+\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
+$a=:\ren{z}$ & действительная часть $z$;\\
+$b=:\imn{z}$ & мнимая часть $z$.
+\end{tabularc}
+% ---
+Извлечение квадратного корня из $z=a+bi$:
+% ---
+$$\sqrt{z}=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)
+$$
+% ---
+{\bold Доказательство.} По определению нужно найти такое $v$, что
+% ---
+$$v^2=(x+yi)^2=x^2+2xyi-y^2=a+bi=z.$$
+% ---
+Получаем систему уравнений:
+% ---
+$$\begin{cases}
+x^2-y^2=a\\
+2xy=b
+\end{cases}\hspace*{-12pt}\iff
++\begin{cases}
+(x^2-y^2)^2=a^2\\
+4x^2y^2=b^2
+\end{cases}\hspace*{-12pt}\iff
+(x^2+y^2)^2=\abs{z}\trsp^2$$
+% ---
+Извлечём корень из обеих частей уравнения:
+% ---
+$$\pm\begin{cases}
+x^2+y^2=\abs{z}\\
+x^2-y^2=a
+\end{cases}\hspace*{-12pt}\iff
+\begin{cases}
+2x^2=\abs{z}+a\\
+2y^2=\abs{z}-a
+\end{cases}\hspace*{-12pt}\iff$$
+$$x=\pm\sqrt{\frac{\abs{z}+a}{2}},\quad y=\pm\sqrt{\frac{\abs{z}-a}{2}}$$
+% ---
+Так как $xy=b/2$, то при $b\geq 0\implies\sgnn{x}=\sgnn{y}$, иначе
+$\sgnn{x}=-\sgnn{y}$. В общем виде это записывается так:
+% ---
+$$v=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)\qedb$$
+% ---
+Тригонометрическая форма числа $z\in\mathbb{C}$ --- $r(\cos\phi+i\sin\phi)$, где $r$ --- 
+модуль числа $z$, $\phi=:\arg z\in(-\pi;\pi]$ --- его аргумент {\ital (угол между 
+вектором числа $z$ и начальным радиусом)}:
+% ---
+$$\phi=\begin{cases}
+\arctg(\imn{z}/\ren{z}), &x\greater 0\\
+\arctg(\imn{z}/\ren{z})+\pi, &x\less 0,\ y\geq 0\\
+\arctg(\imn{z}/\ren{z})-\pi, &x\less 0,\ y\less 0\\
+\sgnb{\imn{z}}\pi/2, &x=0,\ y\neq 0
+\end{cases}$$
+% ---
+Произведение чисел $z_1,z_2\in\mathbb{C}$ --- число с модулем $\abs{z_1z_2}=$
+$\abs{\abs{z_1}\cdot\abs{z_2}}$ и аргументом $\arg(z_1z_2)=\arg z_1+\arg z_2$.
+
+{\bold Следствие.} Возведение в степень числа $z=r(\cos\phi+i\sin\phi)$:
+% ---
+$$z^n=r^n(\cos n\phi+i\sin n\phi),\ n\in\mathbb{Z}$$
+% ---
+Частное чисел $z_1,z_2\in\mathbb{C}$ --- число с модулем $\abs{z_1/z_2}=$
+$\abs{\abs{z_1}/\abs{z_2}}$ и аргументом $\arg(z_1/z_2)=\arg z_1-\arg z_2$.
+
+Извлечение корня $n$ степени из $z=r(\cos\phi+i\sin\phi)$:
+% ---
+$$\sqrt[n]{z}=\sqrt[n]{r}\left(\cos\frac{\phi+2\pi k}{n}+i\sin\frac{\phi+2\pi k}{n}
+\right),\ k\in\{m\}_{m=0}^{n-1}$$
+% ---
+{\bold Доказательство.} По определению нужно найти такое $v$, что
+% ---
+$$v^n=\rho^n(\cos n\alpha+i\sin n\alpha)=r(\cos\phi+i\sin\phi)=z$$
+% ---
+Получаем систему уравнений:
+% ---
+$$\begin{cases}
+\rho^n=r\\
+n\alpha=\phi+2\pi k
+\end{cases}\hspace{-12pt}\iff\begin{cases}
+\rho=\sqrt[n]{r}\\
+\alpha=(\phi+2\pi k)/n,\ k\in\mathbb{Z}
+\end{cases}$$
+% ---
+Значит,
+% ---
+$$v=\sqrt[n]{r}\left(\cos\frac{\phi+2\pi k}{n}+i\sin\frac{\phi+2\pi k}{n}\right).
+\qedb$$

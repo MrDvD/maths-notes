@@ -1,0 +1,68 @@
+\section{Элементарная теория чисел}
+\subsection{Делимость}
+Пусть $a,b\in\mathbb{Z}$. Тогда {\ital a} --- {\bold делитель} {\ital b}, когда
+$$ax=b,\ x\in\mathbb{Z}\iff a\mid b\iff \lvert a\rvert\leq\lvert b\rvert$$
+% ---
+Отношение делимости {\ital транзитивно}, такое выражение можно {\ital перемножить}
+с другим:
+$$
+\times\begin{cases}
+\begin{aligned}
+a&\mid b\\
+c&\mid d
+\end{aligned}
+\end{cases}
+\hspace*{-12pt}\implies
+ac\mid bd
+$$
+% ---
+Общий делитель чисел делит их {\ital линейную комбинацию}:
+$$a\mid b,c\implies a\mid bx+cy,\quad x,y\in\mathbb{Z}$$
+% ---
+Заметим, что $a=bx+cy$\footnotes{*}{Такое уравнение называют {\ital соотношением Безу}, а
+{\ital x} и {\ital y} --- {\ital коэффициентами Безу {\color{desc}(Э. Безу)}}.},
+когда $(b,c)\mid a$.\par
+
+{\bold Доказательство.} Пусть $d:=(b,c)$, тогда:
+$$d\mid b,c\implies d\mid(bx+cy)\implies d\mid a\qedb$$
+% ---
+Коэффициенты Безу $(x,y)$ {\ital неуникальны} и легко выражаются
+{\ital\color[HTML]{888888}(доказывается подстановкой в соотношение)}:
+$$(x+mk,y-ak),\ k\in\mathbb{Z}$$
+
+\newpage
+\subsection{Наибольший общий делитель}
+
+{\ital Наибольший общий делитель}\footnotes{*}{Сокращённо {\ital НОД}, или {\ital Greatest Common Divisor} ({\ital GCD}).} для $\{a_k\}_{k\in\mathbb{N}}$ --- такое $gcd(\{a_k\})$, что
+% ---
+$$\exists d\colon d\mid gcd(\{a_k\})\mid\{a_k\}.$$
+% ---
+Упрощённая запись $gcd(\{a_k\})=(\{a_k\})$.
+
+Этот бинарный оператор {\ital коммутативен}, {\ital ассоциативен}\\ и {\ital дистрибутивен}.
+
+\subsection{Наименьшее общее кратное}
+
+{\ital Наименьшее общее кратное}\footnotes{**}{Сокращённо {\ital НОК}, или {\ital Least Common Multiple} ({\ital LCM}).} для $\{a_k\}_{k\in\mathbb{N}}$ --- такое $lcm(\{a_k\})$, что
+% ---
+$$\exists m\colon \{a_k\}\mid lcm(\{a_k\})\mid m.$$
+% ---
+Упрощённая запись $lcm(\{a_k\})=[\{a_k\}]$.
+
+Этот бинарный оператор {\ital коммутативен} и {\ital ассоциативен}, однако {\ital не дистрибутивен}.
+
+\subsection{Двойственность}
+
+НОД и НОК {\ital двойственны} друг другу:
+% ---
+$$(a,b)\cdot[a,b]=ab$$
+% ---
+{\bold Доказательство.} Пусть $m:=[a,b]$, тогда:
+% ---
+$$a,b\mid m\iff ab\mid am,bm\iff ab\mid (am,bm)\iff ab\mid (a,b)m$$
+% ---
+Так как $(a,b)\mid [a,b]\mid ab$, то $ab/(a,b)\mid [a,b]$.
+
+Значит, $ab/(a,b)\leq [a,b]$. Но $[a,b]$ --- {\ital наименьшее} общее кратное $a,b$. Следовательно, $ab/(a,b)\nless [a,b]$, поэтому:
+% ---
+$$ab/(a,b)=[a,b]\iff ab=(a,b)\cdot [a,b]\qedb$$

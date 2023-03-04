@@ -1,0 +1,126 @@
+\RequirePackage{silence}
+\WarningFilter{latexfont}{Font shape `TU/}
+\WarningFilter{latexfont}{Size substitutions}
+\RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+% Ошибки ^
+\documentclass[fleqn]{article}
+\usepackage{amsmath,nccmath} % Математика
+\usepackage[a5paper, margin=12mm]{geometry}
+% Пакеты
+\usepackage{polyglossia} % Язык
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setkeys{russian}{babelshorthands=true}
+\usepackage{fontspec} % Шрифты .otf
+\usepackage{titlesec} % Заголовки
+\usepackage{tabularx,multicol,multirow,array,makecell} % Таблицы
+\usepackage{enumitem} % Списки
+\usepackage{graphicx,float} % Графика
+\usepackage{xcolor} % Цвет
+\usepackage{empheq}
+\usepackage[makeroom]{cancel}
+\usepackage[most]{tcolorbox} % Удобные рамки
+\usepackage[open,openlevel=1]{bookmark} % Секции в pdf-файле
+\graphicspath{{svg/}}
+% Нумерация
+\pagenumbering{gobble} % Страницы
+\setcounter{secnumdepth}{0} % Заголовки
+% Шрифты
+\setmainfont[SizeFeatures={Size=12}]{Century Schoolbook}
+\setmathfont[Scale=1.2]{TeX Gyre Schola Math}
+\newfontfamily\bold[SizeFeatures={Size=12}]{Century Schoolbook Bold}
+\newfontfamily\ital[SizeFeatures={Size=12}]{Century Schoolbook Italic}
+\newfontfamily\boldital[SizeFeatures={Size=12}]{Century Schoolbook Bold Italic}
+\newfontfamily\gilroysub[SizeFeatures={Size=16},UprightFont={*-Medium}]{Gilroy}
+\newfontfamily\gilroy[SizeFeatures={Size=19},UprightFont={*-UltraLight}]{Gilroy}
+\newfontfamily\tinyt[SizeFeatures={Size=10}]{Century Schoolbook}
+% Стили
+\titleformat*{\subsection}{\raggedright\gilroysub}
+\titleformat*{\section}{\gilroy\centering}
+\titlespacing*{\subsection}{0pt}{6pt}{0pt}
+\titlespacing*{\section}{0pt}{6pt}{1pt}
+\definecolor{desc}{HTML}{888888}
+\definecolor{table}{HTML}{D9D9D9}
+\newcommand{\modb}[1]{\ \left(\mathrm{mod}\ #1\right)}
+\newcommand{\modn}[1]{\ \mathrm{mod}\ #1}
+\newcommand{\qedb}{\ \char"25A0}
+\newcommand{\qedw}{\ \char"25A1}
+\newcommand{\id}[1]{\text{id}_{#1}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\sgnb}[1]{\text{sgn}\hspace*{-2pt}\left(#1\right)}
+\newcommand{\sgnn}[1]{\text{sgn}\ #1}
+\newcommand{\ren}[1]{\Re\text{e}\ #1}
+\newcommand{\reb}[1]{\Re\text{e}\left(#1\right)}
+\newcommand{\imn}[1]{\Im\text{m}\ #1}
+\newcommand{\imb}[1]{\Im\text{m}\left(#1\right)}
+\newcommand{\optm}[1]{\underset{\scriptscriptstyle #1}{\text{opt}}}
+\newcommand{\optl}[1]{\text{opt}_{#1}}
+\newcommand{\diff}{\text{d}}
+\newcommand{\footnotes}[2]{$^{#1}$\hspace*{-1.1pt}\let\thefootnote\relax\footnote
+{\hspace*{-18pt}#1 #2}}
+\newcommand{\multiset}[2]{\left(\!\!\binom{#1}{#2}\!\!\right)}
+\newcommand{\stirl}{\genfrac\{\}{0pt}{}}
+
+% Смена шрифта для \mathcal
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
+
+% Понижает высоту степени тригонометрических функций
+\newcommand{\trsp}{\hspace*{-2.3pt}\phantom{}}
+
+% Minipage environment
+\newenvironment{column*}[2]{
+\begin{minipage}[#1]{#2}
+\setlength\baselineskip{13.4pt} % Строка
+\setlength{\parskip}{6pt} % Абзац
+\abovedisplayskip=6pt % Формула над
+\belowdisplayskip=6pt % Формула под
+\raggedright % Выравнивание
+}{\end{minipage}}
+
+% Tabular environment
+\def\center{c}
+
+\newenvironment{tabularc}[4]{
+\if\center #4
+\centering
+\fi
+\setlength\tabcolsep{#1}
+\setlength\extrarowheight{#2}
+\begin{tabular}{#3}
+}{\end{tabular}\par}
+
+% Tabularx environment
+\newenvironment{tabularcx}[4]{
+\setlength\tabcolsep{#1}
+\setlength\extrarowheight{#2}
+\tabularx{#4}{#3}
+}{\endtabularx\par}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% Square cases environment
+\makeatletter\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}\makeatother
+
+% Theorem Tcolorbox
+\newtcolorbox{theorem}{
+enhanced,
+boxrule=0mm,frame hidden,arc=0mm,
+colback=white!0,
+boxsep=0mm,left=3.5mm,
+borderline west={2pt}{0pt}{black},
+before skip=6pt,after skip=7pt
+}

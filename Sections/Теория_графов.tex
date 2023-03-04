@@ -1,0 +1,337 @@
+\section{Теория графов}
+
+\subsection{Ориентированный граф}
+
+{\bold Граф} {\ital (ориентированный граф или орграф)} --- упорядо"=ченная пара $G=\langle V,E\rangle$, где
+
+$V$ --- непустое множество {\ital вершин {\color{desc}(узлов)}};\\
+$E$ --- конечное множество {\ital рёбер}, $E\subseteq V\times V$.
+
+{\ital Порядок} графа $G$ --- число его вершин $n=\abs{V}$.
+
+{\ital Размер} графа $G$ --- число его рёбер $m=\abs{E}$.
+
+Ребро $e=\langle v,\ w\rangle$ задаётся вершинами $v,\ w$, где $v$ --- начало ребра, а $w$ --- его конец; вершины $v,\ w$ являются {\ital соседними}.
+
+{\ital Входящая валентность} вершины $v$ графа $G$ --- число рёбер, чей конец в $v$:
+% ---
+$$\text{indeg}(v)=\abs{\{\langle u,v\rangle\mid\langle u,v\rangle\in E\}}$$
+% ---
+{\ital Исходящая валентность} вершины $v$ графа $G$ --- число рёбер, чьё начало в $v$:
+% ---
+$$\text{outdeg}(v)=\abs{\{\langle v,u\rangle\mid\langle v,u\rangle\in E\}}$$
+% ---
+{\ital Валентность} вершины $v$ графа $G$ --- сумма входящей и исхо"=дящей валентностей вершины:
+% ---
+$$\text{deg}(v)=\text{indeg}(v)+\text{outdeg}(v)$$
+% ---
+{\ital Свойство.} Пусть $G=\langle V,E\rangle$ --- граф с $n$ вершинами и $m$ рёб"=рами, причём $V=\{v_1,\dots,v_n\}$. Тогда:
+% ---
+$$\sum_{i=1}^{n}\text{indeg}(v_i)=\sum_{i=1}^{n}\text{outdeg}(v_i)=m$$
+% ---
+{\ital Подграф} $G=\langle V,E\rangle$, {\ital порождённый} на $W\subset V$, --- граф вида
+% ---
+$$G_W=\langle W,E\cap W\times W\rangle.$$
+
+\newpage
+\subsection{Последовательность вершин}
+
+{\ital Маршрут} от вершины $v_i$ до вершины $v_j$ графа $G$ --- последо"=вательность вершин или рёбер:
+% ---
+$$\begin{cases}
+\begin{sqcases}
+[v_i,v_{i+1},\dots,v_{j-1},v_j]\text{ вершины}\\
+[e_i,e_{i+1},\dots,e_{j-1},e_j]\text{ рёбра}
+\end{sqcases}\\
+e_k=\langle v_{k-1},v_k\rangle,k\in\{i+1,\dots,j\}
+\end{cases}$$
+% ---
+{\ital Закрытым} называется такой маршрут, где начальная и~конечная вершины совпадают.
+
+{\ital Цепь} --- маршрут без повтора рёбер; {\ital простая цепь} --- марш"=рут без повтора рёбер и вершин {\ital\color{desc} (кроме, возможно, первой и~последней вершины)}; {\ital цикл} --- закрытая простая цепь.
+
+{\ital Ациклическим {\color{desc} (лесом)}} называется граф без циклов.
+
+\subsection{Неориентированный граф}
+
+{\bold Неорграф} {\ital (неориентированный граф)} --- такой граф $G=\langle V,E\rangle$, что $\forall v,w\in V\ \langle v,w\rangle\in E\implies\langle w,v\rangle\in E$.
+
+{\ital Валентность} вершины $v$ неорграфа --- число рёбер, которые связаны с $v$.
+
+{\ital Cвязным} называется такой неорграф, между любыми верши"=нами которого есть маршрут.
+
+{\ital Компонент связности} неорграфа --- связный подграф, который не входит в состав такого же подграфа.
+
+\subsection{Связность графа}
+
+{\ital Связным} называется такой орграф, у которого аналогичный неорграф связный.
+
+Орграф $G=\langle V,E\rangle$ называется {\ital сильно связным}, если
+% ---
+$$\forall v,w\in V\ \exists
+\begin{cases}
+\text{маршрут от v до w}\\
+\text{маршрут от w до v} 
+\end{cases}$$
+% ---
+{\ital Компонент сильной связности} графа --- сильно связный подграф, который не входит в состав такого же подграфа.
+
+\subsection{Виды неориентированных графов}
+
+Неориентированный граф $G=\langle V,E\rangle=:K_n,\ n=\abs{V}$ называ"=ется {\ital полным}, если $\forall v,w\in V,v\neq w\ \langle v,w\rangle\in E$.
+
+Неориентированный граф $G=\langle V,E\rangle$ называется {\ital однород"=ным}, если $\forall v,w\in V\ \text{deg}(v)=\text{deg}(w)$.
+
+\subsection{Свободное дерево}
+
+{\bold Дерево} {\ital (свободное)} --- компонент связности леса $T=\langle V,E\rangle$.
+
+{\ital Свойство.} Пусть $T=\langle V,E\rangle$. Тогда $\abs{E}=\abs{V}-1$.
+
+{\ital Поддерево $T=\langle V,E\rangle$, порождённое} на $W\subset V$, --- дерево вида:
+% ---
+$$T_W=\langle W,E\cap W\times W\rangle$$
+
+\subsection{Корневое дерево}
+
+{\bold Корневое дерево} {\ital (ориентированное дерево или ордерево)} --- такой орграф, у которого:
+
+\begin{tabularcx}{0pt}{0pt}{r @{ } L}{\textwidth}
+--- & аналогичный неорграф есть свободное дерево;\\
+--- & есть единственная вершина с нулевой входящей валент"=ностью, или {\ital корень}.
+\end{tabularcx}
+
+Пусть $T=\langle V,E\rangle$ --- дерево, $\langle v,w\rangle\in E$:
+% ---
+\begin{tabularcx}{0pt}{5pt}{L @{\quad} L}{\textwidth}
+$v=:$ parent$_w$ --- {\ital родитель} вершины $w$. & $w\in$ children$_v$ --- {\ital ребёнок} вершины $v$.\\
+{\ital Корневым} называется узел без родителей. & {\ital Листовым} называется узел без детей.
+\end{tabularcx}
+
+{\ital Родственными} называются вершины с общими родителями.
+
+{\ital Первый} в памяти ребёнок узла $v$ --- first$_v$, {\ital последний} --- $\text{last}_v$; {\ital следующий} в памяти родственник узла $v$ --- next$_v$.
+
+{\ital Уровень} вершины $v$ дерева $T$ --- длина простой цепи от root$_T$ до $v$; обозначается depth$_v$.
+
+\subsection{Способы представления графа}
+
+{\ital Матрица смежности} для $G=\langle V,E\rangle$ --- булева матрица $V^2$, элементы которой равны логическому значению выражения:
+% ---
+$$\langle v,w\rangle\in E\mid v,w\in V$$
+% ---
+Матрица занимает $\mathcal{O}(V^2)$ места; проверка смежности прохо"=дит за $\mathcal{O}(1)$.
+
+{\ital Список смежности} для $G=\langle V,E\rangle$ --- множество вершин $v\in V$, которым соответствует другое множество вершин:
+% ---
+$$\{w\in V\mid\langle v,w\rangle\in E\}$$
+% ---
+Список занимает $\mathcal{O}(\abs{V}+\abs{E})$ места; проверка смежности проходит за $\mathcal{O}(\text{outdeg}(v))$.
+
+\subsection{Способы представления дерева}
+
+{\ital Массив родителей} для $T=\langle V,E\rangle$ --- массив вершин $v\in V$, которым соответствует их родитель.
+
+Массив занимает $\mathcal{O}(\abs{V})$ места; вывод родителя и порядка дерева проходят за $\mathcal{O}(1)$.
+
+{\ital «Первый ребёнок, следующий родственник»} для $T=\langle V,E\rangle$ --- такая упорядоченная пара массивов вершин $\langle F,N\rangle$, что
+
+\begin{tabularcx}{0pt}{0pt}{r @{ --- } L}{\textwidth}
+$F$ & массив из первых детей для всех вершин;\\
+$N$ & массив из следующих родственников для всех вершин.
+\end{tabularcx}
+
+Массив занимает $\mathcal{O}(\abs{V})$ места; вывод первого ребёнка, следу"=ющего родственника и порядка дерева проходят за $\mathcal{O}(1)$.
+
+\subsection{Редактирование дерева}
+
+К {\bold элементарным операциям} редактирования дерева относятся:
+
+--- {\ital удаление} листового узла $v$ с ребром $\langle\text{parent}_v,v\rangle$: $v\mapsto\lambda$;\\
+--- {\ital вставка} листового узла $v$ с ребром $\langle\text{parent}_v,v\rangle$: $\lambda\mapsto v$;\\
+--- {\ital замещение} вершины $v$ другой вершиной $w$: $v\mapsto w$.
+
+Пусть $T_1=\langle V_1,E_1\rangle$, $T_2=\langle V_2,E_2\rangle$ --- корневые деревья.
+
+{\ital Трансформация} $T_1$ в $T_2$ --- упорядоченное биективное отображение $E\subseteq V_1\cup\{\lambda\}\times V_2\cup\{\lambda\}$.
+
+Биективное {\ital отображение} $T_1$ в $T_2$ --- такое $M\subseteq W_1\times W_2$ для~$W_1\subseteq V_1,\ W_2\subseteq V_2$, что:
+% ---
+$$\begin{cases}
+\langle\text{root}_{T_1},\text{root}_{T_2}\rangle\in M\neq\emptyset\\
+\langle\text{parent}_v,\text{parent}_w\rangle\in M\iff\langle v,w\rangle\in M\\
+v_2=\text{next}_{v_1},\ w_2=\text{next}_{w_1}\iff\langle v_1,w_1\rangle,\langle v_2,w_2\rangle\in M
+\end{cases}$$
+% ---
+{\ital Лемма.} Пусть $M$ --- отображение $T_1$ в $T_2$. Тогда:
+% ---
+$$\forall\langle v,w\rangle\in M\ \text{depth}_v=\text{depth}_w$$
+% ---
+{\ital Стоимость} элементарной операции над $T_1$ и $T_2$ задаётся метрикой $\gamma\colon V_1\cup V_2\cup\{\lambda\}\times V_1\cup V_2\cup\{\lambda\}\to\mathbb{R}^+_0$.
+
+{\ital Стоимость} трансформации $T_1$ в $T_2$ {\ital\color{desc}(E)} задаётся метрикой:
+% ---
+$$\gamma(E)=\sum_{\langle v,w\rangle\in E}\gamma(v,w)$$
+% ---
+{\ital Редакционная дистанция} между $T_1$ и $T_2$ --- функция:
+% ---
+$$\gamma_{\text{\tinyt min}}=\text{min}(\{\gamma(E)\mid\forall E\})$$
+% ---
+{\ital Редакционный граф} для $T_1$ и $T_2$ --- неорграф $G=\langle V,E\rangle$ с~вершинами вида $vw$, $v\in V_1\cup\{v_0\}$, $w\in V_2\cup\{w_0\}$ {\ital\color{desc}($v_0,w_0$} {\color{desc}--- {\ital мнимые узлы)}}, рёбра которого определяются по правилу:
+% ---
+$$\begin{sqcases}
+\text{depth}_{v_{i+1}}\geq\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_{i+1}w_j\rangle\in E\ {\ital\color{desc}(v_{i+1}\hspace*{-3pt}\mapsto\hspace*{-3pt}\lambda)}\\
+\text{depth}_{v_{i+1}}=\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_{i+1}w_{j+1}\rangle\in E\ {\ital\color{desc}(v_{i+1}\hspace*{-3pt}\mapsto\hspace*{-3pt}w_{j+1})}\\
+\text{depth}_{v_{i+1}}\leq\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_iw_{j+1}\rangle\in E\ {\ital\color{desc}(\lambda\hspace*{-3pt}\mapsto\hspace*{-3pt}w_{j+1})}
+\end{sqcases}$$
+% ---
+{\ital Лемма.} Пусть $G$ --- редакционный граф для $T_1$ и $T_2$. Тогда маршрут $P$ от $v_0w_0$ до $v_{n_1}w_{n_2}$ задаёт трансформацию:
+% ---
+\begin{align*}
+E=\{\langle v_{i+1},\lambda\rangle&\mid\langle v_iw_j,v_{i+1}w_j\rangle\in P\}\cup\dots\\
+\dots\{\langle v_{i+1}w_{j+1}\rangle&\mid\langle v_iw_j,v_{i+1}w_{j+1}\rangle\in P\}\cup\dots\\
+\dots\{\langle\lambda,w_{j+1}\rangle&\mid\langle v_iw_j,v_iw_{i+1}\rangle\in P\}
+\end{align*}
+% ---
+Алгоритм редактирования дерева занимает $\mathcal{O}(n_1n_2)$ места, используя $\mathcal{O}(n_1n_2)$ времени. 
+
+\subsection{Обход дерева}
+
+{\ital Обход} дерева $T=\langle V,E\rangle$ --- биективное отображение:
+% ---
+$$\text{order}\colon V\to\{1,\dots,\abs{V}\}$$
+% ---
+{\ital Прямым} называется такой обход дерева $T=\langle V,E\rangle$, что:
+% ---
+$$\begin{cases}
+\text{order}(\text{root}_T)=1\\
+\text{order}(\text{first}_v)=\text{order}(v)+1,\ \text{first}_v\neq\emptyset\\
+\text{order}(\text{next}_v)=\text{order}(v)+\text{size}(v),\ \text{next}_v\neq\emptyset
+\end{cases}$$
+% ---
+Алгоритм прямого обхода дерева занимает линейное место, используя линейное время.
+
+\subsection{Поиск с возвратом}
+
+{\ital Поиск с возвратом} --- метод нахождения решений задачи полным перебором всех допустимых расстановок элементов конечного множества:
+
+\begin{tabularcx}{0pt}{3pt}{r @{ } L}{\textwidth}
+--- & в качестве {\ital частичного решения} используется пустое упо"=рядоченное множество $M$, которое расширяется до пол"=ного по одному элементу за операцию;\\
+--- & если решение {\ital полное} или {\ital не удовлетворяет условию}, алгоритм приступает к другому частичному решению.
+\end{tabularcx}
+
+Пусть $T_1=\langle V_1,E_1\rangle$, $T_2=\langle V_2,E_2\rangle$ --- корневые деревья.
+
+{\ital Кандидат} для $v\in V_1$ --- элемент множества
+% ---
+$$C_v:=\{w\mid w\in V_2,\ \text{depth}_v=\text{depth}_w\}\cup\{\lambda\}.$$
+% ---
+{\ital Возвратное дерево} для $T_1$ и $T_2$ --- такое дерево $T=\langle V,E\rangle$ с~мнимым корнем, что:
+% ---
+$$\begin{cases}
+M\subseteq V_1\times W\text{ \ital\color{desc}(упорядочено, биективно)}\\
+\begin{rcases}
+W=[\text{root}_T,\dots,w]\backslash\{\text{root}_T\}\subseteq V_2\cup\{\lambda\}\subseteq V\\
+\text{children}_w=\emptyset\end{rcases}\text{ I}\\
+\begin{rcases}
+\forall\langle w_1,w_2\rangle\subseteq W\ \text{order}(w_1)\less\text{order}(w_2)\hspace*{23pt}\\
+w_1,w_2\neq\lambda\end{rcases}\text{ II}\\
+\forall\langle v_i,w_j\rangle\in M\ w_j\in C_{v_i}\hspace*{115pt}\bigr\}\text{\hspace*{6.3pt}III}
+\end{cases}$$
+% ---
+\begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{.98\textwidth}
+I & всякая простая цепь возвратного дерева от корня до~листа без корня соответствует {\ital уникальному} отображению $T_1$ в $T_2$;\\
+II & индекс узлов одной простой цепи от корня до листа без корня {\ital строго возрастает};\\
+III & всякий узел простой цепи от корня до листа без корня является {\ital кандидатом} для соответствующего узла $T_1$.
+\end{tabularcx}
+
+Итерация построения полного решения $M$ для условия $P$:
+% ---
+$$\begin{cases}
+\forall c\in C_{W.\text{last}()}\ W:=W\cup\{c\}\\
+T(M):=M\text{ --- частичное решение}\\
+M\land P(M)\land T(M)\neq\emptyset\implies\text{расширить M}\\
+M\land P(M)\land T(M)=\emptyset\implies\text{следующее M}
+\end{cases}$$
+% ---
+{\ital Дерево ветвей и границ} для $T_1$ и $T_2$ --- такое возвратное дерево для $T_1$ и $T_2$, что $P:=P\land R$, где:
+% ---
+$$R(M_i)=\begin{cases}
+\alpha_{\text{\tinyt min}}=\emptyset\implies\alpha_{\text{\tinyt min}}:=\text{max}\\
+\alpha_\text{\tinyt min}\geq\gamma(M_i)\implies\text{True, }\alpha_\text{\tinyt min}:=\gamma(M_i)\\
+\alpha_\text{\tinyt min}\less\gamma(M_i)\implies\text{False}\\
+\end{cases}$$
+
+\subsection{«Разделяй и властвуй»}
+
+{\ital «Разделяй и властвуй»} --- метод рекурсивного нахождения решений задачи: 
+% ---
+\begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{\textwidth}
+& задача делится на меньшие, {\ital независимые} друг от друга подзадачи, пока они не будут сведены к {\ital тривиальным};\\
+& решения тривиальных подзадач {\ital комбинируются} в еди"=ное к исходной задаче.
+\end{tabularcx}
+
+Пусть $T_1=\langle V_1,E_1\rangle$, $T_2=\langle V_2,E_2\rangle$ --- корневые деревья, $A_1=$ $T_{1W_1}$, $A_2=T_{2W_2}$, $B_1=T_1\backslash A_1$, $B_2=T_2\backslash A_2$ --- их поддеревья:
+% ---
+$$\begin{cases}
+W_1=\{v_m\in V_1\mid\text{order}(v_m)\less\text{order}(v)\}\\
+W_2=\{w_n\in V_2\mid\text{order}(w_p)\less\text{order}(w)\}\\
+v:=\text{last}_{v_i},\ w:=\text{last}_{w_k}
+\end{cases}$$
+% ---
+{\ital Дерево «разделяй и властвуй»} для $T_1$ и $T_2$ --- такое ордерево $T=\langle V,E\rangle$ с вершинами вида $v_iv_jw_kw_l$, что:
+% ---
+$$\begin{cases}
+v_i,v_j\in V_1,\ w_k,w_l\in V_2\\
+\text{root}_T=v_1v_{n_1}w_1w_{n_2}\ {\ital\color{desc} (T_1\to T_2)}\\
+\end{cases}$$
+% ---
+Шаг рекурсивного построения решения $M$:
+% ---
+$$\begin{cases}
+v_i=v_j,\ w_k=w_l\implies v_i\mapsto w_k\text{, комбинировать}\\
+v_i\neq v_j,\ w_k=w_l\implies A_1\to T_2\ (B_1\to\lambda)\\
+v_i=v_j,\ w_k\neq w_l\implies T_1\to A_2\ (\lambda\to B_2)\\
+v_i\neq v_j,\ w_k\neq w_l\implies\begin{sqcases}
+A_1\to A_2\text{ или }A_1\to T_2\\
+B_1\to B_2\text{ или }T_1\to A_2
+\end{sqcases}\end{cases}$$
+
+\subsection{Динамическое программирование}
+
+{\ital Динамическое программирование} --- метод рекурсивного нахождения решений задачи:
+% ---
+\begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{\textwidth}
+& задача делится на меньшие, {\ital зависимые} друг от друга подзадачи, пока они не будут сведены к {\ital тривиальным};\\
+& решения тривиальных подзадач {\ital комбинируются} в еди"=ное к исходной задаче.
+\end{tabularcx}
+
+{\ital Мемоизация} {\ital\color{desc} («сверху вниз»)} --- кеширование и повторное использование ранее подсчитанных результатов.
+
+{\ital Табуляция} {\ital\color{desc} («снизу вверх»)} --- заполнение кеша на основе тривиальных подзадач.
+
+Лучшее решение выбирается из матрицы лучших решений его подграфов {\ital\color{desc} (у них по рекурсии есть свои матрицы)}:
+% ---
+$$\begin{matrix}
+\langle v_i,w_k\rangle & \langle v_i,w_kw_{k+1}\rangle & \cdots & \langle v_i,w_k\dots w_l\rangle\\
+\langle v_iv_{i+1},w_k\rangle & \langle v_iv_{i+1},w_kw_{k+1}\rangle & \cdots & \langle v_iv_{i+1},w_k\dots w_l\rangle\\
+\vdots & \vdots & \ddots & \vdots\\
+\langle v_i\dots v_j,w_k\rangle & \langle v_i\dots v_j,w_kw_{k+1}\rangle & \cdots & \langle v_i\dots v_j,w_k\dots w_l\rangle
+\end{matrix}$$
+% ---
+$$\begin{cases}
+v\in V_1,\ w\in V_2\\
+\text{depth}_v=\text{depth}_w\\
+\{v_i,\dots,v_j\}=\text{children}_v\\
+\{w_k,\dots,w_l\}=\text{children}_w\\
+\langle v_i\dots v_j,w_k\dots w_l\rangle\sim\gamma_{\text{\tinyt min}}(G_1\to G_2)\\
+G_1=T_{1W_i}\cup\dots\cup T_{1W_j}\\
+G_2=T_{2W_k}\cup\dots\cup T_{2W_l}\\
+\forall s\in\{i,\dots,j\}\ \text{root}_{T_{1Ws}}=v_s\\
+\forall t\in\{k,\dots,l\}\ \text{root}_{T_{2Wt}}=w_t
+\end{cases}$$
+% ---
+Алгоритм табуляции занимает $\mathcal{O}(n_1n_2)$ места, используя $\mathcal{O}(n_1n_2)$ времени.
+
+% Проверить корректность записи с \land (дерево ветвей и границ)
+% НАПИСАТЬ В ТЕОРИИ ПРО УПОРЯДОЧЕННОЕ СООТВЕТСТВИЕ

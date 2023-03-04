@@ -1,0 +1,190 @@
+\section{Дифференциальное исчисление}
+
+% ОПРЕДЕЛЕНИЕ МОНОТОННОСТИ ОКОЛО ТОЧКИ
+
+\subsection{Производная}
+
+Функция $f$ имеет в точке $x_0$ {\ital производную (дифференцируема в ней)}, если {\ital
+\color{desc} (Ж.Л. Лагранж)}
+% ---
+$$\forall\epsilon\greater 0\ U_\epsilon(x_0)\cap D_f\neq\emptyset,\ \lim_{\Delta x\to 0}
+\frac{\Delta f}{\Delta x}=:f'(x_0).$$
+% ---
+Этот оператор {\ital дистрибутивен} относительно {\ital сложения}:
+% ---
+\begin{align*}
+(f\cdot g)'&=f'g+fg'\\
+\left(\frac{f}{g}\right)'&=\frac{f'g-fg'}{g^2}\\
+(f\circ g)'&=(f'\circ g)g'
+\end{align*}
+
+\subsection{Свойства производной}
+
+Дифференцируемость $\implies$ непрерывность.
+
+{\bold Доказательство.} По определению производной:
+% ---
+$$\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=f'(x_0)\iff \frac{\Delta f}{\Delta x}=
+f'(x_0)+o(\Delta x)\iff$$
+$$\Delta f=\Delta x(f'(x_0)+o(\Delta x))\implies\Delta x\to 0,\ \Delta f\to 0\qedb$$
+% ---
+Приращение дифференцируемой функции легко предста"=вить в виде:
+% ---
+$$\Delta f=f'(x_0)\Delta x+o(\Delta x)\Delta x$$
+% ---
+{\ital Дифференциал функции} --- линейная часть её приращения:
+% ---
+$$\diff y:=f'(x_0)\Delta x$$
+% ---
+Значит, формула производной имеет вид:
+% ---
+$$f'(x_0)=\frac{\diff y}{\Delta x}=\frac{\diff y}{\diff x}\quad(\Delta x=\diff x)$$
+
+\newpage
+\subsection{Производные элементарных функций}
+
+Таблица производных элементарных функций:
+
+\begin{align*}
+C'&=0\quad\quad & (x^n)'&=nx^{n-1}\\
+\sin'\alpha&=\cos\alpha & \cos'\alpha&=-\sin\alpha\\
+\tg'\alpha&=\frac{1}{\cos^2\alpha} & \ctg'\alpha&=-\frac{1}{\sin\trsp^2\alpha}\\
+\arcsin'x&=\frac{1}{\sqrt{1-x^2}} & \arccos'x&=-\frac{1}{\sqrt{1-x^2}}\\
+\arctg'x&=\frac{1}{1+x^2} & \arcctg'x&=-\frac{1}{1+x^2}
+\end{align*}
+
+\subsection{Промежутки монотонности}
+
+Если функция $f$ дифференцируема в точке $x_0$, то
+% ---
+$$\begin{cases}
+f'(x_0)\greater 0\implies f\kern-4pt\uparrow\text{около }x_0\\
+f'(x_0)\less 0\implies f\kern-4pt\downarrow\text{около }x_0
+\end{cases}\hspace*{-12pt}.$$
+
+{\bold Доказательство.} По определению производной:
+% ---
+$$f'(x_0)\greater 0\iff \lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}\greater 0\iff\frac
+{\Delta f}{\Delta x}\greater o(\Delta x)$$
+% ---
+При достаточно малом $\Delta x$ верно:
+% ---
+$$\frac{\Delta f}{\Delta x}\greater 0\iff\begin{sqcases}
+\Delta f,\Delta x\greater 0\\
+\Delta f,\Delta x\less 0
+\end{sqcases}\hspace*{-12pt}\iff
+f\kern-4pt\uparrow\text{около }x_0\qedw$$
+% ---
+Для $f'(x_0)\less 0$ доказательство аналогично.$\qedb$
+
+\subsection{Условие существования экстремума}
+
+Точка локального экстремума $\implies$ критическая точка.
+
+{\bold Доказательство.} По определению локального максимума:
+% ---
+$$\exists\delta\greater 0\colon\forall x\in\overset{\circ}{U}_\delta(x_0)\ f(x_0)\greater 
+f(x)$$
+% ---
+Производная в точке $x_0$ либо существует, либо нет.$\qedw$
+
+Допустим, она существует; по определению производной:
+% ---
+$$\lim_{x\to x_0}\frac{\Delta f}{\Delta x}=f'(x_0)$$
+% ---
+По предельному переходу:
+% ---
+$$\begin{sqcases}
+\Delta x\greater 0\implies\Delta f/\Delta x\less 0\implies f'(x_0)\leq 0\\
+\Delta x\less 0\implies\Delta f/\Delta x\greater 0\implies f'(x_0)\geq 0
+\end{sqcases}\hspace*{-12pt}\iff$$
+$$0\leq f'(x_0)\leq 0\iff f'(x_0)=0\qedw$$
+% ---
+Для локального минимума доказательство аналогично.$\qedb$
+
+Если в критической точке производная меняет знак, она является локальным экстремумом.
+
+{\bold Доказательство.} По определению критической точки:
+% ---
+$$\begin{sqcases}
+f'(x_0)=0\\
+f'(x_0)=\text{undefined}
+\end{sqcases}$$
+% ---
+Допустим для определённости:
+% ---
+$$\begin{cases}
+\exists\delta\greater 0\colon\forall x\in\overset{\circ}{U}_{\delta-}(x_0)\ f'(x)\greater 
+0\\
+\exists\delta\greater 0\colon\forall x\in\overset{\circ}{U}_{\delta+}(x_0)\ f'(x)\less 0
+\end{cases}$$
+% ---
+По промежуткам монотонности:
+% ---
+$$\begin{cases}
+f\kern-4pt\uparrow\text{на }U_{\delta-}(x_0)\\
+f\kern-4pt\downarrow\text{на }U_{\delta+}(x_0)
+\end{cases}\hspace*{-12pt}\iff x_0\text{ --- локальный максимум}\qedw$$
+% ---
+Для локального минимума доказательство аналогично.$\qedb$
+
+\subsection{Теорема Ролля}
+
+Пусть $f$ дифференцируема на $(a;b)$, непрерывна на $f[a;b]$, и~$f(a)=f(b)$. Тогда: {\ital
+\color{desc} (М. Ролль)}
+% ---
+$$\exists\xi\in(a;b)\colon f'(\xi)=0$$
+
+{\bold Доказательство.} По теореме Вейерштрасса:
+% ---
+$$f(m)=\inf f([a;b])\quad\quad f(M)=\sup f([a;b])$$
+% ---
+При $f(a)=f(b)=f(m)$ по условию существования экстремума:
+% ---
+$$f'(M)=0\qedw$$
+% ---
+При $f(m)=f(M)$ функция --- константа на $[a;b]$, произ"=водная которой равна нулю.$\qedb$
+
+\subsection{Теорема Лагранжа}
+
+Пусть $f$ дифференцируема на $(a;b)$ и непрерывна на $f[a;b]$. Тогда: {\ital\color{desc}
+(Ж.Л. Лагранж)}
+% ---
+$$\exists\xi\in(a;b)\colon f'(\xi)=\frac{f(b)-f(a)}{b-a}$$
+% ---
+{\bold Доказательство.} Пусть $\varphi(x):=f(x)-\lambda x$; подберём $\lambda$ так, чтобы 
+$\varphi(a)=\varphi(b)$:
+% ---
+$$f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff$$
+$$\lambda=\frac{f(b)-f(a)}{b-a}$$
+% ---
+По теореме Ролля:
+% ---
+$$\exists\xi\in(a;b)\colon\varphi'(\xi)=0\iff f'(\xi)-\lambda=0\iff$$
+$$\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}\qedb$$
+
+\subsection{Условие постоянства функции}
+
+Пусть $f$ непрерывна на $[a;b]$ и состоит из стационарных точек на $(a;b)$. Тогда 
+$f([a;b])=C$.
+
+{\bold Доказательство.} По теореме Лагранжа:
+% ---
+$$\forall x',x''\in[a;b]\ \exists\xi\in(x';x'')\colon f'(\xi)=\frac{f(x'')-f(x')}{x''-x'}
+$$
+% ---
+По определению стационарной точки:
+% ---
+$$f'(\xi)=0\implies \frac{f(x'')-f(x')}{x''-x'}=0\iff f(x'')=f(x')\qedb$$
+% ---
+Пусть $f,\ g$ непрерывны на $[a;b]$ и $f'=g'$. Тогда:
+% ---
+$$\forall x\in[a;b]\ f(x)-g(x)=C$$
+% ---
+{\bold Доказательство.} Пусть $\varphi:=f-g$; по условию:
+% ---
+$$\forall x\in(a;b)\ \varphi'(x)=f'(x)-g'(x)=0$$
+% ---
+По условию постоянства функции:
+% ---
+$$\varphi'(x)=0\iff\varphi(x)=C\iff f(x)-g(x)=C\qedb$$

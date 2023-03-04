@@ -1,0 +1,258 @@
+\section{Комбинаторика}
+
+% ПРИНЦИП ВКЛЮЧЕНИЯ-ИСКЛЮЧЕНИЯ:
+% 1. Число сюръекций
+% 2. Число беспорядков
+
+% GENERATING FUNCTIONS
+
+% Write and example for pigeonhole principle.
+
+% Power Set Notation
+
+\subsection{Принципы подсчёта}
+
+{\bold Правило сложения.} Пусть $S$ --- конечное множество, обра"=зованное объединением подмножеств $S_1,\dots,S_k$. Тогда:
+% ---
+$$\abs{S}=\abs{S_1}+\dots+\abs{S_k}$$
+% ---
+{\bold Правило умножения.} Пусть $S$ --- конечное множество, кото"=рое есть декартово произведение $S_1\times\dots\times S_k$. Тогда:
+% ---
+$$\abs{S}=\abs{S_1}\times\dots\times\abs{S_k}$$
+% ---
+{\bold Правило вычитания.} Пусть $S$ --- подмножество конечного множества $T$, $\bar{S}$ --- его комплемент. Тогда:
+% ---
+$$\abs{S}=\abs{T}-\abs{\bar{S}}$$
+% ---
+{\bold Принцип Дирихле.} Пусть $S_1,\dots,S_m$ --- конечные непересе"=кающиеся множества, причём:
+% ---
+$$\abs{S_1}+\dots+\abs{S_m}=n$$
+% ---
+Тогда существуют такие $i,j\in[1;m]\cap\mathbb{N}$, что:
+% ---
+$$\abs{S_i}\geq\left\lceil\frac{n}{m}\right\rceil\quad\abs{S_j}\leq\left\lfloor\frac{n}{m}\right\rfloor$$
+
+\subsection{Основные понятия}
+
+Пусть $X$ --- конечное множество, $n:=\abs{X}$, $[m]:=[1;m]\cap\mathbb{N}$.
+
+{\ital Упорядоченное разбиение} $m$ элементов из $X$ --- соответствие
+% ---
+$$s\colon[m]\to X.$$
+% ---
+{\ital Неупорядоченное разбиение} $m$ элементов из $X$ --- множество $S$ мощностью $m$ с элементами из $X$.
+
+{\ital Перестановка} --- упорядоченное биективное разбиение:
+% ---
+$$P_n\colon[n]\to X,\quad P_n=n!$$
+% ---
+{\ital k-Размещение} --- упорядоченное инъективное разбиение:
+% ---
+$$A_n^k\colon[k]\to X,\quad A_n^k=\frac{P_n}{P_{n-k}}$$
+% ---
+{\ital k-Сочетание} --- неупорядоченное инъективное разбиение:
+% ---
+$$C_n^k\colon[k]\to X,\quad C_n^k=\frac{A_n^k}{P_k},\quad C_n^k\equiv{\textstyle\binom{n}{k}}$$
+
+\subsection{Полиномиальная теорема}
+
+{\ital Полиномиальными} называются коэффициенты $\binom{n}{k_1,\dots,k_r}$ многочлена при $k_1,\dots,k_r\in\mathbb{N}_0$:
+% ---
+$$(x_1+\dots+x_r)^n=\sum_{\substack{k_1,\dots,k_r\geq 0\\k_1+\dots+k_r=n}}\binom{n}{k_1,\dots,k_r}x_1^{k_1}\dots x_r^{k_r}$$
+% ---
+{\bold Теорема.} Для $k_1,\dots,k_r\geq 0$ с $k_1+\dots+k_r=n$ справедливо:
+% ---
+$$\binom{n}{k_1,\dots,k_r}=\binom{n}{k_1}\binom{n-k_1}{k_2}\dots\binom{n-k_1-\dots-k_{r-1}}{k_r}$$
+$$=\frac{n!}{k_1!\cdot\dots\cdot k_r!}$$
+% ---
+{\bold Доказательство.} Раскроем скобки:
+% ---
+$$(x_1+\dots+x_r)^n=\sum_{i_1=1}^r\dots\sum_{i_n=1}^rx_{i_1}\dots x_{i_n}$$
+% ---
+Одночлен $x_1\dots x_r$ равен $x_1^{k_1}\dots x_r^{k_r}$, если среди индексов $i_1,\dots,i_n$ ровно $k_j$ равны $j\in[1;r]\cap\mathbb{Z}$.
+
+Выбор $k_j$ индексов происходит среди $n-k_1-\dots-k_{j-1}$ оставшихся. Поэтому таких упорядоченных выборок $\binom{n-k_1-\dots-k_{j-1}}{k_j}$:
+% ---
+$$\binom{n}{k_1,\dots,k_r}=\binom{n}{k_1}\binom{n-k_1}{k_2}\dots\binom{n-k_1-\dots-k_{r-1}}{k_r}\qedw$$
+% ---
+По формуле сочетаний:
+% ---
+$$\frac{n!}{k_1!\cancel{(n-k_1)!}}\cdot\frac{\cancel{(n-k_1)!}}{k_2!\cancel{(n-k_1-k_2)!}}\cdot\dots\cdot\frac{\cancel{(n-k_1-\dots-k_{r-1})!}}{k_r!(n-k_1-\dots-k_r)}$$
+$$=\frac{n!}{k_1!\cdot\dots\cdot k_r!\cdot 0!}=\frac{n!}{k_1!\cdot\dots\cdot k_r!}\qedb$$
+
+\subsection{Формула Паскаля}
+
+Для $n\geq 1$ и $0\leq k\leq n$ справедливо:
+% ---
+$$\binom{n}{k_1,\dots,k_r}=\sum_{i=1}^r\binom{n-1}{k_1,\dots,k_i-1,\dots,k_r}$$
+% ---
+{\bold Доказательство.} Раскроем скобки:
+% ---
+$$(x_1+\dots+x_r)^n=\sum_{\substack{k_1,\dots,k_r\\k_1+\dots+k_r=n}}\binom{n}{k_1,\dots,k_r}x_1^{k_1}\dots x_r^{k_r}$$
+% ---
+Раскроем скобки иначе:
+% ---
+\begin{align*}
+&(x_1+\dots+x_r)^n=(x_1+\dots+x_r)(x_1+\dots+x_r)^{n-1}\\
+=&(x_1+\dots+x_r)\cdot\sum_{\substack{k_1',\dots,k_r'\\k_1'+\dots+k_r'=n-1}}\binom{n-1}{k_1',\dots,k_r'}x_1^{k_1'}\dots x_r^{k_r'}\\
+=&\sum_{i=1}^r\sum_{\substack{k_1',\dots,k_r'\\k_1'+\dots+k_r'=n-1}}\binom{n-1}{k_1',\dots,k_r'}x_1^{k_1'}\dots x_i^{k_i'+1}\dots x_r^{k_r'}
+\end{align*}
+% ---
+Произведём замену индексов $k_i:=k_i'+1$, $k_j:=k_j'\ (i\neq j)$:
+% ---
+$$(x_1+\dots+x_r)^n=$$
+$$\sum_{\substack{k_1,\dots,k_r\\k_1+\dots+k_r=n-1}}\sum_{i=1}^r\binom{n-1}{k_1,\dots,k_i-1,\dots,k_r}x_1^{k_1}\dots x_r^{k_r}\qedb$$
+
+\subsection{Принцип включения-исключения}
+
+Пусть $A_1,\dots,A_n$ --- конечные множества. Тогда верно:
+% ---
+$$\abs{\bigcup_{i=1}^nA_i}=\sum_{k=1}^n(-1)^{k+1}\abs{\bigcap_{j=1}^{n}A_j}$$
+% ---
+{\bold Доказательство.} Пусть $x\in\bigcup_i^nA_i$, причём $x$ содержится в $k$ множествах $A_1,\dots,A_k$.
+
+Левая часть формулы --- $1$. Докажем, что правая часть тоже:
+% ---
+\begin{align*}
+&\textstyle\binom{k}{1}\text{ раз {\ital x} встречается во множествах мощностью 1;}\\
+&\dots\\
+&\textstyle\binom{k}{k}\text{ раз {\ital x} встречается во множестввх мощностью {\ital k}.}
+\end{align*}
+% ---
+Подставляем биномиальные коэффициенты в формулу:
+% ---
+$$\binom{k}{1}-\binom{k}{2}+\dots+(-1)^{k+1}\binom{k}{k}=\sum_{i=1}^k\binom{k}{i}(-1)^{i+1}$$
+% ---
+По определению биномиальных коэффициентов:
+% ---
+$$\sum_{i=1}^k\binom{k}{i}(-1)^{i+1}=\binom{k}{0}-\sum_{i=0}^k(-1)^i1^{k-i}=\binom{k}{0}-(1-1)^k=1\qedb$$
+
+\subsection{Правило биекции}
+
+Пусть $f\colon X\to Y$ --- биективное соответствие, где $X,Y$ --- конечные множества. Тогда:
+% ---
+$$\abs{X}=\abs{Y}$$
+% ---
+{\bold Задача.} {\ital Сколько подмножеств имеет $n$-множество?}
+
+{\bold Решение.} Пусть $Y$ --- $n$-множество.
+
+Пусть $\overline{x_1\dots x_n}$ --- бинарная $n$-строка, где $x_i$ указывает на на"=личие $i$-го элемента в произвольном множестве $\mathcal{P}(Y)$.
+
+Пусть $f\colon X\to\mathcal{P}(Y)$ --- соответствие, где $X$ --- множество всех возможных бинарных $n$-строк. Очевидно, что:
+% ---
+$$f\text{ --- биекция}\implies\abs{Y}=\abs{X}$$
+% ---
+По правилу умножения:
+% ---
+$$\abs{X}=2^n\implies\abs{\mathcal{P}(Y)}=2^n$$
+% ---
+{\ital Ответ:} $\abs{\mathcal{P}(Y)}=2^n$.
+
+\subsection{Биномиальные коэффициенты}
+
+{\bold Свойство 1.} Для $n\in\mathbb{N}$ и $r\in[0;n]\cap\mathbb{Z}$ верно:
+% ---
+$$\binom{n}{r}=\binom{n}{n-r}$$
+% ---
+{\bold Доказательство.} Пусть $A$ --- $n$-множество, из которого нуж"=но выбрать $B$ --- $r$-подмножество.
+
+По определению биномиальных коэффициентов:
+% ---
+$$\substack{\text{число неупорядоченных}\\\text{выборок }B}=\binom{n}{r}$$
+% ---
+С другой стороны, рассмотрим комплемент $A\backslash B$:
+% ---
+$$\substack{\text{число неупорядоченных}\\\text{выборок }A\backslash B}=\binom{n}{n-r}$$
+% ---
+Пусть $f\colon A_1\to A_2$ --- биективное соответствие, $A_1=A_2=A$.
+
+Любой элемент $x\in B\subset A_1$ можно сопоставить $x\in A\backslash B\subset A_2$. Значит, числа таких сопоставлений равны:
+% ---
+$$\binom{n}{r}=\binom{n}{n-r}\qedb$$
+% ---
+{\bold Свойство 2.} Для $n\in\mathbb{N}$ верно:
+% ---
+$$\sum_{r=0}^n\binom{n}{r}=2^n$$
+% ---
+{\bold Доказательство.} Пусть $A$ --- $n$-множество, для которого по"=считаем $\abs{\mathcal{P}(A)}$.
+
+С одной стороны, $\abs{\mathcal{P}(A)}=2^n$ по доказанному.
+
+С другой стороны, посчитаем $\abs{\mathcal{P}(A)}$ через биномиальные ко"=эффициенты: есть $\binom{n}{r}$ способов выбрать $r$-подмножество.
+
+По правилу сложения:
+% ---
+$$\abs{\mathcal{P}(A)}=\sum_{r=0}^n\binom{n}{r}\implies\sum_{r=0}^n\binom{n}{r}=2^n\qedb$$
+
+\subsection{Метод шаров и перегородок}
+
+Число способов составить $r$-мультимножество из $n$-множества равно:
+% ---
+$$\multiset{n}{r}:=\binom{n+r-1}{r}=\multiset{n}{k-1}+\multiset{n-1}{k}$$
+% ---
+{\bold Доказательство.} Для подсчёта числа всех возможных $r$-мультимножеств введём $n-1$ {\ital перегородок} --- cчитается, что элементы между двумя соседними перегородками равны.
+
+Таким образом, число способов заполнить $n+r-1$ позиций с~выбором $r$ шаров {\ital\color{desc}(или вставкой n-1 перегородок)} равно:
+% ---
+$$\binom{n+r-1}{r}\qedw$$
+% ---
+По формуле Паскаля:
+% ---
+\begin{align*}
+\multiset{n}{k-1}+\multiset{n-1}{k}&=\binom{n+k-2}{k-1}+\binom{n+k-2}{k}\\
+&=\binom{n+k-1}{k}\qedb
+\end{align*}
+% ---
+{\bold Задача.} Посчитать число неотрицательных целых решений
+% ---
+$$3x_1+3x_2+3x_3+7x_4=22.$$
+% ---
+{\bold Решение.} Методом полного перебора, $x_4\in\{0,1,2,3\}$.
+
+По методу шаров и перегородок:
+% ---
+$$\left[\begin{aligned}
+x_4=0&\implies 3(x_1+x_2+x_3)=22 \hspace*{-6pt}&&\iff\text{решений нет}\\
+x_4=1&\implies 3(x_1+x_2+x_3)=15 \hspace*{-6pt}&&\iff x_1+x_2+x_3=5\\
+x_4=2&\implies 3(x_1+x_2+x_3)=8 \hspace*{-6pt}&&\iff\text{решений нет}\\
+x_4=3&\implies 3(x_1+x_2+x_3)=1 \hspace*{-6pt}&&\iff\text{решений нет}\\
+\end{aligned}\right.$$
+$$\iff\multiset{3}{5}=\binom{7}{5}=21$$
+% ---
+{\ital Ответ:} 21 решение.
+
+\newpage
+\subsection{Правило деления}
+
+Пусть $f\colon X\to Y$ --- отображение $k${\ital -к-одному}, где $X,Y$ --- конечные множества. Тогда:
+% ---
+$$\abs{X}=4\abs{Y}$$
+% ---
+{\bold Задача.} Сколько существует рассадок 4 рыцарей вокруг сто"=ла? Две рассадки эквивалентны, если одну можно получить из другой поворотом.
+
+{\bold Решение.} Пусть $A=\{x_1,x_2,x_3,x_4\}$ --- множество рыцарей, $X$ --- множество 4-строк вида $\overline{x_j\dots x_k},\ 1\leq j,k\leq 4,\ i\neq j$.
+
+Пусть $f\colon X\to Y$ --- соответствие, где $Y$ --- множество всех возможных рассадок для $A$. Очевидно, что:
+% ---
+$$f\text{ --- {\ital n-к-одному}}\implies 4\abs{Y}=\abs{X}\iff\abs{Y}=\abs{X}/4$$
+% ---
+По правилу умножения:
+% ---
+$$\abs{X}=4\cdot 3\cdot 2\cdot 1=P_4=24\implies\abs{Y}=24/4=6$$
+% ---
+{\ital Ответ:} $\abs{Y}=6$.
+
+\subsection{Число Стирлинга}
+
+{\ital Число Стирлинга второго порядка} --- количество способов разбить $n$-множество на $k$ подмножеств:
+% ---
+$$C(n,k)\equiv\stirl{n}{k}=k\stirl{n-1}{k}+\stirl{n-1}{k-1}$$
+% ---
+Частные случаи:\par
+% ---
+\begin{tabularc}{0pt}{0pt}{c @{\quad\quad} c @{\quad\quad} c @{\quad\quad} c}{c}
+$\displaystyle\stirl{n}{0}=0$ & $\displaystyle\stirl{n}{1}=1$ & $\displaystyle\stirl{n}{n}=1$ & $\displaystyle\stirl{n}{n-1}=\binom{n}{2}$
+\end{tabularc}
+
+{\bold Доказательство.} Скоро... наверное. % https://cs.ioc.ee/cm/SpecialNumbers1.pdf

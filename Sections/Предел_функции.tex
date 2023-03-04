@@ -1,0 +1,194 @@
+\section{Предел функции}
+
+\subsection{Предел}
+
+{\bold Предел} функции $f\colon X\to Y$ в точке $x_0\in X$ {\ital по Коши} --- такое
+$a\in Y$, что {\ital\color{desc} (О.Л. Коши)}
+% ---
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon\forall x\in\underbrace{
+\overset{\circ}{U}_\delta(x_0)\subseteq D_f}_{\text{\tinyt I}},\ \underbrace{f(x)\in U_\varepsilon(a)}_{\text{\tinyt II}}.$$\\
+% ---
+\begin{tabularc}{0pt}{0pt}{>{\raggedleft\arraybackslash}p{.03\linewidth} @{ --- } 
+>{\raggedright\arraybackslash}p{.91\linewidth}}{n}
+I & функция $f$ определена в какой-либо проколотой $\delta$-окрестности точки $x_0$;
+\\[18pt]
+II & функция $f$ имеет образ в какой-либо проколотой $\varepsilon$-окрестности точки 
+$a$.  
+\end{tabularc}
+
+{\bold Предел} функции $f\colon X\to Y$ в точке $x_0\in X$ {\ital по Гейне} --- такое
+$a\in Y$, что {\ital\color{desc} (Э. Гейне)}
+% ---
+$$\forall\{x_n\}\in D_f\colon\lim_{n\to\infty}x_n=x_0\ (x_n\neq x_0)\implies\lim_{n\to
+\infty}f(x_n)=a.$$
+% ---
+Упрощённая запись $\forall x\in X\ \lim_{x\to x_0}f(x)=a$ или $x\to x_0$, $f(x)\to a$.
+
+\subsection{Критерий Коши}
+
+Сходимость $\iff$ выполнение {\ital условия Коши}:\\[-8pt]
+% ---
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon\forall x',x''\in\overset
+{\circ}{U}_\delta(x_0)\ \abs{f(x')-f(x'')}\less\varepsilon$$
+% ---
+{\bold Доказательство $\implies$.} По определению предела:\\[-8pt]
+% ---
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon\overset{\circ}{U}_\delta
+(x_0)\subseteq D_f,\ U_{\varepsilon/2}(a)\cap E_f\neq\emptyset$$\\[-6pt]
+% ---
+Пусть $x',x''\in\overset{\circ}{U}_\delta(x_0)$; по неравенству треугольника:
+% ---
+$$\abs{f(x')-f(x'')}\leq\abs{f(x')-a}+\abs{f(x'')-a}\less\varepsilon/2+\varepsilon/2=
+\varepsilon\qedb$$
+% ---
+{\bold Доказательство $\impliedby$.} По условию Коши:
+% ---
+$$\exists\{x_n\}\in D_f\colon\lim_{n\to\infty}x_n=x_0,\ x_n\neq x_0$$
+% ---
+Последовательности $\{f(x_n)\}$ фундаментальны $\implies$ сходятся.
+
+По фундаментальности и сходимости к одной точке $x_0$:
+% ---
+$$\lim_{x\to x_0}f(x)=a\qedb$$
+
+\subsection{Предел композиции функций}
+
+Пусть $f\colon X\to Y$, $g\colon Y\to Z$. Тогда:
+% ---
+$$\begin{cases}
+\lim_{x\to x_0}f(x)=y_0\\
+\lim_{x\to x_0}g(x)=z_0
+\end{cases}\hspace*{-12pt}\iff\begin{cases}
+\lim_{x\to x_0}(g\circ f)(x)=z_0\\
+f(x)\neq y_0
+\end{cases}$$
+% ---
+{\bold Доказательство.} Пусть $g\circ f=\varphi$; по определению предела:\\[-9pt]
+% ---
+$$\begin{cases}
+\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon\overset{\circ}{U}_\delta(y_0)
+\subseteq D_g,\ U_\varepsilon(z_0)\cap E_g\neq\emptyset\\
+\forall\delta\greater 0\ \exists\sigma\greater 0\colon\overset{\circ}{U}_\sigma(x_0)
+\subseteq D_f,\ U_\delta(y_0)\cap E_f\neq\emptyset
+\end{cases}$$\\[-6pt]
+% ---
+Из $\overset{\circ}{U}_\delta(y_0)\cap U_\delta(y_0)=\overset{\circ}{U}_\delta(y_0)$ 
+следует:\\[-14pt]
+% ---
+$$\begin{cases}
+\forall\varepsilon\greater 0\ \exists\sigma\greater 0\colon\overset{\circ}{U}_\sigma(x_0)
+\subseteq D_f,\ U_\varepsilon(\varphi(x))\cap E_g\neq\emptyset\\
+y\neq y_0\iff f(x)\neq y_0
+\end{cases}\hspace*{-12pt}\iff$$
+$$\lim_{x\to x_0}\varphi(x)=z_0,\ f(x)\neq y_0.\qedb$$
+
+\subsection{Бесконечно малая функция}
+
+Функция $g$ {\ital бесконечно мала} относительно $f$ при $x\to\ x_0$, если
+% ---
+$$g(x)=\varepsilon(x)f(x):=\underset{x\to\ x_0}{o(f)},\quad\quad\lim_{x\to x_0}\varepsilon
+(x)=0.$$
+% ---
+Верно следующее утверждение:
+% ---
+$$\lim_{x\to\ x_0}f(x)=a\iff f(x)=a+\underset{x\to x_0}{o(x)}$$
+% ---
+{\bold Доказательство $\implies$.} По определению предела:
+% ---
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon 0\less\abs{x-x_0}\less
+\delta,\ \abs{f(x)-a}\less\varepsilon$$
+% ---
+По теореме о промежуточной функции:
+% ---
+$$0\leq\abs{f(x)-a}\less\varepsilon\implies\lim_{x\to x_0}(f(x)-a)=0\iff$$
+$$f(x)-a=\underset{x\to x_0}{o(x)}\iff f(x)=a+\underset{x\to x_0}{o(x)}\qedb$$
+% ---
+{\bold Доказательство $\impliedby$.} По условию:
+% ---
+$$f(x)=a+o(x)\iff\abs{f(x)-a}=\abs{o(x)}$$
+% ---
+По определению бесконечно малой функции:
+% ---
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon 0\less\abs{x-x_0}\less
+\delta,\ \abs{o(x)}\less\varepsilon$$
+% ---
+По определению предела:
+% ---
+$$\abs{f(x)-a}\less\varepsilon\iff\lim_{x\to x_0}f(x)=a\qedb$$
+
+\subsection{Односторонний предел}
+
+{\bold Правосторонним} называется предел функции, который определён в терминах
+правосторонних $\varepsilon$-окрестностей {\ital (неубывающих 
+последовательностей)}:
+% ---
+$$\lim_{x\to x_0+0}f(x)=a\quad\text{или}\quad x\to x_0+0,\ f(x)\to a$$
+% ---
+{\bold Левосторонним} называется предел функции, который определён в терминах
+левосторонних $\varepsilon$-окрестностей {\ital (невозрастающих 
+последовательностей)}.
+% ---
+$$\lim_{x\to x_0-0}f(x)=a\quad\text{или}\quad x\to x_0-0,\ f(x)\to a$$
+% ---
+Сущестование предела равносильно существованию {\ital равных} односторонних пределов:
+% ---
+$$\lim_{x\to x_0}f(x)\iff\lim_{x\to x_0+0}f(x)=\lim_{x\to x_0-0}f(x)$$
+
+\subsection{Непрерывность}
+
+Пусть $\forall\varepsilon\greater 0\ U_\varepsilon(x_0)\subseteq D_f$. Тогда:
+
+\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
+$x-x_0=:\Delta x$ & {\ital приращение аргумента} в точке $x_0$;\\
+$f(x)-f(x_0)=:\Delta f$ & {\ital приращение функции} в точке $x_0$.
+\end{tabularc}
+
+Функция $f$ {\ital непрерывна} в точке $x_0$, если
+% ---
+$$\lim_{x\to x_0}f(x)=f(x_0)\quad\text{или}\quad\Delta x\to 0,\ \Delta f\to 0.$$
+% ---
+Определения {\ital непрерывности справа} и {\ital слева} точки $x_0$ связаны
+с правосторонними и левосторонними пределами.
+
+Непрерывными в точке $x_0$ являются {\ital сумма}, {\ital произведение} и~{\ital 
+композиция} непрерывных в ней функций.
+
+\newpage
+\subsection{Теорема Вейерштрасса}
+
+Пусть $f\in C[a;b]$. Тогда в некоторых точках отрезка функция достигает своих точных 
+верхней и нижней границ на $[a;b]$.
+
+{\bold Доказательство.} Пусть $\sup f([a;b])=:M$, $\inf f([a;b])=:m$.
+
+По определению точных верхней и нижней границ:
+% ---
+$$\forall x\in[a;b]\ f(x)\in[m;M]$$
+% ---
+По принципу компактности отрезка:
+% ---
+$$\lim_{n\to\infty}f(x_n)=M\quad\quad\lim_{k\to\infty}x_{n_k}=\xi$$
+% ---
+По определению непрерывности:
+% ---
+$$\lim_{k\to\infty}f(x_{n_k})=f(\xi)\implies f(\xi)=M\qedb$$
+
+\subsection{Теорема о промежуточном значении}
+
+Пусть $f$ непрерывна на промежутке $X\ni a,b$. Тогда:
+% ---
+$$\forall c\in[f(a);f(b)]\ \exists\xi\in[a;b]\colon c=f(\xi)$$
+% ---
+{\bold Доказательство.} По принципу Кантора:
+% ---
+$$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]\subseteq X
+\implies$$
+$$n\to\infty,\ a_n,b_n\to\xi$$
+% ---
+По определению непрерывности функции на промежутке:
+% ---
+$$n\to\infty,\ f(a_n),f(b_n)\to f(\xi)$$
+% ---
+По теореме о промежуточной функции:
+% ---
+$$f(a_n)\leq c\leq f(b_n)\implies c=f(\xi)\qedb$$

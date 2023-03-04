@@ -1,0 +1,373 @@
+\section{Модульная арифметика}
+
+\subsection{Конгруэнтность}
+
+Два целых числа {\bold конгруэнтны} {\ital\color{desc} (сравнимы)} по модулю $m$, когда их разность кратна $m$ {\ital\color[HTML]{888888} (К.Ф. Гаусс)}:
+% ---
+$$a\equiv b\modb{m}\iff m\mid(a-b)\iff a=b+mk,\ k\in\mathbb{Z}$$
+% ---
+Отношение конгруэнтности {\ital транзитивно}, поэтому числа образуют {\ital систему остаточных классов} $\symbf{Z}_m$ по модулю {\ital m}. Например, $\symbf{Z}_3$:
+% ---
+$$\{\ldots, -6, -3, \symbf{0}, 3, 6,\ldots\}\text{ класс }r_0$$
+$$\{\ldots, -5, -2, \symbf{1}, 4, 7,\ldots\}\text{ класс }r_1$$
+$$\{\ldots, -4, -1, \symbf{2}, 5, 8,\ldots\}\text{ класс }r_2$$
+
+\subsection{Свойства сравнения}
+
+Конгруэнтные числа можно {\ital складывать}, {\ital перемножать} и~передавать {\ital многочлену} $f\in\mathbb{Z}[x]$:
+% ---
+$$\begin{cases}
+\begin{aligned}
+a\equiv b&\modb{m}\\
+c\equiv d&\modb{m}\\
+\end{aligned}
+\end{cases}
+\hspace*{-12pt}\implies
+\begin{cases}
+\begin{aligned}
+&a + c\equiv b + d &\modb{m}\\
+&ac\equiv bd &\modb{m}\\
+&f(a)\equiv f(b) &\modb{m}
+\end{aligned}
+\end{cases}$$
+% ---
+Конгруэнтные числа можно {\ital умножать {\color{desc}(делить)}} на одно число с {\ital увеличением {\color{desc}(сокращением)}} модуля:
+% ---
+\begin{align*}
+a\equiv b\modb{m}&\iff ad\equiv bd\modb{md}\\
+ad\equiv bd\modb{m}&\iff a\equiv b\modb{\frac{m}{(m,d)}}
+\end{align*}
+% ---
+Из транзитивности делимости следует:
+% ---
+$$a\equiv b\modb{m},\ n\mid m\implies a\equiv b\modb{n}$$
+
+\subsection{Признаки делимости}
+
+Для вывода признаков делимости лучше использовать {\ital деся"=тичное представление} числа $\overline{a_1a_2\dots a_n}$:
+% ---
+$$\overline{a_1a_2\dots a_n}=\sum^{n-1}_{i=0}a_{n-i}10^i$$
+
+\begin{itemize}
+\item[---]При модуле $m=2^k; 5^k; 10^k$ одночлены $a_{n-i}10^i\equiv a_{n-i}0=$ $=0$
+$(i\geq k)$. Значит, число $\overline{a_1a_2\dots a_n}$ кратно {\ital m}, когда
+последние {\ital k} цифры кратны {\ital m}:
+$$\overline{a_1a_2\dots a_n}\equiv 0\iff
+\overline{a_{n-k+1}\dots a_{n-1}a_n}\equiv 0$$
+
+\item[---]При модуле $m=3; 9$ одночлены $a_{n-i}10^i\equiv a_{n-i}1^i=a_{n-i}$.
+Значит, число $\overline{a_1a_2\dots a_n}$ кратно {\ital m}, когда сумма цифр\\
+кратна {\ital m}:
+$$\overline{a_1a_2\dots a_n}\equiv 0\iff
+a_1+a_2+\dots+a_n\equiv 0$$
+
+\item[---]При модуле $m=11$ одночлены $a_{n-i}10^i\equiv a_{n-i}(-1)^i$.
+Значит, число $\overline{a_1a_2\dots a_n}$ кратно 11, когда знакочереду-\\ющаяся
+сумма цифр кратна 11:
+$$\overline{a_1a_2\dots a_n}\equiv 0\iff
+a_1-a_2+\dots-a_n\equiv 0$$
+
+\item[---]При модуле $m=7$ вычтем из числа {\ital n} последнюю цифру; останется
+$\lfloor n/10\rfloor$. Последняя цифра равна $n-10\lfloor n/10\rfloor$.
+Вычтем из числа удвоенную последнюю цифру:
+$$\left\lfloor\frac{n}{10}\right\rfloor -2(n-10\left\lfloor\frac{n}{10}
+\right\rfloor)\equiv 0\iff 21\left\lfloor\frac{n}{10}\right\rfloor-2n\equiv 0$$
+Одночлен $21\lfloor n/10\rfloor\equiv 0$. Значит, число $\overline{a_1a_2\dots a_n}$
+кратно 7, когда удвоенная разность последней цифры числа\\
+и самого числа без этой цифры кратна 7:
+$$\overline{a_1a_2\dots a_n}\equiv 0\iff\overline{a_1a_2\dots a_{n-1}}-2a_n\equiv 0$$
+\end{itemize}
+
+\subsection{Функция Эйлера}
+
+Функция $\phi(m)$ считает количество положительных целых чисел, меньших {\ital m}
+и взаимно простых с ним {\ital\color[HTML]{888888} (для малых\\ и простых m
+целесообразно перебрать вручную)}:
+% ---
+$$\phi(m)=m\prod^{}_{p\mid m}\left(1-\frac{1}{p}\right)$$
+
+\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
+$p$ & простой делитель $m$;\\
+$1/p$ & часть чисел, кратных $p$;\\
+$1-1/p$ & часть чисел, взаимно простых с $p$.
+\end{tabularc}
+
+Функция Эйлера {\ital мультипликативна {\color{desc}(только для взаимно простых натуральных чисел)}}.
+
+\subsection{Теорема Эйлера}
+
+\begin{theorem}
+{\bold Теорема.} Пусть $a\in\mathbb{Z}$, $(a,m)=1$. Тогда верно {\ital\color{desc}(Л. Эйлер)}:
+% ---
+$$a^{\phi(m)}\equiv 1\modb{m},\quad a\not\equiv 0\modb{m}$$
+\end{theorem}
+% ---
+{\bold Доказательство.} Введём систему остаточных классов $\symbf{Z}_m$. В ней есть {\ital m} классов: $r_0,r_1,\ldots,r_{m-1}$.
+
+Пусть множество $\Phi$ содержит в себе $\phi(m)$ остатков, взаимно простых с {\ital m}. Домножим каждый элемент на {\ital a} и образуем новое множество $\Phi_a$. Заметим, что:
+
+\begin{column*}{t}{.55\linewidth}
+{\ital Элементы $\Phi_a$ из разных классов.}\par
+Допустим, это не так. Тогда:
+$$ar_k\equiv ar_l\implies r_k\equiv r_l$$
+Но $r_k\nequiv r_l\implies ar_k\nequiv ar_l\qedw$
+\end{column*}
+% ---
+\begin{column*}{t}{.43\linewidth}
+{\ital $\Phi$ и $\Phi_a$ конгруэнтны.}\par
+Пусть $ar_k\equiv r_l,\ r_l\in\symbf{Z}_m$.\par
+Так как $m\nmid ar_k$, то:
+$$r_l\in\Phi\implies\Phi\equiv\Phi_a\qedw$$
+\end{column*}
+
+Перемножим элементы множеств $\Phi$ и $\Phi_a$:
+% ---
+\begin{align*}
+r_0r_1\ldots r_{\phi(m)}&\equiv ar_0ar_1\ldots ar_{\phi(m)}\implies\\
+r_0r_1\ldots r_{\phi(m)}&\equiv a^{\phi(m)}r_0r_1\ldots r_{\phi(m)}\implies
+a^{\phi(m)}\equiv 1\qedb
+\end{align*}
+% ---
+\begin{theorem}
+{\bold Следствие.} Пусть $a\in\mathbb{Z},\ b\in\mathbb{N},\ (m,a)=1$. Тогда:
+% ---
+$$a^b\equiv a^{b\modn{\phi(m)}}\modb{m},\quad a\not\equiv 0\modb{m}$$
+\end{theorem}
+% ---
+{\bold Доказательство.} Представим {\ital b} в арифметическом виде:
+% ---
+$$b=\phi(m)\left\lfloor\frac{b}{\phi(m)}\right\rfloor+b\modn{\phi(m)}$$
+
+\begin{itemize}[itemindent=18mm]
+\item[$\phi(m)$] --- модуль деления.\\
+\item[$\lfloor b/\phi(m)\rfloor$] --- целое частное.\\
+\item[$b\modn{\phi(m)}$] --- остаток.
+\end{itemize}
+
+Подставим полученное выражение:
+% ---
+$$a^{\phi(m)\lfloor b/\phi(m)\rfloor+b\modn{\phi(m)}}=(a^{\phi(m)})^{\lfloor b/\phi(m)\rfloor}a^{b\modn{\phi(m)}}$$
+% ---
+Так как $a^{\phi(m)}\equiv 1$, получается $a^b\equiv a^{b\modn{\phi(m)}}.\qedb$
+
+\newpage
+\subsection{Алгоритм Евклида}
+Пусть $a,b\in\mathbb{N}^{0}\ (a>b)$, тогда:
+$$(a,b)=(a\modn{b},b)$$
+% ---
+{\bold Доказательство.} Допустим, $m\mid (a-b),b$:
+$$+
+\begin{cases}
+a-b\equiv 0&\modb{m}\\
+b\equiv 0&\modb{m}
+\end{cases}\implies
+\begin{cases}
+a\equiv 0&\modb{m}\\
+b\equiv 0&\modb{m}
+\end{cases}
+$$
+Получаем, что любой общий делитель {\ital m} у $a-b$, $b$ есть у $a$, $b$.
+Следовательно, $(a,b)=(a-b,b)$.\par
+При повторе вычитания получится остаток от деления на {\ital b}:
+$$(a,b)=(a\modn{b},b)\qedb$$
+
+\subsection{Мультипликативная инверсия}
+
+Пусть $ab\equiv 1\modb{m}$ --- линейное сравнение, где $b$ --- {\bold мультипликативная инверсия} числа $a$ по модулю $m$:
+% ---
+$$b\equiv a^{-1}\equiv\frac{1}{a}\modb{m},\quad(a,m)=1$$
+% ---
+«Дробные» числа можно {\ital складывать}, {\ital перемножать} и {\ital сокра"=щать} как рациональные:
+% ---
+$$\begin{cases}\begin{aligned}
+\frac{a}{b}+\frac{c}{d}&\equiv\frac{ad+bc}{cd} &\modb{m}\\
+\frac{a}{b}\times\frac{c}{d}&\equiv\frac{ac}{bd} &\modb{m}\\
+\frac{eg}{fg}&\equiv\frac{e}{f} &\modb{m}
+\end{aligned}\end{cases}$$
+
+\subsection{Линейное сравнение}
+
+{\ital Линейное} сравнение вида $ax\equiv b\modb{m}$ разрешимо отно"=сительно $x$, когда $(m,a)\mid b$. {\ital\color[HTML]{888888} (по соотношению Безу)}
+
+План решения:
+
+\begin{itemize}
+\item[---]упростить линейное сравнение;
+\item[---]рассчитать $(m,a)$ по алгоритму Евклида;
+\item[---]выразить $(m,a)$ через полученные остатки;
+\item[---]домножить соотношение Безу на {\ital b}.  
+\end{itemize}
+
+{\bold Пример.} Решить линейное сравнение: $4x\equiv 4\modb{6}$.\par
+Упростим сравнение:
+\begin{align*}
+4x&\equiv 4\modb{6}\ |\cdot 1/2\\
+2x&\equiv 2\modb{3}
+\end{align*}
+Применим {\ital алгоритм Евклида} в алгебраическом виде:\par
+\begin{column*}{t}{.47\linewidth}
+{\ital «Прямой» алгоритм:}
+\begin{align*}
+3&=2\cdot 1+1\\
+2&=\symbf{1}\cdot 2+0
+\end{align*}
+\end{column*}
+% ---
+\begin{column*}{t}{.4\linewidth}
+{\ital «Обратный» алгоритм:}
+\begin{align*}
+1&=3\cdot \symbf{1}+2\cdot (\symbf{-1})\ |\cdot 2\\
+2&=3\cdot \symbf{2}+2\cdot (\symbf{-2})
+\end{align*}
+\end{column*}\par
+Итак, коэффициенты Безу найдены: $x=-2,\ y=2$.\par
+{\ital Ответ:} $x=-2$.\par
+
+\subsection{Китайская теорема об остатках}
+
+Сравнения можно объединять в {\ital систему}:
+% ---
+$$\begin{cases}
+\begin{aligned}
+x&\equiv a_1\modb{m_1}\\
+&\dots\\
+x&\equiv a_n\modb{m_n}
+\end{aligned}
+\end{cases}$$
+% ---
+Она разрешима относительно {\ital x} по модулю $[m_1,\ldots,m_n]$, когда разрешима каждая пара сравнений, в частности $(m_1,m_2)\mid a_1-a_2$.
+
+{\bold Доказательство.} Рассмотрим пару сравнений из системы:
+% ---
+$$\begin{cases}
+x\equiv a_1\modb{m_1}\\
+x\equiv a_2\modb{m_2}
+\end{cases}
+\hspace*{-12pt}\iff
+\begin{cases}
+\begin{aligned}
+x&=a_1+m_1j,& j&\in\mathbb{Z}\\
+x&=a_2-m_2k,& k&\in\mathbb{Z}
+\end{aligned}
+\end{cases}
+\hspace*{-12pt}\iff$$
+$$m_1j+m_2k=a_2-a_1$$
+% ---
+Данное соотношение Безу имеет целые коэффициенты $j$, $k$, когда $(m_1,m_2)\mid(a_1-a_2)$.$\qedw$
+
+По индукции, система будет разрешима относительно {\ital x}, когда будет разрешима каждая пара сравнений.
+
+Допустим, $x\equiv y\equiv a_i\modb{m_i},\ i\in\{i\}_{i=1}^n$ --- решение всей системы. Значит, $m_i\mid x-y\implies [m_1,\ldots,m_n]\mid x-y\iff$\\$x\equiv y\modb{[m_1,\ldots,m_n]}.\qedb$
+
+План решения каждой пары сравнений:
+% ---
+\begin{itemize}
+\item[---]упростить линейные сравнения;
+\item[---]преобразовать их в соотношения Безу, приравнять их;
+\item[---]решить полученное выражение как линейное сравнение.
+\end{itemize}
+% ---
+{\bold Пример.} Решить систему сравнений:
+% ---
+$$\begin{cases}
+\begin{aligned}
+&x\equiv 2 &\modb{3}\\
+&x\equiv 2 &\modb{4}\\
+&2x\equiv -3 &\modb{5}
+\end{aligned}
+\end{cases}$$
+% ---
+Упростим последнее сравнение:
+% ---
+$$2x\equiv -3\modb{5}\iff x\equiv 1\modb{5}$$
+% ---
+Преобразуем первую пару сравнений в соотношения Безу:
+% ---
+$$\begin{cases}
+\begin{aligned}
+x\equiv 2 &\modb{3}\\
+x\equiv 2 &\modb{4}
+\end{aligned}
+\end{cases}
+\hspace*{-12pt}\iff
+\begin{cases}
+\begin{aligned}
+x&=2+3j,& j&\in\mathbb{Z}\\
+x&=2+4k,& k&\in\mathbb{Z}
+\end{aligned}
+\end{cases}$$
+% ---
+Приравняем их и решим как сравнение:
+% ---
+$$2+3j=2+4k\iff 2\equiv 2+k\modb{3}\iff k\equiv 0\modb{3}$$
+% ---
+Значит, $x=2+4k\equiv 2\modb{12}$ --- решение первой пары.
+
+Аналогично решив следующую {\ital\color{desc} (и последнюю)} пару, получим решение всей системы: $x\equiv 26\modb{60}$.
+
+{\ital Ответ:} $x\equiv 26\modb{60}$.
+
+\subsection{Сравнение по составному модулю}
+
+Пусть $f\in\mathbb{Z}[x]$. Тогда для $m=p_1^{\alpha_1}\dots p_r^{\alpha_r}$ разрешимо
+% ---
+$$f(x)\equiv 0\modb{m},$$
+% ---
+если разрешимы $f(x)\equiv 0\modb{p_i^{\alpha_i}},\ i\in[1;r]\cap\mathbb{Z}$.
+
+{\bold Доказательство $\implies$.} Пусть $x\in\mathbb{Z}$ --- решение
+% ---
+$$f(x)\equiv 0\modb{m},\ p_i^{\alpha_i}\mid m\implies f(x)\equiv 0\modb{p_i^{\alpha_i}}.\qedb$$
+% ---
+{\bold Доказательство $\impliedby$.} Пусть $x_i$ --- решение
+% ---
+$$f(x_i)\equiv 0\modb{p_i^{\alpha_i}}$$
+% ---
+По китайской теореме об остатках:
+% ---
+$$\forall i_1,i_2\in[1;r],\ i_1\neq i_2\ (p_{i1}^{\alpha_{i1}},p_{i2}^{\alpha_{i2}})=1\implies$$
+$$\exists x\colon x\equiv x_i\modb{p_i^{\alpha_i}}\implies f(x)\equiv 0\modb{[p_1^{\alpha_1},\dots,p_r^{\alpha_r}]}\implies$$
+$$f(x)\equiv 0\modb{m}\qedb$$ 
+
+\subsection{Сравнение по степени простого модуля}
+
+Пусть $f\in\mathbb{Z}[x]$. Тогда для простого $p$ разрешимо
+% ---
+$$f(x)\equiv 0\modb{p^\alpha},$$
+% ---
+если разрешимы $f(x)\equiv 0\modb{p^i},\ i\in[1;\alpha]\cap\mathbb{Z}$.
+
+{\bold Доказательство.} Аналогично прошлому пункту.
+
+\subsection{Лемма Гензеля}
+
+Пусть для $f\in\mathbb{Z}[x]$ верно {\ital\color{desc}(К. Гензель)}:
+% ---
+$$f(a)\equiv 0\modb{p^\alpha},\quad f'(a)\not\equiv 0\modb{p}$$
+% ---
+Тогда существует такое уникальное $t$, что:
+% ---
+$$f(a+tp^\alpha)\equiv 0\modb{p^{\alpha+1}}$$
+% ---
+{\bold Доказательство.} Пусть $a$ --- решение $f(x)\equiv 0\modb{p^\alpha}$, которое можно представить в виде $x=a+tp^\alpha$.
+
+По теореме Тейлора:
+% ---
+$$f(a+tp^\alpha)=f(a)+tp^\alpha f'(a)+t^2p^{2\alpha}f''(a)/2!+\dots$$
+$$+t^np^{n\alpha}f^{(n)}(a)/n!\equiv f(a)+tp^\alpha f'(a)\modb{p^{\alpha+1}}\qedb$$
+% ---
+{\bold Следствие.} Пусть для $f\in\mathbb{Z}[x]$ верно
+% ---
+$$f(x_\alpha)\equiv 0\modb{p^\alpha},\quad f'(x_\alpha)\not\equiv 0\modb{p^\alpha}.$$
+% ---
+Тогда решение сравнения по модулю $p^{\alpha+1}$ имеет вид:
+% ---
+$$x_{\alpha+1}\equiv x_\alpha-\frac{f(x_\alpha)}{f'(x_\alpha)}\modb{p^{\alpha+1}}$$
+% ---
+{\bold Доказательство.} По лемме Гензеля:
+% ---
+\begin{align*}
+f(x_\alpha)+tp^\alpha f'(x_\alpha)\equiv 0&\modb{p^{\alpha+1}}\iff\\
+tp^\alpha\equiv-\frac{f(x_\alpha)}{f'(x_\alpha)}&\modb{p^{\alpha+1}}\iff\\
+x_\alpha+tp^\alpha\equiv x_{\alpha+1}\equiv x_\alpha-\frac{f(x_\alpha)}{f'(x_\alpha)}&\modb{p^{\alpha+1}}\qedb
+\end{align*}

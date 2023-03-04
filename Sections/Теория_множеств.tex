@@ -1,0 +1,85 @@
+\section{Теория множеств}
+
+\subsection{Открытое множество}
+
+{\ital $\varepsilon$-окрестность} точки $x_0\in X$ метрического пространства
+$\langle X,d\rangle$ --- такое множество точек $x\in X$, что $d(x_0,x)\less\varepsilon$.
+
+Упрощённая запись $\{x\mid d(x_0,x)\less\varepsilon\}=:U_\varepsilon(x_0)$.
+
+Особые случаи:
+% ---
+\begin{align*}
+U_\varepsilon(+\infty)&:=(1/\varepsilon;+\infty)\\
+U_\varepsilon(-\infty)&:=(-\infty;-1/\varepsilon)
+\end{align*}
+% ---
+{\ital Проколотой} называется $\varepsilon$-окрестность точки $x_0$ без неё:\\[-8pt]
+% ---
+$$\overset{\circ}{U}_\varepsilon(x_0):=U_\varepsilon(x_0)\backslash\{x_0\}$$
+% ---
+{\ital Правосторонней (левосторонней)} называется $\varepsilon$-окрестность точки $x_0$
+без левой (правой) половины:
+% ---
+$$U_{\varepsilon+}(x_0):=[x_0;\varepsilon)\quad\quad U_{\varepsilon-}(x_0):=(\varepsilon;x_0]$$
+
+\subsection{Ограниченное множество}
+
+Множество $M$ ограничено {\ital сверху}, если
+% ---
+$$\forall m\in M\ \exists C\in\mathbb{R}\colon m\leq C.$$
+% ---
+{\bold Точной} {\ital (минимальной}, англ. {\ital supremum)} называется такая
+{\ital верхняя} граница множества $M$ --- $\sup M$, что
+% ---
+$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon-}(\sup M).$$
+% ---
+Множество $M$ ограничено {\ital снизу}, если
+% ---
+$$\forall m\in M\ \exists C\in\mathbb{R}\colon m\geq C.$$
+% ---
+{\bold Точной} {\ital (максимальной}, англ. {\ital infimum)} называется такая
+{\ital нижняя} граница множества $M$ --- $\inf M$, что
+% ---
+$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon+}(\inf M).$$
+
+\subsection{Принцип Кантора}
+
+Последовательность вложенных отрезков содержит точки $\xi$, которые принадлежат им всем:
+% ---
+$$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]$$
+% ---
+Если $n\to\infty$, $(b_n-a_n)\to 0$, то $\xi$ единственна:
+% ---
+$$\lim_{n\to\infty}a_n=\sup\{a_n\}=\lim_{n\to\infty}b_n=\inf\{b_n\}=\xi$$
+% ---
+{\bold Доказательство.} По теореме Вейерштрасса:
+% ---
+$$\lim_{n\to\infty}a_n=\sup\{a_n\}\quad\quad\lim_{n\to\infty}b_n=\inf\{b_n\}$$
+% ---
+Значит, $\forall(n\in\mathbb{N},\ \xi\in[\sup\{a_n\};\inf\{b_n\}])\ \xi\in[a_n;b_n]$.
+$\qedw$
+
+Если $\inf\{b_n\}=\sup\{a_n\}$, то $\xi$ единственна:
+% ---
+$$0=\inf\{b_n\}-\sup\{a_n\}=\lim_{n\to\infty}b_n-\lim_{n\to\infty}a_n=\lim_{n\to\infty}
+(b_n-a_n)\qedb$$
+
+\subsection{Локальный экстремум}
+
+{\ital Локальный} {\bold максимум} функции $f$ --- такая точка $x_0$, что
+% ---
+$$\exists\delta\greater 0\colon\sup U_\delta(x_0)=f(x_0).$$ 
+% ---
+{\ital Локальный} {\bold минимум} функции $f$ --- такая точка $x_0$, что
+% ---
+$$\exists\delta\greater 0\colon\inf U_\delta(x_0)=f(x_0).$$
+% ---
+ Их объединяют в точки {\ital локального} {\bold экстремума}.
+ 
+{\ital Критической} называется такая точка $x_0$, что
+% ---
+$$\begin{sqcases}
+f'(x_0)=0\text{ \ital\color{desc}(стационарна)}\\
+f'(x_0)=\text{undefined}
+\end{sqcases}$$

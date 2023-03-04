@@ -1,0 +1,177 @@
+\section{Предел последовательности}
+
+% ОПРЕДЕЛЕНИЕ ПОДПОСЛЕДОВАТЕЛЬНОСТИ
+
+\subsection{Предел}
+
+{\bold Предел} последовательности $\{x_n\}$ --- такое $a$, что
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
+\varepsilon(a).$$
+% ---
+Упрощённая запись $\lim_{n\to\infty}x_n=a$ или $n\to\infty$, $x_n\to a$.
+
+Этот оператор {\ital дистрибутивен} относительно {\ital сложения}, {\ital умножения}.
+
+{\ital Частичным} называется предел подпоследовательности.
+
+\subsection{Свойства предела}
+
+Сходимость $\implies$ ограниченность.
+
+{\bold Доказательство.} Пусть $\lim_{n\to\infty}x_n=a$. По определению:
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
+\varepsilon(a)$$
+% ---
+По «дистрибуции» модуля относительно сложения:
+% ---
+$$\abs{x_n}=\abs{x_n-a+a}\leq\abs{x_n-a}+\abs{a}\less\varepsilon+\abs{a}$$
+% ---
+Положим, что $\forall m\leq N\ L=\max(\abs{\{x_m\}},\varepsilon+\abs{a})\implies\abs{x_n}
+\leq L$.$\qedb$
+
+Пусть $n\to\infty$, $x_n\to a$, $y_n\to b$. Выполняя {\ital предельный переход}, 
+при $x_n\leq y_n$ или $x_n\less y_n$ сохраняется неравенство $a\leq b$.
+
+{\bold Доказательство.} По определению предела:
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
+\varepsilon(a),\ y_n\in U_\varepsilon(b)$$
+% ---
+Следовательно,
+% ---
+$$+\begin{cases}
+x_n\leq y_n\\
+a-x_n\less\varepsilon\\
+y_n-b\less\varepsilon
+\end{cases}\hspace*{-12pt}\iff
+\begin{cases}
+y_n-x_n\geq 0\\
+y_n-x_n\less 2\varepsilon+b-a
+\end{cases}\hspace*{-12pt}\iff
+\frac{a-b}{2}\less\varepsilon$$
+% ---
+Так как $\varepsilon$ --- сколь угодно малое положительное число, то $a-b\leq 0\iff a\leq 
+b$.$\qedw$
+
+При $x_n\less y_n$ доказательство аналогично.$\qedb$
+
+Пусть $n\to\infty$, $x_n,y_n\to a$. Тогда при $\forall\{z_n\}\colon x_n\leq z_n\leq y_n$ 
+справедливо $z_n\to a$. {\ital\color{desc}(теорема о промежуточной функции)}
+
+{\bold Доказательство.} По определению предела:
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n,y_n\in U_
+\varepsilon(a)$$
+% ---
+Следовательно,
+% ---
+$$a-\varepsilon\less x_n\leq z_n\leq y_n\less a+\varepsilon\implies z_n\in U_
+\varepsilon(a)\implies\lim_{n\to\infty}z_n=a.\qedb$$
+
+\subsection{Условие Коши}
+
+Последовательность $\{x_n\}$ удовлетворяет {\ital условию Коши} {\ital\color{desc} 
+(является фундаментальной)}, если
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n,m\greater N\ \abs{x_n-x_m}\less
+\varepsilon.$$
+% ---
+Фундаментальность $\implies$ ограниченность.
+
+{\bold Доказательство.} По условию Коши:
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n,m\greater N\ \abs{x_n-x_m}\less
+\varepsilon$$
+% ---
+По «дистрибуции» модуля относительно сложения:
+% ---
+$$\begin{cases}
+\abs{x_n-x_m}\less\varepsilon\\
+\abs{x_n}=\abs{x_n-x_m+x_m}
+\end{cases}\hspace*{-12pt}\iff
+\begin{cases}
+\abs{x_n-x_m}\less\varepsilon\\
+\abs{x_n}\leq\abs{x_n-x_m}+\abs{x_m}
+\end{cases}\hspace*{-12pt}\iff$$
+$$\abs{x_n}\less\varepsilon+\abs{x_m}$$
+% ---
+Положим, что $\forall k\leq N\ L=\max(\abs{\{x_k\}},\varepsilon+\abs{x_m})\implies
+\abs{x_n}\leq L$.$\qedb$
+
+\subsection{Принцип компактности отрезка}
+
+Ограниченность $\implies$ частичная сходимость:
+% ---
+$$\forall\{x_n\}\in[a;b]\ \exists\{n_k\}\kern-4pt\uparrow\colon\lim_{k\to\infty}x_{n_k}=
+\xi$$
+% ---
+{\bold Доказательство.} По принципу Кантора:
+% ---
+$$\forall k\in\mathbb{N}\ \exists!\xi\in[a_k;b_k]\subset[a_{k-1};b_{k-1}]\iff$$
+$$\lim_{k\to\infty}a_k=\lim_{k\to\infty}b_n=\xi$$
+% ---
+Образуем подпоследовательность:
+% ---
+$$\{x_{n_k}\mid \{n_k\}\kern-4pt\uparrow,\ x_{n_k}\in[a_k;b_k]\}$$
+% ---
+По теореме о промежуточной функции:
+% ---
+$$a_k\leq x_{n_k}\leq b_k\implies \lim_{k\to\infty}x_{n_k}=\xi\qedb$$
+% ---
+Частичный предел фундаментальной последовательности является её пределом.
+
+{\bold Доказательство.} Пусть $\{x_n\}$ фундаментальна $\implies$ она ограничена.
+
+По принципу компактности отрезка $\lim_{k\to\infty}x_{n_k}=a$.
+
+По условию Коши:
+% ---
+$$\forall\varepsilon/2\greater 0\ \exists N\colon\forall n,m\greater N\ \abs{x_n-x_m}
+\less\varepsilon/2$$
+% ---
+Зафиксируем $n$. При $x_m=x_{n_k}\greater N$ перейдём к пределу:
+% ---
+$$\abs{x_n-a}\leq\varepsilon/2\less\varepsilon\iff\lim_{k\to\infty}x_n=a\qedb$$
+
+\subsection{Критерий Коши}
+
+Сходимость $\iff$ фундаментальность.
+
+{\bold Доказательство $\implies$.} По определению предела:
+% ---
+$$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
+{\varepsilon/2}(a)$$ 
+% ---
+Значит, $\forall n,m\greater N\ \abs{x_n-x_m}=\abs{(x_n-a)+(a-x_m)}$.
+
+По «дистрибуции» модуля относительно сложения:
+% ---
+$$\abs{x_n-x_m}\leq\abs{x_n-a}+\abs{x_m-a}\less \varepsilon/2+\varepsilon/2=\varepsilon
+\qedb$$
+% ---
+{\bold Доказательство $\impliedby$.} Пусть $\{x_n\}$ фундаментальна $\implies$ она 
+ограничена $\implies$ по принципу компактности отрезка она частично сходится к $c$
+$\implies$ по условию Коши и принципу компактности отрезка она сходится к $c$.$\qedb$
+
+\subsection{Теорема Вейершстрасса}
+
+Монотонность $\implies$ сходимость:
+% ---
+$$\begin{sqcases}
+\forall\{x_n\}\kern-4pt\nearrow\lim_{n\to\infty}x_n=\sup\{x_n\}\\
+\forall\{y_n\}\kern-4pt\searrow\lim_{n\to\infty}y_n=\inf\{y_n\}
+\end{sqcases}$$
+% ---
+{\bold Доказательство.} По определению точной верхней границы:
+% ---
+$$\forall n\in\mathbb{N}\ x_n\leq\sup\{x_n\}$$
+% ---
+Так как последовательность неубывает, то
+% ---
+$$\forall\epsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_\epsilon(\sup
+\{x_n\})\implies$$
+$$\lim_{n\to\infty}x_n=\sup\{x_n\}.\qedw$$
+% ---
+Для $\{y_n\}\kern-4pt\searrow$ доказательство аналогично.$\qedb$
