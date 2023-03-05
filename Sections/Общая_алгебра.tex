@@ -189,7 +189,7 @@ $Ob$ --- мнимая ось {\ital\color{desc}($b\equiv\imn{z}$)}.
 
 {\ital Модуль} $z\in\mathbb{C}$ --- расстояние от $O$ до $M(z)$:
 % ---
-$$\abs{z}=r=\abs{OM}=\sqrt{a^2+b^2}=z\bar{z}$$
+$$\abs{z}=r=\abs{OM}=\sqrt{a^2+b^2}=\sqrt{z\bar{z}}$$
 % ---
 Тригонометрическая форма $z\in\mathbb{C}$ ---
 % ---
@@ -276,3 +276,85 @@ n\alpha=\phi+2\pi k
 % ---
 $$v=\sqrt[n]{r}\left(\cos\frac{\phi+2\pi k}{n}+i\sin\frac{\phi+2\pi k}{n}\right).
 \qedb$$
+
+\newpage
+\subsection{Деление отрезка в отношении}
+
+Точка $C$ делит отрезок $AB$ в отношении $\lambda\in\mathbb{R}$, если:
+% ---
+$$\begin{cases}
+C\in AB\\
+\overrightarrow{AC}=\lambda\overrightarrow{CB}\\
+\lambda\neq -1
+\end{cases}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Пусть $C$ делит $AB$ в отношении $\lambda\in\mathbb{R}$; $A=A\langle a\rangle$, $B=B\langle b\rangle$. Тогда комплексная координата точки $C$ равна:
+% ---
+$$c=\frac{a+\lambda b}{1+\lambda}$$ 
+\end{theorem}
+
+Также формула является достаточным {\ital критерием принад"=лежности трёх точек одной прямой}.
+
+{\bold Доказательство.} По условию:
+% ---
+$$\overrightarrow{AC}=\lambda\overrightarrow{CB}\iff\overrightarrow{OC}-\overrightarrow{OA}=\lambda(\overrightarrow{OB}-\overrightarrow{OC})\iff$$
+$$c-a=\lambda(b-c)\iff c=\frac{a+\lambda b}{1+\lambda}\qedb$$
+% ---
+Причём если $C$ --- середина $AB$, то:
+% ---
+$$\lambda=1\implies c=\frac{a+b}{2}$$
+
+\subsection{Длина отрезка}
+
+{\bold Расстояние} между точками $A\langle a\rangle$ и $B\langle b\rangle$ ---
+% ---
+$$\abs{\overrightarrow{AB}}=\abs{a-b}\implies AB^2=(a-b)(\bar{a}-\bar{b})$$
+% ---
+{\ital Уравнение окружности} с центром $A\langle a\rangle$ радиуса $r$ ---
+% ---
+$$(z-a)(\bar{z}-\bar{a})=r^2$$
+
+\subsection{Скалярное произведение векторов}
+
+{\ital Скалярное произведение радиус-векторов} ---
+% ---
+$$2\overrightarrow{OA}\cdot\overrightarrow{OB}=a\bar{b}+\bar{a}b$$
+% ---
+{\bold Доказательство.} Пусть $A\langle a\rangle$, $B=\langle b\rangle$, $a=x_1+y_1i$, $b=x_2+y_2i$. Тогда:
+% ---
+$$a\bar{b}+\bar{a}b=(x_1+y_1i)(x_2-y_2i)+(x_1-y_1i)(x_2+y_2i)=$$
+$$2(x_1x_2+y_1y_2)=2\overrightarrow{OA}\cdot\overrightarrow{OB}\qedb$$
+
+Пусть $A\langle a\rangle$, $B\langle b\rangle$, $C\langle c\rangle$, $D\langle d\rangle$ --- четыре различные точки. Тогда {\ital скалярное произведение произвольных векторов} ---
+% ---
+$$2\overrightarrow{AB}\cdot\overrightarrow{CD}=(b-a)(\bar{d}-\bar{c})+(\bar{b}-\bar{a})(d-c)$$
+% ---
+{\bold Доказательство.} По условию:
+% ---
+$$2\overrightarrow{AB}\cdot\overrightarrow{CD}=2(\overrightarrow{OB}-\overrightarrow{OA})(\overrightarrow{OD}-\overrightarrow{OC})=$$
+$$2(\overrightarrow{OB}\cdot\overrightarrow{OD}-\overrightarrow{OB}\cdot\overrightarrow{OC}-\overrightarrow{OA}\cdot\overrightarrow{OD}+\overrightarrow{OA}\cdot\overrightarrow{OC})=$$
+$$\cancel{2}\cdot\frac{1}{\cancel{2}}(b\bar{d}+\bar{b}d-b\bar{c}-\bar{b}c-a\bar{d}-\bar{a}d+a\bar{c}+\bar{a}c)=$$
+$$(a-b)(\bar{c}-\bar{d})+(\bar{a}-\bar{b})(c-d)\qedb$$
+
+\subsection{Коллинеарность векторов}
+
+{\ital Критерий коллинеарности} точек $O$, $A$, $B$ --- 
+% ---
+$$\frac{a}{b}=\frac{\bar{a}}{\bar{b}}\quad\text{или}\quad\begin{sqcases}a=0\\b=0\end{sqcases}$$
+% ---
+{\ital Критерий параллельности} векторов $\overrightarrow{AB}$, $\overrightarrow{CD}$ ---
+% ---
+$$\overrightarrow{AB}\parallel\overrightarrow{CD}\iff\frac{b-a}{d-c}=\frac{\bar{b}-\bar{a}}{\bar{d}-\bar{c}}$$
+% ---
+Если $A$, $B$, $C$, $D$ лежат на одной окружности, то:
+% ---
+$$\overrightarrow{AB}\parallel\overrightarrow{CD}\iff\frac{b}{d}=\frac{a}{c}$$
+% ---
+{\ital Критерий принадлежности трёх точек одной прямой} ---
+% ---
+$$\frac{b-a}{c-a}=\frac{\bar{b}-\bar{a}}{\bar{c}-\bar{a}}$$
+% ---
+{\ital Уравнение прямой}, проходящей через точки $A\langle a\rangle$, $B\langle b\rangle$ ---
+% ---
+$$(\bar{a}-\bar{b})z+(b-a)\bar{z}+a\bar{b}-b\bar{a}=0$$
