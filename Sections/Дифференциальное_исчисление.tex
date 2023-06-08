@@ -2,56 +2,111 @@
 
 % ОПРЕДЕЛЕНИЕ МОНОТОННОСТИ ОКОЛО ТОЧКИ
 
-\subsection{Производная}
+\subsection{Дифференцируемость}
 
-Функция $f$ имеет в точке $x_0$ {\ital производную (дифференцируема в ней)}, если {\ital
-\color{desc} (Ж.Л. Лагранж)}
+{\bold Дифференцируемой} {\ital{\color{desc}(«линейной в малом»)} в точке $x_0$} называется такая функция $f$, для которой справедливо:
 % ---
-$$\forall\epsilon\greater 0\ U_\epsilon(x_0)\cap D_f\neq\emptyset,\ \lim_{\Delta x\to 0}
-\frac{\Delta f}{\Delta x}=:f'(x_0).$$
+$$\Delta f=(k+\underset{\Delta x\to 0}{\alpha(x)})\Delta x,\ \alpha\text{ --- б.м.}$$
 % ---
-Этот оператор {\ital дистрибутивен} относительно {\ital сложения}:
+{\ital Односторонняя дифференцируемость} в точке $x_0$ опреде"=ляется через односторонние пределы.
+
+{\bold Дифференциал} {\ital функции} $f$ --- линейная часть $\Delta f$:
 % ---
-\begin{align*}
-(f\cdot g)'&=f'g+fg'\\
+$$k\Delta x=:\diff f$$
+% ---
+{\bold Производная} {\ital в точке $x_0$} --- предел вида: {\ital\color{desc} (Ж.Л. Лагранж)}
+% ---
+$$k=\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=:f'(x_0)$$ 
+
+\subsection{Свойства}
+
+Таблица {\ital «дистрибуции»} производной:\par
+% ---
+\begin{tabularcx}{0pt}{0pt}{C @{\hspace*{-40pt}} C}{\textwidth}
+{$\begin{aligned}
+&(f+g)'=f'+g'\\
+&(f\cdot g)'=f'g+fg'\\
+&(f\circ g)'=(f'\circ g)g'
+\end{aligned}$} &
+{$\begin{aligned}
 \left(\frac{f}{g}\right)'&=\frac{f'g-fg'}{g^2}\\
-(f\circ g)'&=(f'\circ g)g'
-\end{align*}
+(kf)'&=kf',\ k=\text{const}
+\end{aligned}$}
+\end{tabularcx}
 
-\subsection{Свойства производной}
-
+\begin{theorem}
 Дифференцируемость $\implies$ непрерывность.
+\end{theorem}
 
 {\bold Доказательство.} По определению производной:
 % ---
-$$\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=f'(x_0)\iff \frac{\Delta f}{\Delta x}=
-f'(x_0)+o(\Delta x)\iff$$
-$$\Delta f=\Delta x(f'(x_0)+o(\Delta x))\implies\Delta x\to 0,\ \Delta f\to 0\qedb$$
-% ---
-Приращение дифференцируемой функции легко предста"=вить в виде:
-% ---
-$$\Delta f=f'(x_0)\Delta x+o(\Delta x)\Delta x$$
-% ---
-{\ital Дифференциал функции} --- линейная часть её приращения:
-% ---
-$$\diff y:=f'(x_0)\Delta x$$
-% ---
-Значит, формула производной имеет вид:
-% ---
-$$f'(x_0)=\frac{\diff y}{\Delta x}=\frac{\diff y}{\diff x}\quad(\Delta x=\diff x)$$
+$$\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=f'(x_0)\iff \frac{\Delta f}{\Delta x}=f'(x_0)+\underset{\Delta x\to 0}{\alpha(x)}\Delta x\iff$$
+$$\Delta f=\Delta x(f'(x_0)+\alpha(x)\Delta x)\implies\Delta x\to 0,\ \Delta f\to 0\qedb$$
 
-\newpage
-\subsection{Производные элементарных функций}
+\begin{theorem}
+{\bold Производная обратной функции.} Пусть $y=f(x)$ --- дифференцируемая функция. Тогда справедливо:
+% ---
+$$f^{-1'}(y)=\frac{1}{f'(x)},\ f'(x)\neq 0$$
+\end{theorem}
+
+{\bold Доказательство.} По условию запишем тождество:
+% ---
+$$\frac{\Delta f}{\Delta x}=1\colon\frac{\Delta x}{\Delta f}$$
+% ---
+По предельному переходу и непрерывности функций:
+% ---
+$$\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=1\colon\lim_{\Delta f\to 0}\frac{\Delta x}{\Delta f}\overset{\text{\tinyt опр}}{\iff} f'(x)=1\colon f^{-1'}(y)\iff$$
+$$\iff f^{-1'}(y)=\frac{1}{f'(x)},\ f'(x)\neq 0\qedb$$
+
+\subsection{Элементарные производные}
 
 Таблица производных элементарных функций:
-
+% ---
+\begin{gather*}
+\begin{aligned}
+C'=0\qquad & (x^n)'=nx^{n-1},\ n\neq 0\qquad & \ln'x=1/x
+\end{aligned}\\
 \begin{align*}
-C'&=0\quad\quad & (x^n)'&=nx^{n-1}\\
-\sin'\alpha&=\cos\alpha & \cos'\alpha&=-\sin\alpha\\
-\tg'\alpha&=\frac{1}{\cos^2\alpha} & \ctg'\alpha&=-\frac{1}{\sin\trsp^2\alpha}\\
-\arcsin'x&=\frac{1}{\sqrt{1-x^2}} & \arccos'x&=-\frac{1}{\sqrt{1-x^2}}\\
-\arctg'x&=\frac{1}{1+x^2} & \arcctg'x&=-\frac{1}{1+x^2}
+\sin'\alpha&=\cos\alpha\hspace*{1cm} & \cos'\alpha&=-\sin\alpha\hspace*{2.05cm}\\
+\tg'\alpha&=1/\cos^2\alpha & \ctg'\alpha&=-1/\sin\trsp^2\alpha\\
+\arcsin'x&=1/\sqrt{1-x^2} & \arccos'x&=-1/\sqrt{1-x^2}\\
+\arctg'x&=1/(1+x^2) & \arcctg'x&=-1/(1+x^2)
 \end{align*}
+\end{gather*}
+
+\subsection{Касательная}
+
+{\bold Касательная} --- прямая, которая проходит через точку $x_0$ кривой и представляет {\ital предельное} положение секущей при $x\to x_0$, или $\Delta x\to 0$.
+
+\begin{theorem}
+{\bold Геометрический смысл производной.} Угловой коэф"=фициент {\ital\color{desc}(тангенс)} касательной к графику функции $f$ равен {\ital производной} в этой точке:
+% ---
+$$k=\tg\alpha=f'(x_0)$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По определению касательной:
+% ---
+$$\lim_{x\to x_0}\frac{\Delta f}{\Delta x}=\tg\alpha=k$$
+% ---
+По определению производной:
+% ---
+$$f'(x_0)=\tg\alpha=k\qedb$$
+% ---
+\begin{theorem}
+{\ital Уравнение касательной} к графику функции $f$ в точке $x_0$ имеет вид:
+% ---
+$$y=f'(x_0)(x-x_0)+f(x_0)$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По уравнению секущей:
+% ---
+$$A\langle x_0,f(x_0)\rangle,\ B\langle x,y\rangle\implies
+y-f(x_0)=k(x-x_0)$$
+% ---
+По геометрическому смыслу производной:
+% ---
+$$k=f'(x_0)\implies y-f(x_0)=f'(x_0)(x-x_0)\iff$$
+$$\iff y=f'(x_0)(x-x_0)+f(x_0)\qedb$$
 
 \subsection{Промежутки монотонности}
 

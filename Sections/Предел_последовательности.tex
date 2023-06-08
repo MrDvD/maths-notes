@@ -2,7 +2,7 @@
 
 % ОПРЕДЕЛЕНИЕ ПОДПОСЛЕДОВАТЕЛЬНОСТИ
 
-\subsection{Предел}
+\subsection{Определение}
 
 {\bold Предел} последовательности $\{x_n\}$ --- такое $a$, что
 % ---
@@ -11,11 +11,11 @@ $$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
 % ---
 Упрощённая запись $\lim_{n\to\infty}x_n=a$ или $n\to\infty$, $x_n\to a$.
 
-Этот оператор {\ital дистрибутивен} относительно {\ital сложения}, {\ital умножения}.
+Этот оператор {\ital «дистрибутивен»} относительно {\ital сложения}, {\ital умножения} и {\ital деления {\color{desc}(предел знаменателя не равен нулю)}}.
 
 {\ital Частичным} называется предел подпоследовательности.
 
-\subsection{Свойства предела}
+\subsection{Свойства}
 
 Сходимость $\implies$ ограниченность.
 
@@ -31,8 +31,11 @@ $$\abs{x_n}=\abs{x_n-a+a}\leq\abs{x_n-a}+\abs{a}\less\varepsilon+\abs{a}$$
 Положим, что $\forall m\leq N\ L=\max(\abs{\{x_m\}},\varepsilon+\abs{a})\implies\abs{x_n}
 \leq L$.$\qedb$
 
-Пусть $n\to\infty$, $x_n\to a$, $y_n\to b$. Выполняя {\ital предельный переход}, 
-при $x_n\leq y_n$ или $x_n\less y_n$ сохраняется неравенство $a\leq b$.
+\begin{theorem}
+{\bold Предельный переход.} Пусть $n\to\infty$, $x_n\to a$, $y_n\to b$. Тогда справедливо следствие:
+% ---
+$$x_n\leq y_n\text{ или }x_n\less y_n\implies a\leq b$$
+\end{theorem}
 
 {\bold Доказательство.} По определению предела:
 % ---
@@ -57,8 +60,11 @@ b$.$\qedw$
 
 При $x_n\less y_n$ доказательство аналогично.$\qedb$
 
-Пусть $n\to\infty$, $x_n,y_n\to a$. Тогда при $\forall\{z_n\}\colon x_n\leq z_n\leq y_n$ 
-справедливо $z_n\to a$. {\ital\color{desc}(теорема о промежуточной функции)}
+\begin{theorem}
+{\bold Теорема о промежуточной функции.} Пусть $n\to\infty$, $x_n,y_n\to a$. Тогда справедливо следствие:
+% ---
+$$\forall\{z_n\}\colon x_n\leq z_n\leq y_n\implies z_n\to a$$
+\end{theorem}
 
 {\bold Доказательство.} По определению предела:
 % ---
@@ -155,7 +161,7 @@ $$\abs{x_n-x_m}\leq\abs{x_n-a}+\abs{x_m-a}\less \varepsilon/2+\varepsilon/2=\var
 ограничена $\implies$ по принципу компактности отрезка она частично сходится к $c$
 $\implies$ по условию Коши и принципу компактности отрезка она сходится к $c$.$\qedb$
 
-\subsection{Теорема Вейершстрасса}
+\subsection{Теорема Вейерштрасса}
 
 Монотонность $\implies$ сходимость:
 % ---

@@ -1,0 +1,80 @@
+\section{Интегральное исчисление}
+
+\subsection{Неопределённый интеграл}
+
+{\bold Первообразная} для функции $f$ на множестве $X$ --- такая функция $F$, что:
+% ---
+$$\forall x\in X\ F'(x)=f(x)$$
+% ---
+\begin{theorem}
+Если у функции $f$ есть первообразная $F$, то для любой константы $C$ функция $F+C$ тоже первообразная, причём других нет.
+\end{theorem}
+% ---
+{\bold Доказательство.} По определению первообразной:
+% ---
+$$F'=f$$
+% ---
+По дистрибуции производной:
+% ---
+$$(F+C)'=f\implies F+C\text{ --- первообразная для }f\qedw$$
+% ---
+Пусть $\Phi$ --- другая первообразная для $f$:
+% ---
+$$\begin{cases*}
+\Phi'=f\\
+F'=f
+\end{cases*}\implies
+\Phi'-F'=(\Phi-F)'=f-f=0$$
+% ---
+По условию постоянства функции:
+% ---
+$$\Phi-F=C\iff\Phi=F+C\qedb$$
+% ---
+{\bold Неопределённый интеграл} --- множество всех первообраз"=ных функции $f$:
+% ---
+$$F(x)+C=:\int f(x)\diff x$$
+% ---
+\begin{tabularx}{\textwidth}{r @{ --- } L}
+$f$ & подынтегральная функция;\\
+$f(x)\diff x$ & подынтегральное выражение;\\
+$x$ & переменная интегрирования;\\
+$C$ & постоянная интегрирования.
+\end{tabularx}
+
+\subsection{Свойства}
+
+Операция интегрирования {\ital дистрибутивна} относительно {\ital сложения}, а также:
+% ---
+$$\begin{aligned}
+\int F'(x)\diff x&=F(x)+C & &\diff\left(\int F(x)\diff x\right)=F(x)\diff x\\
+\left(\int F(x)\diff x\right)'&=F(x)+C & &\int kF(x)\diff x=k\int F(x)\diff x,\ k\neq 0\\
+\end{aligned}$$
+% ---
+\begin{theorem}
+{\bold Интегрирование по частям.} Пусть $u\diff v$ --- подынтегральная функция. Тогда справедливо:
+% ---
+$$\int u\diff v=uv-\int v\diff u$$
+\end{theorem}
+
+{\bold Доказательство.} По «дистрибуции» производной:
+% ---
+$$(uv)'=u'v+uv'$$
+% ---
+По определению интеграла:
+% ---
+$$\int(u'v+uv')\diff x=uv+C\iff\int u'v\diff x+\int uv'\diff x=uv+C$$
+% ---
+По определению дифференциала:
+% ---
+$$\begin{cases*}
+\diff u=u'\diff x\\
+\diff v=v'\diff x
+\end{cases*}\implies
+\int v\diff u+\int u\diff v=uv+C\iff$$
+$$\iff\int u\diff v=uv-\int v\diff u\qedb$$
+% ---
+\begin{theorem}
+{\bold Инвариантность.} Смена переменной интегрирования на другую дифференцируемую функцию является {\ital равносильным} переходом:
+% ---
+$$\int f(x)\diff x=F(x)+C\iff\int f(\varphi(x))\diff\varphi(x)=F(\varphi(x))+C$$
+\end{theorem}
