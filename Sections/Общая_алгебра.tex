@@ -199,7 +199,7 @@ $$z=r(\cos\varphi+i\sin\varphi),\ \varphi\in(-\pi;\pi]$$\\
 $\varphi\equiv\arg z$ & {\ital аргумент комплексного числа}, или угол, обра"=зованный $\overrightarrow{OM}$ с действительной осью.
 \end{tabularcx}
 
-{\bold Сопряжение} --- операция смены знака мнимой части $z\in\mathbb{C}$:
+{\bold Сопряжение} --- операция смены знака мнимой части $z$:
 % ---
 $$z=a+bi\to\bar{z}=a-bi$$
 % ---
@@ -347,37 +347,67 @@ $$(a-b)(\bar{c}-\bar{d})+(\bar{a}-\bar{b})(c-d)\qedb$$
 \end{tabularcx}
 % ---
 \begin{theorem}
-{\ital Критерий коллинеарности} точек $O$, $A$, $B$:
+{\ital Критерий коллинеарности} точек $A$, $B$ с $O$:
 % ---
-$$\frac{a}{b}=\frac{\bar{a}}{\bar{b}}\quad\text{или}\quad\begin{sqcases}a=0\\b=0\end{sqcases}$$
+$$\frac{a}{b}=\overline{\left(\frac{a}{b}\right)}\quad\text{или}\quad\begin{sqcases}a=0\\b=0\end{sqcases}$$
 \end{theorem}
 % ---
-{\bold Доказательство.} Пока не завезли.
+{\bold Доказательство.} Очевидно, что:
+% ---
+$$\left[\begin{aligned}
+&\arg a-\arg b=0\\
+&\arg a-\arg b=\pm\pi
+\end{aligned}\right.\implies
+\arg\frac{a}{b}=0;\pm\pi$$
+% ---
+По определению аргумента комплексного числа:
+% ---
+$$\frac{a}{b}\text{ --- действительное число}\implies\frac{a}{b}=\overline{\left(\frac{a}{b}\right)}\qedb$$
 % ---
 \begin{theorem}
-{\ital Критерий параллельности} векторов $\overrightarrow{AB}$, $\overrightarrow{CD}$:
+{\ital Критерий коллинеарности} векторов $\overrightarrow{AB}$, $\overrightarrow{CD}$:
 % ---
-$$\overrightarrow{AB}\parallel\overrightarrow{CD}\iff\frac{b-a}{d-c}=\frac{\bar{b}-\bar{a}}{\bar{d}-\bar{c}}$$
+$$\frac{b-a}{d-c}=\overline{\left(\frac{b-a}{d-c}\right)}\quad\text{или}\quad
+\left[\begin{aligned}
+\overrightarrow{AB}=\overrightarrow{0}\\
+\overrightarrow{CD}=\overrightarrow{0}\\
+\end{aligned}\right.$$
 \end{theorem}
 % ---
-{\bold Доказательство.} Пока не завезли.
-
+{\bold Доказательство.} По определению комплексных чисел:
+% ---
+$$\overrightarrow{AB}\sim b-a,\ \overrightarrow{CD}\sim d-c$$
+% ---
+По критерию коллинеарности двух точек с $O$:
+% ---
+$$\frac{b-a}{d-c}=\overline{\left(\frac{b-a}{d-c}\right)}\qedb$$
+% ---
 Если $A$, $B$, $C$, $D$ лежат на одной окружности, то:
 % ---
 $$\overrightarrow{AB}\parallel\overrightarrow{CD}\iff\frac{b}{d}=\frac{a}{c}$$
 % ---
 \begin{theorem}
-{\ital Критерий принадлежности трёх точек одной прямой}:
+{\ital Критерий коллинеарности} трёх точек:
 % ---
-$$\frac{b-a}{c-a}=\frac{\bar{b}-\bar{a}}{\bar{c}-\bar{a}}$$
+$$\frac{b-a}{c-a}=\overline{\left(\frac{b-a}{c-a}\right)}\quad\text{или}\quad
+\left[\begin{aligned}
+&\overrightarrow{AB}=\overrightarrow{0}\\
+&\overrightarrow{AC}=\overrightarrow{0}
+\end{aligned}\right.$$
 \end{theorem}
 % ---
-{\bold Доказательство.} Пока не завезли.
+{\bold Доказательство.} Очевидно, что:
+% ---
+$$\overrightarrow{AB}\parallel\overrightarrow{AC}\iff A,B,C\text{ коллинеарны}$$
+% ---
+По критерию коллинеарности векторов:
+% ---
+$$\frac{b-a}{c-a}=\overline{\left(\frac{b-a}{c-a}\right)}\qedb$$
 % ---
 \begin{theorem}
-{\ital Уравнение секущей} $AB$, где $A\langle a\rangle$, $B\langle b\rangle$:
+{\ital Уравнение секущей} $AB$:
 % ---
 $$(\bar{a}-\bar{b})z+(b-a)\bar{z}+a\bar{b}-b\bar{a}=0$$
 \end{theorem}
 % ---
-{\bold Доказательство.} Пока не завезли.
+{\bold Доказательство.} Нет и не будет: раздел будет снесён.

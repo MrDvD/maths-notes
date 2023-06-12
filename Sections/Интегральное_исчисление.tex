@@ -41,9 +41,9 @@ $x$ & переменная интегрирования;\\
 $C$ & постоянная интегрирования.
 \end{tabularx}
 
-\subsection{Свойства}
+\subsection{Свойства неопределённого интеграла}
 
-Операция интегрирования {\ital дистрибутивна} относительно {\ital сложения}, а также:
+Операция интегрирования {\ital аддитивна}, а также:
 % ---
 $$\begin{aligned}
 \int F'(x)\diff x&=F(x)+C & &\diff\left(\int F(x)\diff x\right)=F(x)\diff x\\
@@ -78,3 +78,229 @@ $$\iff\int u\diff v=uv-\int v\diff u\qedb$$
 % ---
 $$\int f(x)\diff x=F(x)+C\iff\int f(\varphi(x))\diff\varphi(x)=F(\varphi(x))+C$$
 \end{theorem}
+
+\subsection{Дифференциальное уравнение}
+
+{\bold Дифференциальным} называется уравнение с неизвестной функцией под знаком {\ital производной} или {\ital дифференциала}.
+
+\begin{theorem}
+{\bold Метод Фурье.} Решение дифференциального уравнения $y'=\varphi(x)\psi(y)$ удовлетворяет условию: {\ital\color{desc}(Ж. Фурье)}
+% ---
+$$\left[\begin{aligned}
+&\int\frac{\diff y}{\psi(y)}=\int\varphi(x)\diff x, & \psi(y)&\neq 0\\
+&\ y=y_0, & \psi(y_0)&=0
+\end{aligned}\right.$$
+\end{theorem}
+
+{\bold Доказательство.} По условию:
+% ---
+$$y'=\varphi(x)\psi(y)\iff\frac{y'}{\psi(y)}=\varphi(x),\ \psi\neq 0$$
+% ---
+Возьмём интеграл от обеих частей уравнения:
+% ---
+$$\frac{y'\diff x}{\psi(y)}=\varphi(x)\diff x\implies\int\frac{\diff y}{\psi(y)}=\int\varphi(x)\diff x\qedw$$
+% ---
+По условию:
+% ---
+$$\psi(y_0)=0\implies (y_0)'=0\implies 0=0\qedb$$
+
+\subsection{Площадь плоской фигуры}
+
+{\bold Вложеннной} {\ital в фигуру} $F$ называется такая фигура $P$, которая целиком лежит внути $F$:
+% ---
+$$S_*(F)\text{ --- {\ital внутренняя площадь }}F$$
+% ---
+{\bold Объемлющей} {\ital фигуру} $F$ называется такая фигура $Q$, которая целиком содержит $F$:
+% ---
+$$S^*(F)\text{ --- {\ital внешняя площадь }}F$$
+% ---
+{\bold Квадрируемой} называется такая фигура $F$, у которой множества $S_*(F)$ и $S^*(F)$ имеют единую точную границу:
+% ---
+$$\sup S_*(F)=\inf S^*(F)=S(F)\text{ --- {\ital площадь }}F$$
+% ---
+{\bold Спрямляемой} называется кривая с {\ital конечной} длиной.
+
+\subsection{Свойства квадрируемости}
+
+\begin{theorem}
+{\bold Критерий квадрируемости.} Фигура $F$ квадрируема тогда и только тогда, когда:
+% ---
+$$\forall\varepsilon\greater 0\ \exists\ P\subseteq F\subseteq Q\colon S(Q)-S(P)\less\varepsilon$$
+\end{theorem}
+% ---
+{\bold Доказательство $\implies$}. Зафиксируем $\varepsilon\greater 0$.
+
+По определению точных границ множеств $S(P),\ S(Q)$:
+% ---
+\begin{gather*}\left\{\begin{aligned}
+&\forall\varepsilon/2\greater 0\ \exists\ P\subseteq F\colon S(F)-S(P)\less\varepsilon/2\\
+&\forall\varepsilon/2\greater 0\ \exists\ Q\supseteq F\colon S(Q)-S(F)\less\varepsilon/2
+\end{aligned}\right.\implies\\
+\implies S(Q)-S(P)\less\varepsilon\qedb
+\end{gather*}
+% ---
+{\bold Доказательство $\impliedby$}. По определению точных верхних границ множеств $S(P),\ S(Q)$:
+% ---
+$$S(Q)-S(P)\less\varepsilon\implies 0\leq\underset{Q\supseteq F}{\inf}S(Q)-\underset{P\subseteq F}{\sup}S(P)\less\epsilon$$
+% ---
+По определению квадрируемой фигуры:
+% ---
+\begin{gather*}
+\inf S^*(F)-\sup(S_*(F))=0\iff\inf S^*(F)=\sup S_*(F)\implies\\
+\implies F\text{ квадрируема}\qedb\end{gather*}
+% ---
+\begin{theorem}
+{\bold Признак квадрируемости.} Если граница фигуры $F$ --- спрямляемая кривая, то $F$ квадрируема.
+\end{theorem}
+% ---
+{\bold Доказательство.} По условию:
+% ---
+$$S^*(F)-S_*(F)\text{ --- S фигуры, объемлющей границу }F$$
+% ---
+По определению точных границ множеств $S^*(F),\ S_*(F)$:
+% ---
+$$\inf S^*(F)-\sup S_*(F)=S_\text{\tinyt гр}=0\implies F\text{ квадрируема}\qedb$$
+% ---
+\begin{theorem}
+{\bold Аддитивность.} Пусть $F_1$ и $F_2$ квадрируемы, причём $F_1\cup F_2=F,\ F_1\cap F_2=\emptyset$. Тогда $F$ {\ital тоже} квадрируема.
+\end{theorem}
+% ---
+{\bold Доказательство.} По условию:
+% ---
+$$F=F_1\cup F_2\implies S_\text{\tinyt гр}\leq S_{\text{\tinyt гр}1}+S_{\text{\tinyt гр}2}$$
+% ---
+По критерию квадрируемости:
+% ---
+$$S_{\text{\tinyt гр}1}+S_{\text{\tinyt гр}2}=0\implies S_\text{\tinyt гр}=0\implies F\text{ квадрируема}\qedb$$
+% ---
+\begin{theorem}
+Пересечение квадрируемых фигур {\ital квадрируемо}.
+\end{theorem}
+% ---
+Доказательство {\ital аналогично} предыдущему свойству.
+
+\subsection{Определённый интеграл}
+
+{\bold Разбиение} отрезка $[a;b]$ --- конечное упорядоченное мно"=жество $X\subseteq[a;b]$, причём $a,b\in X$.
+
+{\bold Частичным} называется отрезок, составленный из {\ital соседних} элементов разбиения:
+% ---
+$$\Delta x_k=x_k-x_{k-1}\text{ --- {\ital длина} частичного отрезка }[x_{k-1};x_k]$$
+% ---
+{\bold Интегральная сумма} функции $f$ на $[a;b]$ имеет вид:
+% ---
+$$\sum_{k=1}^{n}f(\xi_k)\Delta x_k,\ \xi_k\in [x_{k-1};x_k]$$
+
+{\bold Нижней} {\bold(верхней)} называется такая интегральная сумма, в~которой $\xi_k$ {\ital минимизирует (максимизирует)} значение $f$ на~частичном отрезке:
+% ---
+$$\sum_{k=1}^n\underline{f}\Delta x_k\text{ --- {\ital нижняя} сумма}\quad\sum_{k=1}^n\overline{f}\Delta x_k\text{ --- {\ital верхняя} сумма}$$
+% ---
+{\bold Определённый интеграл} --- предел интегральной суммы:
+% ---
+$$\lim_{n\to+\infty}\sum_{k=1}^nf(\xi_k)\Delta x_k=:\int_a^bf(x)\diff x$$
+% ---
+{\bold Криволинейная трапеция} --- подграфик неотрицательной и непрерывной функции на $[a;b]$.
+% ---
+\begin{theorem}
+{\bold Геометрический смысл.} Пусть $f$ задаёт криволинейную трапецию $T$ на $[a;b]$. Тогда её площадь равна:
+% ---
+$$S(T)=\int_a^bf(x)\diff x$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По признаку квадрируемости:
+% ---
+$$f\in\mathbb{C}[a;b]\implies T\text{ квадрируема}$$
+% ---
+По определению интегральных сумм:
+% ---
+$$S^*(T)\text{ --- {\ital верхняя} сумма;}\quad S_*(T)\text{ --- {\ital нижняя} сумма}$$
+% ---
+По определению квадрируемости:
+% ---
+\begin{gather*}
+S^*(T)-S_*(T)\less\varepsilon\implies\inf S^*(T)=\sup S_*(T)=S(T)\implies\\
+\implies\lim_{n\to+\infty}\sum_{k=1}^nf(\xi_k)\Delta x_k=S(T)
+\end{gather*}
+% ---
+По определению определённого интеграла:
+% ---
+$$S(T)=\int_a^bf(x)\diff x\qedb$$
+% ---
+\begin{theorem}
+{\bold Оценка определённого интеграла.} Пусть функция $f$ на отрезке $[a;b]$ принимает значения из $[m;M]$. Тогда:
+% ---
+$$m(b-a)\leq\int_a^bf(x)\diff x\leq M(b-a)$$
+\end{theorem}
+% ---
+Очевидным является {\ital геометрическое} доказательство через площади фигур.
+
+\subsection{Интеграл с переменным пределом}
+
+\begin{theorem}
+{\bold Теорема о среднем.} Пусть $f\in\mathbb{C}[a;b]$. Тогда верно:
+% ---
+$$\exists\xi\in[a;b]\colon\int_a^bf(x)\diff x=f(\xi)(b-a)$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По оценке определённого интеграла:
+% ---
+\begin{gather*}
+m\leq f(x)\leq M\implies m(b-a)\leq\int_a^bf(x)\diff x\leq M(b-a)\implies\\
+\implies m\leq\frac{\int_a^bf(x)\diff x}{b-a}\leq M,\ a\neq b
+\end{gather*}
+% ---
+По теореме о промежуточном значении:
+% ---
+$$\exists\xi\in[a;b]\colon f(\xi)=\frac{\int_a^bf(x)\diff x}{b-a}\implies\int_a^bf(x)\diff x=f(\xi)(b-a)\qedb$$
+% ---
+{\bold Интеграл с переменным верхним пределом} --- функция вида:
+% ---
+$$S(x)=\int_a^xf(t)\diff t,\ x\in[a;b]$$
+% ---
+\begin{theorem}
+Пусть функция $f$ непрерывна в окрестности точки $t=x$. Тогда в $x$ функция $S(x)$ дифференцируема, причём
+% ---
+$$S'(x)=f(x).$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По геометрическому смыслу определён"=ного интеграла:
+% ---
+\begin{gather*}
+\Delta S=S(x+\Delta x)-S(x)=\int_a^{x+\Delta x}f(t)\diff t-\int_a^xf(t)\diff t=\\
+=\int_a^xf(t)\diff t+\int_x^{x+\Delta x}f(t)\diff t-\int_a^xf(t)\diff t=\int_x^{x+\Delta x}f(t)\diff t
+\end{gather*}
+% ---
+По теореме о среднем:
+% ---
+$$\exists\xi\in[x;x+\Delta x]\colon\int_x^{x+\Delta x}f(t)\diff t=f(\xi)(x+\Delta x-x)=f(\xi)\Delta x$$
+% ---
+По предельному переходу:
+% ---
+\begin{gather*}
+\Delta S=f(\xi)\Delta x\iff\frac{\Delta S}{\Delta x}=f(\xi)\implies\lim_{\Delta x\to 0}\frac{\Delta S}{\Delta x}=\lim_{\Delta x\to 0}f(\xi)\implies\\
+\implies S'(x)=f(x)\qedb
+\end{gather*}
+
+\subsection{Формула Ньютона—Лейбница}
+
+\begin{theorem}
+Пусть $F$ --- первообразная для функции $f$. Тогда верно:
+% ---
+$$\int_a^bf(x)\diff x=\left.F(x)\right\rvert_a^b=F(b)-F(a)$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По свойству интеграла с переменным верхним пределом:
+% ---
+$$S'(x)=f(x)\implies S(x)=F(x)+C\text{ --- первообразные}$$
+% ---
+По определению определённого интеграла:
+% ---
+$$S(a)=\int_a^af(t)\diff t=0\implies C=-F(a)\implies S(x)=F(x)-F(a)$$
+% ---
+По условию:
+% ---
+$$x=b\implies S(b)=F(b)-F(a)\iff\int_a^bf(t)\diff t=F(b)-F(a)\qedb$$
+
+\subsection{Свойства определённого интеграла}
+
+Скоро...
