@@ -13,12 +13,14 @@ $$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
 
 Этот оператор {\ital «дистрибутивен»} относительно {\ital сложения}, {\ital умножения} и {\ital деления {\color{desc}(предел знаменателя не равен нулю)}}.
 
-{\ital Частичным} называется предел подпоследовательности.
+{\bold Частичным} называется предел подпоследовательности.
 
 \subsection{Свойства}
 
+\begin{theorem}
 Сходимость $\implies$ ограниченность.
-
+\end{theorem}
+% ---
 {\bold Доказательство.} Пусть $\lim_{n\to\infty}x_n=a$. По определению:
 % ---
 $$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
@@ -78,14 +80,16 @@ $$a-\varepsilon\less x_n\leq z_n\leq y_n\less a+\varepsilon\implies z_n\in U_
 
 \subsection{Условие Коши}
 
-Последовательность $\{x_n\}$ удовлетворяет {\ital условию Коши} {\ital\color{desc} 
+Последовательность $\{x_n\}$ удовлетворяет {\bold условию Коши} {\ital\color{desc} 
 (является фундаментальной)}, если
 % ---
 $$\forall\varepsilon\greater 0\ \exists N\colon\forall n,m\greater N\ \abs{x_n-x_m}\less
 \varepsilon.$$
 % ---
+\begin{theorem}
 Фундаментальность $\implies$ ограниченность.
-
+\end{theorem}
+% ---
 {\bold Доказательство.} По условию Коши:
 % ---
 $$\forall\varepsilon\greater 0\ \exists N\colon\forall n,m\greater N\ \abs{x_n-x_m}\less
@@ -108,10 +112,12 @@ $$\abs{x_n}\less\varepsilon+\abs{x_m}$$
 
 \subsection{Принцип компактности отрезка}
 
+\begin{theorem}
 Ограниченность $\implies$ частичная сходимость:
 % ---
 $$\forall\{x_n\}\in[a;b]\ \exists\{n_k\}\kern-4pt\uparrow\colon\lim_{k\to\infty}x_{n_k}=
 \xi$$
+\end{theorem}
 % ---
 {\bold Доказательство.} По принципу Кантора:
 % ---
@@ -126,8 +132,10 @@ $$\{x_{n_k}\mid \{n_k\}\kern-4pt\uparrow,\ x_{n_k}\in[a_k;b_k]\}$$
 % ---
 $$a_k\leq x_{n_k}\leq b_k\implies \lim_{k\to\infty}x_{n_k}=\xi\qedb$$
 % ---
+\begin{theorem}
 Частичный предел фундаментальной последовательности является её пределом.
-
+\end{theorem}
+% ---
 {\bold Доказательство.} Пусть $\{x_n\}$ фундаментальна $\implies$ она ограничена.
 
 По принципу компактности отрезка $\lim_{k\to\infty}x_{n_k}=a$.
@@ -143,8 +151,10 @@ $$\abs{x_n-a}\leq\varepsilon/2\less\varepsilon\iff\lim_{k\to\infty}x_n=a\qedb$$
 
 \subsection{Критерий Коши}
 
+\begin{theorem}
 Сходимость $\iff$ фундаментальность.
-
+\end{theorem}
+% ---
 {\bold Доказательство $\implies$.} По определению предела:
 % ---
 $$\forall\varepsilon\greater 0\ \exists N\colon\forall n\greater N\ x_n\in U_
@@ -163,12 +173,14 @@ $\implies$ по условию Коши и принципу компактнос
 
 \subsection{Теорема Вейерштрасса}
 
+\begin{theorem}
 Монотонность $\implies$ сходимость:
 % ---
 $$\begin{sqcases}
 \forall\{x_n\}\kern-4pt\nearrow\lim_{n\to\infty}x_n=\sup\{x_n\}\\
 \forall\{y_n\}\kern-4pt\searrow\lim_{n\to\infty}y_n=\inf\{y_n\}
 \end{sqcases}$$
+\end{theorem}
 % ---
 {\bold Доказательство.} По определению точной верхней границы:
 % ---

@@ -108,13 +108,15 @@ $$y-f(x_0)=\lim_{x_1\to x_0}\frac{f(x_1)-f(x_0)}{x_1-x_0}(x-x_0)=f'(x_0)(x-x_0)\
 
 \subsection{Промежутки монотонности}
 
+\begin{theorem}
 Если функция $f$ дифференцируема в точке $x_0$, то
 % ---
 $$\begin{cases}
 f'(x_0)\greater 0\implies f\kern-4pt\uparrow\text{около }x_0\\
 f'(x_0)\less 0\implies f\kern-4pt\downarrow\text{около }x_0
 \end{cases}\hspace*{-12pt}.$$
-
+\end{theorem}
+% ---
 {\bold Доказательство.} По определению производной:
 % ---
 $$f'(x_0)\greater 0\iff \lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}\greater 0\iff\frac
@@ -132,7 +134,9 @@ f\kern-4pt\uparrow\text{около }x_0\qedw$$
 
 \subsection{Условие существования экстремума}
 
+\begin{theorem}
 Точка локального экстремума $\implies$ критическая точка.
+\end{theorem}
 
 {\bold Доказательство.} По определению локального максимума:
 % ---
@@ -154,9 +158,11 @@ $$\begin{sqcases}
 $$0\leq f'(x_0)\leq 0\iff f'(x_0)=0\qedw$$
 % ---
 Для локального минимума доказательство аналогично.$\qedb$
-
+% ---
+\begin{theorem}
 Если в критической точке производная меняет знак, она является локальным экстремумом.
-
+\end{theorem}
+% ---
 {\bold Доказательство.} По определению критической точки:
 % ---
 $$\begin{sqcases}
@@ -183,44 +189,53 @@ f\kern-4pt\downarrow\text{на }U_{\delta+}(x_0)
 
 \subsection{Теорема Ролля}
 
-Пусть $f$ дифференцируема на $(a;b)$, непрерывна на $f[a;b]$, и~$f(a)=f(b)$. Тогда: {\ital
-\color{desc} (М. Ролль)}
+\begin{theorem}
+Пусть $f$ дифференцируема на $(a;b)$, $f\in\mathbb{C}[a;b]$. Тогда:
 % ---
-$$\exists\xi\in(a;b)\colon f'(\xi)=0$$
-
+$$f(a)=f(b)\implies\exists\xi\in(a;b)\colon f'(\xi)=0$$
+\end{theorem}
+% ---
 {\bold Доказательство.} По теореме Вейерштрасса:
 % ---
 $$f(m)=\inf f([a;b])\quad\quad f(M)=\sup f([a;b])$$
 % ---
-При $f(a)=f(b)=f(m)$ по условию существования экстремума:
+По условию существования экстремума:
 % ---
-$$f'(M)=0\qedw$$
+$$f(a)=f(b)=f(m)\implies f'(M)=0\qedw$$
 % ---
 При $f(m)=f(M)$ функция --- константа на $[a;b]$, произ"=водная которой равна нулю.$\qedb$
 
 \subsection{Теорема Лагранжа}
 
-Пусть $f$ дифференцируема на $(a;b)$ и непрерывна на $f[a;b]$. Тогда: {\ital\color{desc}
-(Ж.Л. Лагранж)}
+\begin{theorem}
+Пусть $f$ дифференцируема на $(a;b)$ и $f\in\mathbb{C}[a;b]$. Тогда:
 % ---
 $$\exists\xi\in(a;b)\colon f'(\xi)=\frac{f(b)-f(a)}{b-a}$$
+\end{theorem}
 % ---
-{\bold Доказательство.} Пусть $\varphi(x):=f(x)-\lambda x$; подберём $\lambda$ так, чтобы 
-$\varphi(a)=\varphi(b)$:
+{\bold Доказательство.} Пусть $\varphi(x):=f(x)-\lambda x$.
+
+Подберём $\lambda$ так, чтобы $\varphi(a)=\varphi(b)$:
 % ---
-$$f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff$$
-$$\lambda=\frac{f(b)-f(a)}{b-a}$$
+\begin{gather*}
+f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
+\iff\lambda=\frac{f(b)-f(a)}{b-a}
+\end{gather*}
 % ---
 По теореме Ролля:
 % ---
-$$\exists\xi\in(a;b)\colon\varphi'(\xi)=0\iff f'(\xi)-\lambda=0\iff$$
-$$\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}\qedb$$
+\begin{gather*}
+\exists\xi\in(a;b)\colon\varphi'(\xi)=0\iff f'(\xi)-\lambda=0\iff\\
+\iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}\qedb
+\end{gather*}
 
 \subsection{Условие постоянства функции}
 
+\begin{theorem}
 Пусть $f$ непрерывна на $[a;b]$ и состоит из стационарных точек на $(a;b)$. Тогда 
 $f([a;b])=C$.
-
+\end{theorem}
+% ---
 {\bold Доказательство.} По теореме Лагранжа:
 % ---
 $$\forall x',x''\in[a;b]\ \exists\xi\in(x';x'')\colon f'(\xi)=\frac{f(x'')-f(x')}{x''-x'}
@@ -230,7 +245,7 @@ $$
 % ---
 $$f'(\xi)=0\implies \frac{f(x'')-f(x')}{x''-x'}=0\iff f(x'')=f(x')\qedb$$
 % ---
-Пусть $f,\ g$ непрерывны на $[a;b]$ и $f'=g'$. Тогда:
+Пусть $f,g\in\mathbb{C}[a;b]$ и $f'=g'$. Тогда:
 % ---
 $$\forall x\in[a;b]\ f(x)-g(x)=C$$
 % ---
