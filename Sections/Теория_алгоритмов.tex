@@ -1,5 +1,130 @@
 \section{Теория алгоритмов}
 
+\subsection{Поиск с возвратом}
+
+{\bold Поиск с возвратом} --- метод нахождения решений задачи полным перебором допустимых расстановок элементов конечного множества:
+
+\begin{tabularcx}{0pt}{3pt}{r @{ } L}{\textwidth}
+--- & в качестве {\ital частичного решения} используется пустое упо"=рядоченное множество $M$, которое расширяется до пол"=ного по одному элементу за операцию;\\
+--- & если решение {\ital полное} или {\ital не удовлетворяет условию}, алгоритм приступает к другому частичному решению.
+\end{tabularcx}
+
+Пусть $T_1=\langle V_1,E_1\rangle$, $T_2=\langle V_2,E_2\rangle$ --- корневые деревья.
+
+{\ital Кандидат} для $v\in V_1$ --- элемент множества
+% ---
+$$C_v:=\{w\mid w\in V_2,\ \text{depth}_v=\text{depth}_w\}\cup\{\lambda\}.$$
+% ---
+{\ital Возвратное дерево} для $T_1$ и $T_2$ --- такое дерево $T=\langle V,E\rangle$ с~мнимым корнем, что:
+% ---
+$$\begin{cases}
+M\subseteq V_1\times W\text{ \ital\color{desc}(упорядочено, биективно)}\\
+\begin{rcases}
+W=[\text{root}_T,\dots,w]\backslash\{\text{root}_T\}\subseteq V_2\cup\{\lambda\}\subseteq V\\
+\text{children}_w=\emptyset\end{rcases}\text{ I}\\
+\begin{rcases}
+\forall\langle w_1,w_2\rangle\subseteq W\ \text{order}(w_1)\less\text{order}(w_2)\hspace*{23pt}\\
+w_1,w_2\neq\lambda\end{rcases}\text{ II}\\
+\forall\langle v_i,w_j\rangle\in M\ w_j\in C_{v_i}\hspace*{115pt}\bigr\}\text{\hspace*{6.3pt}III}
+\end{cases}$$
+% ---
+\begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{.98\textwidth}
+I & всякая простая цепь возвратного дерева от корня до~листа без корня соответствует {\ital уникальному} отображению $T_1$ в $T_2$;\\
+II & индекс узлов одной простой цепи от корня до листа без корня {\ital строго возрастает};\\
+III & всякий узел простой цепи от корня до листа без корня является {\ital кандидатом} для соответствующего узла $T_1$.
+\end{tabularcx}
+
+Итерация построения полного решения $M$ для условия $P$:
+% ---
+$$\begin{cases}
+\forall c\in C_{W.\text{last}()}\ W:=W\cup\{c\}\\
+T(M):=M\text{ --- частичное решение}\\
+M\land P(M)\land T(M)\neq\emptyset\implies\text{расширить M}\\
+M\land P(M)\land T(M)=\emptyset\implies\text{следующее M}
+\end{cases}$$
+% ---
+{\ital Дерево ветвей и границ} для $T_1$ и $T_2$ --- такое возвратное дерево для $T_1$ и $T_2$, что $P:=P\land R$, где:
+% ---
+$$R(M_i)=\begin{cases}
+\alpha_{\text{\tinyt min}}=\emptyset\implies\alpha_{\text{\tinyt min}}:=\text{max}\\
+\alpha_\text{\tinyt min}\geq\gamma(M_i)\implies\text{True, }\alpha_\text{\tinyt min}:=\gamma(M_i)\\
+\alpha_\text{\tinyt min}\less\gamma(M_i)\implies\text{False}\\
+\end{cases}$$
+
+\subsection{«Разделяй и властвуй»}
+
+{\bold «Разделяй и властвуй»} --- метод рекурсивного нахождения решений задачи: 
+% ---
+\begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{\textwidth}
+& задача делится на меньшие, {\ital независимые} друг от друга подзадачи, пока они не будут сведены к {\ital тривиальным};\\
+& решения тривиальных подзадач {\ital комбинируются} в еди"=ное к исходной задаче.
+\end{tabularcx}
+
+Пусть $T_1=\langle V_1,E_1\rangle$, $T_2=\langle V_2,E_2\rangle$ --- корневые деревья, $A_1=$ $T_{1W_1}$, $A_2=T_{2W_2}$, $B_1=T_1\backslash A_1$, $B_2=T_2\backslash A_2$ --- их поддеревья:
+% ---
+$$\begin{cases}
+W_1=\{v_m\in V_1\mid\text{order}(v_m)\less\text{order}(v)\}\\
+W_2=\{w_n\in V_2\mid\text{order}(w_p)\less\text{order}(w)\}\\
+v:=\text{last}_{v_i},\ w:=\text{last}_{w_k}
+\end{cases}$$
+% ---
+{\ital Дерево «разделяй и властвуй»} для $T_1$ и $T_2$ --- такое ордерево $T=\langle V,E\rangle$ с вершинами вида $v_iv_jw_kw_l$, что:
+% ---
+$$\begin{cases}
+v_i,v_j\in V_1,\ w_k,w_l\in V_2\\
+\text{root}_T=v_1v_{n_1}w_1w_{n_2}\ {\ital\color{desc} (T_1\to T_2)}\\
+\end{cases}$$
+% ---
+Шаг рекурсивного построения решения $M$:
+% ---
+$$\begin{cases}
+v_i=v_j,\ w_k=w_l\implies v_i\mapsto w_k\text{, комбинировать}\\
+v_i\neq v_j,\ w_k=w_l\implies A_1\to T_2\ (B_1\to\lambda)\\
+v_i=v_j,\ w_k\neq w_l\implies T_1\to A_2\ (\lambda\to B_2)\\
+v_i\neq v_j,\ w_k\neq w_l\implies\begin{sqcases}
+A_1\to A_2\text{ или }A_1\to T_2\\
+B_1\to B_2\text{ или }T_1\to A_2
+\end{sqcases}\end{cases}$$
+
+\subsection{Динамика}
+
+{\bold Динамическое программирование} --- метод рекурсив"=ного нахождения решений задачи:
+% ---
+\begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{\textwidth}
+& задача делится на меньшие, {\ital зависимые} друг от друга подзадачи, пока они не будут сведены к {\ital тривиальным};\\
+& решения тривиальных подзадач {\ital комбинируются} в еди"=ное к исходной задаче.
+\end{tabularcx}
+
+{\bold Мемоизация} {\ital\color{desc} («сверху вниз»)} --- кеширование и повторное использование ранее подсчитанных результатов.
+
+{\bold Табуляция} {\ital\color{desc} («снизу вверх»)} --- заполнение кеша на основе тривиальных подзадач.
+
+Лучшее решение выбирается из матрицы лучших решений его подграфов {\ital\color{desc} (у них по рекурсии есть свои матрицы)}:
+% ---
+$$\begin{matrix}
+\langle v_i,w_k\rangle & \langle v_i,w_kw_{k+1}\rangle & \cdots & \langle v_i,w_k\dots w_l\rangle\\
+\langle v_iv_{i+1},w_k\rangle & \langle v_iv_{i+1},w_kw_{k+1}\rangle & \cdots & \langle v_iv_{i+1},w_k\dots w_l\rangle\\
+\vdots & \vdots & \ddots & \vdots\\
+\langle v_i\dots v_j,w_k\rangle & \langle v_i\dots v_j,w_kw_{k+1}\rangle & \cdots & \langle v_i\dots v_j,w_k\dots w_l\rangle
+\end{matrix}$$
+% ---
+$$\begin{cases}
+v\in V_1,\ w\in V_2\\
+\text{depth}_v=\text{depth}_w\\
+\{v_i,\dots,v_j\}=\text{children}_v\\
+\{w_k,\dots,w_l\}=\text{children}_w\\
+\langle v_i\dots v_j,w_k\dots w_l\rangle\sim\gamma_{\text{\tinyt min}}(G_1\to G_2)\\
+G_1=T_{1W_i}\cup\dots\cup T_{1W_j}\\
+G_2=T_{2W_k}\cup\dots\cup T_{2W_l}\\
+\forall s\in\{i,\dots,j\}\ \text{root}_{T_{1Ws}}=v_s\\
+\forall t\in\{k,\dots,l\}\ \text{root}_{T_{2Wt}}=w_t
+\end{cases}$$
+% ---
+Алгоритм табуляции занимает $\mathcal{O}(n_1n_2)$ места, используя $\mathcal{O}(n_1n_2)$ времени.
+
+% Проверить корректность записи с \land (дерево ветвей и границ)
+% НАПИСАТЬ В ТЕОРИИ ПРО УПОРЯДОЧЕННОЕ СООТВЕТСТВИЕ
+
 \subsection{Динамическое программирование}
 
 {\bold Динамическое программирование} --- метод решения задач на оптимизацию {\ital по принципу оптимальности}:
@@ -44,3 +169,73 @@ $d^*_i(d_1,\dots,d_{i-1})$ & локальный выбор $d$, оптимизи
 Общая формула:
 % ---
 $$f(k,m)=\min_{d\in\{0,\dots,m\}}\{C(k,d)+f(k+1,m-d)\}$$
+
+\newpage
+\subsection{Модель динамики}
+
+{\bold Целевой} называется функция, у которой нужно найти {\ital экстремум {\color{desc}(оптимальное значение)}}.
+
+{\bold Состояние} системы зависит от конечного числа {\ital параметров {\color{desc} (часто от одного или двух)}}.
+% ---
+\begin{theorem}
+{\bold Принцип оптимальности}. Оптимальное решение\\ зависит лишь от текущего состояния и цели, а не от предыстории. {\ital\color{desc}(Р. Беллман)}
+\end{theorem}
+% ---
+{\bold Сертификат} {\ital решения} --- последовательность управляющих шагов, которые оптимизируют целевую функцию.
+
+{\ital Типы} задач на динамику:
+
+1. Оптимизация целевой функции\\
+2. Подсчёт количества вариантов решения\\
+3. Составление сертификата решения
+
+\subsection{Подходы динамики}
+
+{\bold Мемоизация} --- {\ital рекурсивный} подход динамики, при кото"=ром подсчитанные результаты {\ital кешируются} и используются повторно {\ital\color{desc}(вычисления отложены)}.
+
+{\bold Табуляция} --- {\ital итеративный} подход динамики, при котором кеш заполняется сразу, на основе тривиальных подзадач.
+
+Также пояснить про одномерный и двумерный кеш, определение кеша?
+
+\subsection{Обход графа}
+
+{\bold Обход в глубину} {\ital (Depth-First Search, DFS)} --- метод, при котором граф обходят сначала по детям, потом по сиблингам.
+% ---
+\begin{theorem}
+{\bold Задачи:}
+% ---
+\begin{list*}
+\item построение эйлерового пути;
+\item построение эйлерового цикла;
+\item тест ацикличности;
+\item поиск мостов и точек сочленения;
+\item топологическая сортировка;
+\item построение компонент связности:
+\begin{list*}[2]
+\item обыкновенных {\ital\color{desc} (грядки, водостоки)};
+\item сильных {\ital\color{desc} (алгоритм Косараджу, конденсация)}.
+\end{list*}
+\item 2-SAT:
+\begin{list*}[2]
+\item что-то...
+\end{list*}
+\end{list*}
+\end{theorem}
+% ---
+{\bold Обход в ширину} {\ital (Breadth-First Search, BFS)} --- метод, при котором граф обходят сначала по сиблингам, потом по детям.
+% ---
+\begin{theorem}
+{\bold Задачи:}
+% ---
+\begin{list*}
+\item топологическая сортировка {\ital\color{desc} (алгоритм Кана)}:
+\begin{list*}[2]
+\item лексикографическая сортировка;
+\item топологическое маркирование;
+\item тест ацикличности.
+\end{list*}
+\item поиск кратчайших рёберных путей.
+\end{list*}
+\end{theorem}
+
+Нет петель $\implies$ не требуется массив {\ital visited}.

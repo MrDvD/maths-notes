@@ -225,6 +225,12 @@ S^*(T)-S_*(T)\less\varepsilon\implies\inf S^*(T)=\sup S_*(T)=S(T)\implies\\
 $$S(T)=\int_a^bf(x)\diff x\qedb$$
 % ---
 \begin{theorem}
+Непрерывность $\implies$ интегрируемость.
+\end{theorem}
+% ---
+{\bold Доказательство.} Когда-нибудь...
+% ---
+\begin{theorem}
 {\bold Оценка определённого интеграла.} Пусть функция $f$ на отрезке $[a;b]$ принимает значения из $[m;M]$. Тогда:
 % ---
 $$m(b-a)\leq\int_a^bf(x)\diff x\leq M(b-a)$$
@@ -323,6 +329,35 @@ $$S(a)=\int_a^af(t)\diff t=0\implies C=-F(a)\implies S(x)=F(x)-F(a)$$
 По условию:
 % ---
 $$x=b\implies S(b)=F(b)-F(a)\iff\int_a^bf(t)\diff t=F(b)-F(a)\qedb$$
+
+\subsection{Длина кривой}
+
+\begin{theorem}
+Пусть график функции $f$ --- кривая. Тогда её длина на~промежутке $[a;b]$ равна:
+% ---
+$$L=\int_a^b\sqrt{1-f'^2(x)}\diff x$$ 
+\end{theorem}
+% ---
+{\bold Доказательство.} Пусть задано {\ital разбиение} $X\subseteq[a;b]$.
+
+Тогда длина хорды в точках $x_k,\ x_{k-1}$ равна:
+% ---
+$$l_k=\sqrt{(\Delta f_k)^2+(\Delta x_k)^2}=\Delta x_k\sqrt{1-\left(\frac{\Delta f_k}{\Delta x_k}\right)^2}$$
+% ---
+По теореме Лагранжа:
+% ---
+$$\exists\xi\in[x_{k-1};x_k]\colon l_k=\Delta x_k\sqrt{1-f'^2(\xi)}$$
+% ---
+По предельному переходу:
+% ---
+$$L\geq\sum_{k=0}^n\Delta x_k\sqrt{1-f'^2(\xi)}\implies L=\lim_{n\to\infty}\sum_{k=0}^n\Delta x_k\sqrt{1-f'^2(\xi)}$$
+% ---
+По определению определённого интеграла:
+% ---
+\begin{gather*}
+\lim_{n\to\infty}\sum_{k=0}^n\Delta x_k\sqrt{1-f'^2(\xi)}=\int_a^b\sqrt{1-f'^2(x)}\diff x\implies\\
+\implies L=\int_a^b\sqrt{1-f'^2(x)}\diff x\qedb
+\end{gather*}
 
 \subsection{Объём тела}
 

@@ -190,7 +190,7 @@ f\kern-4pt\downarrow\text{на }U_{\delta+}(x_0)
 \subsection{Теорема Ролля}
 
 \begin{theorem}
-Пусть $f$ дифференцируема на $(a;b)$, $f\in\mathbb{C}[a;b]$. Тогда:
+Пусть $f$ дифференцируема на $[a;b]$. Тогда:
 % ---
 $$f(a)=f(b)\implies\exists\xi\in(a;b)\colon f'(\xi)=0$$
 \end{theorem}
@@ -208,9 +208,9 @@ $$f(a)=f(b)=f(m)\implies f'(M)=0\qedw$$
 \subsection{Теорема Лагранжа}
 
 \begin{theorem}
-Пусть $f$ дифференцируема на $(a;b)$ и $f\in\mathbb{C}[a;b]$. Тогда:
+Пусть $f$ дифференцируема на $[a;b]$. Тогда верно:
 % ---
-$$\exists\xi\in(a;b)\colon f'(\xi)=\frac{f(b)-f(a)}{b-a}$$
+$$\exists\xi\in(a;b)\colon f'(\xi)=\frac{\Delta f}{\Delta x}$$
 \end{theorem}
 % ---
 {\bold Доказательство.} Пусть $\varphi(x):=f(x)-\lambda x$.
@@ -226,7 +226,7 @@ f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
 % ---
 \begin{gather*}
 \exists\xi\in(a;b)\colon\varphi'(\xi)=0\iff f'(\xi)-\lambda=0\iff\\
-\iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}\qedb
+\iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}=\frac{\Delta f}{\Delta x}\qedb
 \end{gather*}
 
 \subsection{Условие постоянства функции}

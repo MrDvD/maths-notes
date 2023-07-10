@@ -34,6 +34,9 @@
 \newfontfamily\gilroysub[SizeFeatures={Size=16},UprightFont={*-Medium}]{Gilroy}
 \newfontfamily\gilroy[SizeFeatures={Size=19},UprightFont={*-UltraLight}]{Gilroy}
 \newfontfamily\tinyt[SizeFeatures={Size=10}]{Century Schoolbook}
+\newfontfamily\mono[SizeFeatures={Size=12}]{Anonymous Pro Regular}
+\newfontfamily\monobold[SizeFeatures={Size=12}]{Anonymous Pro Bold}
+\newfontfamily\monoital[SizeFeatures={Size=12}]{Anonymous Pro Italic}
 % Стили
 \titleformat*{\subsection}{\raggedright\gilroysub}
 \titleformat*{\section}{\gilroy\centering}
@@ -123,5 +126,18 @@ colback=white!0,
 boxsep=0mm,left=3.5mm,
 borderline west={2pt}{0pt}{black},
 before skip=6pt,after skip=7pt,
-halign=left
+halign=left,
+parbox=false
 }
+
+% Itemize environment
+\newenvironment{list*}[1][1]{
+\ifnum #1=1
+\begin{itemize}[leftmargin=6.5mm,label={---}]
+\setlength{\itemsep}{1pt}
+\fi
+\ifnum #1=2
+\begin{itemize}[leftmargin=4.5mm,label={>},topsep=2pt]
+\setlength{\itemsep}{1pt}
+\fi
+}{\end{itemize}}
