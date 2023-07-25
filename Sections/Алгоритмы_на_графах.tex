@@ -1,0 +1,366 @@
+\section{Алгоритмы на графах}
+
+\subsection{Обход графа}
+
+{\bold Обход в глубину} {\ital (Depth-First Search, DFS)} --- метод, при котором граф обходят сначала по детям, потом по сиблингам.
+% ---
+\begin{theorem}
+{\bold Алгоритмы:}
+% ---
+\begin{list*}
+\item поиск эйлерового пути, цикла;
+\item тест ацикличности;
+\item поиск мостов, точек сочленения;
+\item топологическая сортировка;
+\item построение компонент связности:
+\begin{list*}[2]
+\item обыкновенных {\ital\color{desc} (грядки, водостоки)};
+\item сильных {\ital\color{desc} (алгоритм Косараджу, конденсация)}.
+\end{list*}
+\item 2-SAT;
+\item алгоритм Куна.
+\end{list*}
+\end{theorem}
+% ---
+{\bold Обход в ширину} {\ital (Breadth-First Search, BFS)} --- метод, при котором граф обходят сначала по сиблингам, потом по детям.
+% ---
+\begin{theorem}
+{\bold Алгоритмы:}
+% ---
+\begin{list*}
+\item алгоритм Кана;
+\item проверка графа на двудольность;
+\item поиск кратчайших рёберных путей.
+\end{list*}
+\end{theorem}
+
+Нет циклов $\implies$ не требуется массив {\ital visited}.
+
+Также были задачи на потоки. Рассмотреть их!
+
+\subsection{Поиск эйлерового пути}
+
+{\bold Алгоритм} поиска эйлерового {\ital цикла}:
+
+\begin{code}{python}
+if is_eulerian(graph): #1
+  ecirc = graph.get_ecirc(v) #2
+else:
+  ecirc = -1
+
+def get_ecirc(v): # DFS
+  ecirc = list()
+  for n in edges[v]:
+    if edges[v][n] > 0:
+      edges[v][n] -= 1
+      ecirc += get_ecirc(n)
+  return ecirc + [v] #3
+\end{code}
+
+\begin{list*}[][\#]
+\item Проверить граф на {\ital эйлеровость}.
+\item Начать с любой вершины $v$.
+\item Если дан орграф, ответ нужно {\ital инвертировать}.
+\end{list*}
+
+{\bold Алгоритм} поиска эйлерового {\ital пути}:
+
+\begin{code}{python}
+if is_semi_eulerian(graph): #1
+  epath = graph.get_epath(v) #2
+else:
+  epath = -1
+
+def get_epath(v): # DFS
+  epath = list()
+  for n in edges[v]:
+    if edges[v][n] > 0:
+      edges[v][n] -= 1
+      epath += get_epath(n)
+  return epath + [v] #3
+\end{code}
+
+\begin{list*}[][\#]
+\item Проверить граф на {\ital полуэйлеровость}.
+\item Начать с вершины нечётной степени $v$.
+
+{\bold НО:} если дан орграф, выбрать вершину большей {\ital исхо"=дящей} валентности.
+\item Если дан орграф, ответ нужно {\ital инвертировать}.
+\end{list*}
+
+Применяется в {\bold задачах}:
+
+\begin{list*}
+\item китайский почтальон;
+\item домино, восстановление строки.
+\end{list*}
+
+\subsection{Топологическая сортировка}
+
+{\bold Алгоритм} топологической сортировки через {\ital DFS}:
+
+\begin{code}{python}
+def topo_sort(v): # DFS
+  vertices[v].visited = 1
+  stack = list()
+  for n in vertices[v].adjacent:
+    if not vertices[v].visited:
+      stack += topo_sort(n)
+  return stack + [v]
+\end{code}
+
+\subsection{Алгоритм Кана}
+
+{\bold Алгоритм} топологической сортировки через {\ital BFS}:
+
+\begin{code}{python}
+def topo_sort(queue=deque()):
+  for v in vertices: #1
+    if vertices[v].indegree == 0:
+      queue.append(v)
+  order = list()
+  while queue:
+    q = queue.popleft()
+    order.append(q)
+    for n in vertices[q].adjacent_out:
+      vertices[n].indegree -= 1
+      if vertices[n].indegree == 0: #2
+        queue.append(n)
+  return order 
+\end{code}
+
+\begin{list*}[][\#]
+\item Найти {\ital корни} графа, добавить их в очередь.
+\item Если какая либо из соседних вершин стала {\ital корнем}.
+\end{list*}
+
+Применяется в {\bold задачах}:
+
+\begin{list*}
+\item лексикографическая сортировка;
+\item топологическое маркирование;
+\item тест ацикличности.
+\end{list*}
+
+\subsection{Алгоритм Косараджу}
+
+{\bold Алгоритм} поиска компонент сильной связности:
+
+\begin{code}{python}
+reverse = graph.transpose() #1
+order = reverse.topo_sort() #2
+mark = 0
+for v in order[::-1]: #3
+  if not graph.vertices[v].visited:
+    mark_component(v, mark)
+    mark += 1
+
+def mark_component(v, mark): # DFS
+  vertices[v].visited = 1
+  vertices[v].mark = mark
+  for n in vertices[v].adjacent:
+    if not vertices[n].visited:
+      mark_component(n, mark)
+\end{code}
+
+\begin{list*}[][\#]
+\item Построить {\ital транспонированный} граф {\ital reverse}.
+\item Применить {\ital топологическую сортировку} к {\ital reverse}.
+\item Применить {\ital DFS} на {\ital graph} в обратном порядке топологи"=ческой сортировки:
+% ---
+$$\text{цикл поиска в глубину}\equiv\text{сильная компонента связности}$$
+\end{list*}
+
+\subsection{2-SAT}
+
+{\bold Алгоритм} решения:
+
+\begin{list*}[][\#]
+\item Перевести CNF в INF.
+\item Построить граф импликаций.
+\item Найти компоненты сильной связности в графе.
+\item Проверить, что для любой вершины $x$ графа справедливо:
+$$c[x]\neq c[\lnot x]$$
+\item Если требуется вывести ответ, то воспользоваться формулой:
+$$x=\left\{\begin{aligned}
+&\text{true}, &c[x]\less c[\lnot x]\\
+&\text{false}, &c[x]\greater c[\lnot x]
+\end{aligned}\right.$$
+\end{list*}
+
+\subsection{Поиск мостов}
+
+{\bold Алгоритм} поиска мостов на неорграфе:
+
+\begin{code}{python}
+def get_bridges(v, parent=-1): # DFS
+  vertices[v].visited = 1
+  time += 1
+  vertices[v].ord = time #1
+  vertices[v].min = time
+  bridges = set()
+  for n in vertices.adjacent:
+    if n == parent: #2
+      continue
+    if vertices[n].visited: #3
+      vertices[v].min = min(vertices[v].min, \
+                            vertices[n].ord)
+    else: #4
+      bridges |= get_bridges(n, v) #5
+      vertices[v].min = min(vertices[v].min, \
+                            vertices[n].min)
+      if vertices[n].min > vertices[v].ord and \
+         parent != -1: #6
+           bridges.add((v, n))
+  return bridges
+\end{code}
+
+\begin{list*}[][\#]
+\item Запись текущего порядка захода в вершину.
+\item Если $\langle v,n\rangle$ --- ребро в {\ital обратную сторону}.
+\item Если $\langle v,n\rangle$ --- {\ital обратное ребро}.
+\item Если $\langle v,n\rangle$ --- {\ital ребро дерева}.
+\item Мост может быть отмечен {\ital несколько раз} за алгоритм.
+\item Критерий моста:
+% ---
+$$[\langle v,neigh\rangle\text{ --- мост}]=\left\{\begin{aligned}
+&\text{true}, &\text{min}[neigh]\greater\text{ord}[v]\\
+&\text{false}, &\text{min}[neigh]\leq\text{ord}[v]
+\end{aligned}\right.$$
+\end{list*}
+
+\subsection{Поиск точек сочленения}
+
+{\bold Алгоритм} поиска точек сочленения на неорграфе:
+
+\begin{code}{python}
+def get_cuts(v, parent=-1): # DFS
+  vertices[v].visited = 1
+  time += 1
+  vertices[v].ord = time #1
+  vertices[v].min = time
+  children, cuts = 0, set()
+  for n in vertices.adjacent:
+    if n == parent: #2
+      continue
+    if vertices[n].visited: #3
+      vertices[v].min = min(vertices[v].min, \
+                            vertices[n].ord)
+    else: #4
+      children += 1 
+      cuts |= get_cuts(n, v) #5
+      vertices[v].min = min(vertices[v].min, \
+                            vertices[n].min)
+      if vertices[n].min >= vertices[v].ord and \
+         parent != -1: #6
+           cuts.add(v)
+  if children > 1 and parent == -1:
+    cuts.add(v)
+  return cuts
+\end{code}
+
+\begin{list*}[][\#]
+\item Запись текущего порядка захода в вершину.
+\item Если $\langle v,n\rangle$ --- ребро в {\ital обратную сторону}.
+\item Если $\langle v,n\rangle$ --- {\ital обратное ребро}.
+\item Если $\langle v,n\rangle$ --- {\ital ребро дерева}.
+\item Вершина может быть отмечена {\ital несколько раз} за алгоритм.
+\item Критерий точки сочленения:
+% ---
+$$[v\text{ --- т. сочленения}]=\left\{\begin{aligned}
+&\text{true}, &\text{min}[neigh]\geq\text{ord}[v]\\
+&\text{false}, &\text{min}[neigh]\less\text{ord}[v]
+\end{aligned}\right.$$
+\end{list*}
+
+\subsection{Алгоритм Куна}
+
+{\bold Алгоритм} поиска максимального паросочетания на двудольном графе:
+
+\begin{code}{python}
+for v in vertices.part: #1
+  if has_ichain(v):
+    null_all_visited(vertices)
+
+matching = dict() # empty == None
+def has_ichain(v): # DFS
+  if vertices[v].visited:
+    return False
+  vertices[v].visited = 1
+  for n in vertices[v].adjacent:
+    if matching[n] == None or \
+       has_ichain(matching[n]): #2
+         matching[n] = v
+         return True
+  return False
+\end{code}
+
+\begin{list*}[][\#]
+\item Рассматриваются все вершины {\ital одной доли} двудольного графа.
+\item Если пары нет или если есть {\ital увеличивающаяся цепь}.
+\end{list*}
+
+\subsection{Кратчайший путь}
+
+{\bold Волновой алгоритм} --- да.
+
+{\bold Алгоритм Дейкстры} ищёт кратчайшие пути из заданной вершины до всех остальных вершин взвешенного графа {\ital\color{desc} (вес рёбер неотрицательный)}:
+
+\begin{code}{python}
+def dijkstra(): # tabulation
+  vertices[1].cost = 0 #1
+  for _ in vertices:
+    v = (None, inf)
+    for i in vertices:
+      if not vertices[i].visited and \
+         vertices[i].min < v[1]:
+           v = (i, vertices[i].min)
+    if v[0] == None: #2
+      break
+    vertices[v[0]].visited = 1
+    for n in vertices[v[0]].adjacent:
+      curr_cost = vertices[v[0]].min + \
+                  edges[n][v[0]].cost
+      if curr_cost < vertices[n].min:
+        vertices[n].min = curr_cost
+        vertices[n].parent = v[0] #3
+\end{code}
+
+\begin{list*}[][\#]
+\item База динамики; по умолчанию вес рёбер --- $\infty$.
+\item Если добраться до вершины невозможно.
+\item Параметр для составления сертификата решения.
+\end{list*}
+
+{\bold Алгоритм Беллмана-Форда} --- да.
+
+\subsection{Алгоритм Прима}
+
+{\bold Алгоритм} поиска минимального остовного дерева {\ital\color{desc} (по структуре идентичен алгоритму Дейкстры)}:
+
+\begin{code}{python}
+def prim(): # greedy
+  vertices[1].min = 0 #1
+  for _ in vertices:
+    v = (None, inf)
+    for i in vertices:
+      if not vertices[i].visited and \
+         vertices[i].min < v[1]:
+           v = (i, vertices[i].min)
+    if v[0] == None: #2
+      break
+    vertices[v[0]].visited = 1
+    if vertices[v[0]].parent != None: #3
+      add_safe_edge(v[0], vertices[v[0]].parent)
+    for n in vertices[v[0]].adjacent:
+      curr_cost = edges[v[0]][n]
+      if curr_cost < vertices[n].min:
+        vertices[n].min = curr_cost
+        vertices[n].parent = v[0]
+\end{code}
+
+\begin{list*}[][\#]
+\item База динамики; по умолчанию вес рёбер --- $\infty$.
+\item Если добраться до вершины невозможно.
+\item Вывести {\ital безопасное ребро}, если обработано хотя бы две вершины.
+\end{list*}

@@ -1,0 +1,77 @@
+\section{Алгебра логики}
+
+\subsection{Определение}
+
+{\bold Алгебра логики} --- алгебраическая структура, которая образована двухэлементным множеством $\{0;1\}$.
+
+{\bold Высказывание} --- повествовательное предложение, о кото"=ром можно сказать в данный момент, что оно {\ital истинно} или {\ital ложно}.
+
+{\bold Логическая связка} --- операция алгебры логики:
+% ---
+\begin{list*}[][\#]
+\item{\ital Инверсия} «$\lnot$» --- логическое {\ital «не»}.
+\item{\ital Конъюнкция} «$\land$» --- логическое {\ital «и»}.
+\item{\ital Дизъюнкция} «$\lor$» --- логическое {\ital «или»}.
+\item{\ital Строгая дизъюнкция} «$\dot{\lor}$» --- логическое {\ital «искл. или»}.
+\item{\ital Импликация} «$\rightarrow$» --- логическое {\ital «$\implies$»}.
+\item{\ital Эквиваленция} «$\equiv$» --- логическое {\ital «$\iff$»}.
+\end{list*}
+
+\subsection{Свойства}
+
+Конъюнкция и дизъюнкция {\ital коммутативны}, {\ital ассоциативны} и {\ital дистрибутивны} относительно друг друга.
+% ---
+\begin{theorem}
+{\bold Идемпотентность.}
+% ---
+$$A\land A=A\qquad A\lor A=A$$
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Закон противоречия} и {\bold исключённого третьего.}
+% ---
+$$A\land\overline{A}=0\qquad A\lor\overline{A}=1$$
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Закон поглощения.}
+% ---
+$$\begin{aligned}
+&A\land 1=A &\quad &A\land 0=0\\
+&A\lor 1=1 &\quad &A\lor 0=A
+\end{aligned}$$
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Закон де Мóргана.}
+% ---
+$$\overline{A\land B}=\overline{A}\lor\overline{B}\qquad\overline{A\lor B}=\overline{A}\land\overline{B}$$
+\end{theorem}
+
+\subsection{Нормальная форма}
+
+{\bold Терм} --- компонент логической функции:
+
+\begin{list*}
+\item{\bold макстерм} --- переменные прямой и инверсной форм связаны {\ital дизъюнкцией};
+\item{\bold минтерм} --- переменные прямой и инверсной форм связаны {\ital конъюнкцией};
+\end{list*}
+
+{\bold Ранг} {\ital терма} --- число переменных, которые в него входят.
+
+{\bold Нормальная дизъюнктивная форма} {\ital (DNF)} --- дизъюнк"=ция минтермов любого ранга.
+
+{\bold Нормальная конъюнктивная форма} {\ital (CNF)} --- конъюнк"=ция макстермов любого ранга:
+% ---
+\begin{theorem}
+\begin{tabularcx}{0pt}{0pt}{C@{\hspace*{-16pt}}C}{\textwidth}
+$\begin{aligned}
+A\dot{\lor}B&=(A\lor B)\land(\overline{A}\lor\overline{B})\\
+A\equiv B&=(\overline{A}\lor B)\land(A\lor\overline{B})
+\end{aligned}$\hspace*{-18pt} & $A\rightarrow B=\overline{A}\lor B$
+\end{tabularcx}
+\end{theorem}
+% ---
+{\bold Нормальная импликативная форма} {\ital (INF)} --- конъюнк"=ция макстермов любого ранга, которые заменены имплика"=цией:
+% ---
+$$A\lor B=(\overline{A}\rightarrow B)\land(\overline{B}\to A)$$

@@ -1,0 +1,215 @@
+\section{Вычислительная геометрия}
+
+\subsection{Деление отрезка в отношении}
+
+Точка $C$ делит отрезок $AB$ в отношении $\lambda\in\mathbb{R}$, если:
+% ---
+$$\begin{cases}
+C\in AB\\
+\overrightarrow{AC}=\lambda\overrightarrow{CB}\\
+\lambda\neq -1
+\end{cases}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Пусть $C$ делит $AB$ в отношении $\lambda\in\mathbb{R}$. Тогда координаты точки $C$ равны:
+% ---
+$$x_C=\frac{x_A+\lambda x_B}{1+\lambda}\qquad y_C=\frac{y_A+\lambda y_B}{1+\lambda}$$ 
+\end{theorem}
+
+{\bold Доказательство.} По условию:
+% ---
+$$\overrightarrow{AC}=\lambda\overrightarrow{CB}\iff\overrightarrow{OC}-\overrightarrow{OA}=\lambda(\overrightarrow{OB}-\overrightarrow{OC})$$
+% ---
+По теореме Фалеса:
+% ---
+$$\left\{\begin{aligned}
+&x_C-x_A=\lambda(x_B-x_C)\\
+&y_C-y_A=\lambda(y_B-y_C)
+\end{aligned}\right.\iff
+\left\{\begin{aligned}
+&x_C=\frac{x_A+\lambda x_B}{1+\lambda}\\
+&y_C=\frac{y_A+\lambda y_B}{1+\lambda}
+\end{aligned}\right.\qedb$$
+
+\subsection{Коллинеарность}
+
+{\bold Коллинеарными} называются:
+% ---
+\begin{tabularcx}{3pt}{3pt}{@{--- } L}{\textwidth}
+{\ital точки}, которые лежат на одной прямой;\\
+{\ital векторы}, которые лежат на одной прямой или на~параллельных прямых.
+\end{tabularcx}
+% ---
+\begin{theorem}
+{\bold Критерий коллинеарности} двух векторов:
+% ---
+$$\overrightarrow{a}=\lambda\overrightarrow{b},\ \lambda\in\mathbb{R}\iff\begin{cases}
+x_a=\lambda x_b\\
+y_a=\lambda y_b
+\end{cases}$$ 
+\end{theorem}
+% ---
+В частности, нулевой вектор коллинеарен {\ital любому} вектору:
+% ---
+$$\overrightarrow{0}=0\overrightarrow{a}$$
+% ---
+\begin{theorem}
+{\bold Уравнение секущей} по двум известным точкам:
+% ---
+$$A\langle x_a,y_a\rangle,\ B\langle x_b,y_b\rangle\implies\frac{x-x_a}{x_b-x_a}=\frac{y-y_a}{y_b-y_a}$$
+\end{theorem}
+% ---
+{\bold Доказательство.} Пусть $\overrightarrow{AX},\ \overrightarrow{AB}$ --- коллинеарные векторы.
+
+По критерию коллинеарности двух векторов:
+% ---
+$$\left\{\begin{aligned}
+x-x_a=\lambda(x_b-x_a)\\
+y-y_a=\lambda(y_b-y_a)
+\end{aligned}\right.\iff
+\lambda=\frac{x-x_a}{x_b-x_a}=\frac{y-y_a}{y_b-y_a}\qedb$$
+
+\subsection{Скалярное произведение}
+
+\begin{theorem}
+{\bold Теорема.} Косинус угла $\alpha$ между векторами $\overrightarrow{a}$ и $\overrightarrow{b}$ равен:
+% ---
+$$\cos\alpha=\frac{x_ax_b+y_ay_b}{\abs{\overrightarrow{a}}\abs{\overrightarrow{b}}}$$
+\end{theorem}
+% ---
+{\bold Доказательство.} Отложим векторы $\overrightarrow{AB}=\overrightarrow{a}$, $\overrightarrow{AC}=\overrightarrow{b}$ от начала координат.
+
+По теореме косинусов:
+% ---
+$$\begin{gathered}
+BC^2=AB^2+AC^2-2\abs{\overrightarrow{AB}}\abs{\overrightarrow{AC}}\cos\alpha\implies\\
+\cos\alpha=\frac{AB^2+AC^2-BC^2}{2\abs{\overrightarrow{AB}}\abs{\overrightarrow{AC}}}
+\end{gathered}$$
+% ---
+По теореме Пифагора:
+% ---
+$$\begin{gathered}
+\left\{\begin{aligned}
+&AB^2=x_a^2+y_a^2\\
+&AC^2=x_b^2+y_b^2\\
+&BC^2=(x_a-x_b)^2+(y_a-y_b)^2
+\end{aligned}\right.\implies\\
+AB^2+AC^2-BC^2=2(x_ax_b+y_ay_b)\implies\\
+\cos\alpha=\frac{x_ax_b+y_ay_b}{\abs{\overrightarrow{a}}\abs{\overrightarrow{b}}}\qedb
+\end{gathered}$$
+% ---
+{\bold Скалярное произведение} {\ital векторов} $\overrightarrow{a}$, $\overrightarrow{b}$ --- величина:
+% ---
+$$x_ax_b+y_ay_b=:\overrightarrow{a}\cdot\overrightarrow{b}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Скалярное произведение двух векторов равно:
+% ---
+$$\overrightarrow{a}\cdot\overrightarrow{b}=\abs{\overrightarrow{a}}\abs{\overrightarrow{b}}\cos\alpha,$$
+% ---
+$\alpha$ --- угол между векторами.
+\end{theorem}
+
+\begin{theorem}
+{\bold Теорема.} Если вектора $\overrightarrow{a}$ и $\overrightarrow{b}$ коллинеарны, то:
+
+\begin{list*}
+\item$\overrightarrow{a}\cdot\overrightarrow{b}\greater 0\implies$ вектора {\ital сонаправлены};
+\item$\overrightarrow{a}\cdot\overrightarrow{b}\less 0\implies$ вектора {\ital несонаправлены};
+\item$\overrightarrow{a}\cdot\overrightarrow{b}=0\implies$ один из векторов {\ital нулевой}.
+\end{list*}
+\end{theorem}
+
+\subsection{Ориентированный угол}
+
+{\bold Ориентированным} называется угол $\alpha$ между $\overrightarrow{a}$ и $\overrightarrow{b}$, на который нужно повернуть $\overrightarrow{a}$, чтобы он был сонаправлен с $\overrightarrow{b}$:
+% ---
+$$\angle(\overrightarrow{a},\overrightarrow{b})\text{ --- обозначение},\ \alpha\in\left(-\pi;\pi\right]$$
+% ---
+{\bold Знак} ориентированного угла:
+
+\begin{list*}
+\item{\bold пололжительный}, если поворот происходит в {\ital положи"=тельном} направлении системы координат;
+\item{\bold отрицательный}, если поворот происходит в {\ital отрица"=тельном} направлении системы координат;
+\item{\bold нуль}, если вектора {\ital сонаправлены}.
+\end{list*}
+
+\subsection{Косое произведение}
+
+{\bold Косое произведение} {\ital векторов} $\overrightarrow{a}$, $\overrightarrow{b}$ --- величина:
+% ---
+$$x_ax_b-y_ay_b=:\overrightarrow{a}\land\overrightarrow{b}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Косое произведение двух векторов равно:
+% ---
+$$\overrightarrow{a}\land\overrightarrow{b}=\abs{\overrightarrow{a}}\abs{\overrightarrow{b}}\sin\alpha,$$
+% ---
+$\alpha$ --- угол между векторами.
+\end{theorem}
+
+\begin{theorem}
+{\bold Теорема.} Знак косого произведения векторов {\ital совпадает} со знаком ориентированного угла.
+\end{theorem}
+
+Доказательство вытекает из {\ital чётности} синуса угла между векторами.
+
+\subsection{Взаимное расположение объектов}
+
+Расположение {\ital точки} $A$ относительно {\ital прямой, луча или отрезка} $BC$:
+
+\begin{list*}
+\item$\angle(\overrightarrow{BA},\overrightarrow{BC})\greater 0\implies A$ лежит в {\bold левой} полуплоскости;
+\item$\angle(\overrightarrow{BA},\overrightarrow{BC})\less 0\implies A$ лежит в {\bold правой} полуплоскости;
+\item$\angle(\overrightarrow{BA},\overrightarrow{BC})=0\implies A$ {\bold коллинеарна} прямой $BC$.
+\end{list*}
+
+Взаимное расположение {\ital двух отрезков или лучей} $AB$ и $CD$:
+
+\begin{list*}
+\item концы обоих отрезков лежат в {\ital разных} полуплоскостях относительно друг друга $\implies$ отрезки {\bold пересекаются};
+\item концы одного отрезка лежат в {\ital одной} полуплоскости относительно другого $\implies$ отрезки {\bold не пересекаются};
+\item концы одного отрезка лежат {\ital на} прямой другого отрезка:
+\begin{list*}[2]
+\item конец одного отрезка лежит {\ital на} другом $\implies$ отрезки имеют {\bold общий подотрезок};
+\item концы одного отрезка {\ital не} лежат на другом $\implies$ отрезки {\bold не пересекаются}.
+\end{list*}
+\end{list*}
+
+\subsection{Ориентированная площадь}
+
+{\bold Ориентированной} называется площадь многоугольника, которая обладает знаком его ориентированных углов.
+
+\begin{theorem}
+{\bold Теорема.} Ориентированная площадь треугольника равна половине {\ital косого произведения} векторов ориентированного угла.
+\end{theorem}
+
+Ориентированная площадь --- {\ital аддитивная} величина, к~основным методам её расчёта относят:
+
+\begin{list*}
+\item метод трапеций;
+\item метод треугольников.
+\end{list*}
+
+\subsection{Метод трассировки луча}
+
+\begin{theorem}
+{\bold Задача.} На плоскости даны многоугольник и точка. Решить вопрос о принадлежности точки многоугольнику.
+\end{theorem}
+
+{\bold Алгоритм} трассировки луча:
+
+\begin{list*}[][\#]
+\item Проверить принадлежность точки стороне многоуголь"=ника: если {\ital истина}, остановить алгоритм.
+\item Выпустить из точки в случайном направлении луч.
+\item Посчитать число $n$ пересечений луча со сторонами многоугольника:
+% ---
+$$\left\{\begin{aligned}
+&n\equiv 0\modb{2}\implies\text{ точка снаружи}\\
+&n\equiv 1\modb{2}\implies\text{ точка внутри}
+\end{aligned}\right.$$
+\end{list*}
+
+\subsection{Метод заметающей прямой}
+
+Да.

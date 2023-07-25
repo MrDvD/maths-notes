@@ -14,12 +14,15 @@
 \usepackage{fontspec} % Шрифты .otf
 \usepackage{titlesec} % Заголовки
 \usepackage{tabularx,multicol,multirow,array,makecell} % Таблицы
-\usepackage{enumitem} % Списки
+\usepackage[shortlabels]{enumitem} % Списки
+\usepackage{xargs}
 \usepackage{graphicx,float} % Графика
 \usepackage{xcolor} % Цвет
 \usepackage{empheq}
 \usepackage[makeroom]{cancel}
+\usepackage{listings}
 \usepackage[most]{tcolorbox} % Удобные рамки
+\tcbuselibrary{listings}
 \usepackage[open,openlevel=1]{bookmark} % Секции в pdf-файле
 \graphicspath{{svg/}}
 % Нумерация
@@ -83,9 +86,8 @@
 }{\end{minipage}}
 
 % Tabular environment
-\def\center{c}
-
 \newenvironment{tabularc}[4]{
+\def\center{c}
 \if\center #4
 \centering
 \fi
@@ -130,14 +132,36 @@ halign=left,
 parbox=false
 }
 
-% Itemize environment
-\newenvironment{list*}[1][1]{
-\ifnum #1=1
-\begin{itemize}[leftmargin=6.5mm,label={---}]
-\setlength{\itemsep}{1pt}
-\fi
+% itemize X enumerate environment
+\newenvironmentx{list*}[2][1=1,2=-]{
+\if #2-
+\def\listenv{itemize}
 \ifnum #1=2
-\begin{itemize}[leftmargin=4.5mm,label={>},topsep=2pt]
-\setlength{\itemsep}{1pt}
+\begin{\listenv}[leftmargin=4.5mm,itemsep=1pt,topsep=-3pt,label=>]
+\else
+\begin{\listenv}[leftmargin=6.5mm,itemsep=1pt,label=---]
 \fi
-}{\end{itemize}}
+\fi
+\if #2\#
+\def\listenv{enumerate}
+\begin{\listenv}[leftmargin=6.5mm,itemsep=-3pt,topsep=0pt,label=\theenumi)]
+\fi
+}{\end{\listenv}}
+
+% framed codebox with language customization
+\lstset{columns=fixed,basicstyle=\mono,basewidth=0.55em,keywordstyle=\monobold,commentstyle=\monoital\color[HTML]{888888}}
+
+% emph={has_ichain,get_cuts},emphstyle=\monoital
+
+\newtcblisting{code}[1]{
+enhanced,
+listing only,
+breakable,
+size=minimal,
+boxrule=0mm,frame hidden,arc=0mm,
+colback=white!0,
+boxsep=0mm,left=3.5mm,
+top=-1mm,bottom=-1mm,
+borderline west={2pt}{0pt}{black},
+before skip=6pt,after skip=7pt,
+listing options={language=#1,showstringspaces=false}}
