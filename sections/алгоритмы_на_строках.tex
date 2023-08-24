@@ -1,0 +1,279 @@
+\section{Алгоритмы на строках}
+
+\subsection{Префикс-функция}
+
+{\bold Собственным} называется {\ital префикс}, который не совпадает со всей строкой.
+
+{\bold Грань} --- собственный префикс строки, который равен её суффиксу.
+
+{\bold Префикс-функция} строки $S$ --- массив, $i$-ый элемент которого равен длине максимальной грани подстроки $S[0\ldots i]$.
+
+{\bold Алгоритм} реализации {\ital префикс-функции}:
+
+\begin{code}{python}
+prefixes = [0] * len(S)
+def fill_prefixes(S, prefixes):
+  for i in range(len(S) - 1):
+    j = 0
+    while j and S[i + 1] != S[j]: # I
+      j = prefixes[j - 1]
+    if S[i + 1] == S[j]:
+      j += 1
+    prefixes[i + 1] = j
+\end{code}
+
+\begin{tabularx}{\textwidth}{r|C|L}
+\bold I &
+\begin{tikzpicture}[baseline]
+\draw [->, line width=2pt, desc, yshift=1pt] (1.4,0) to [in=90, out=90] (-.2,0);
+\draw [->, line width=2pt] (-2,0) -- (2,0);
+\draw [fill=black] (.6,0) circle (2.5pt) node [below] {$i$};
+\draw [fill=black] (1.4,0) circle (2.5pt) node [below] {$i+1$};
+\draw [fill=black] (-.2,0) circle (2.5pt) node [below] {$j$};
+\draw [fill=black] (-1,0) circle (2.5pt) node [below] {$j-1$};
+\end{tikzpicture} &
+Цикл смены индекса $j$ идёт до равенства с $S(i+1)$ или до границ индексации.
+\end{tabularx}
+
+\subsection{Алгоритм КМП}
+
+\begin{theorem}
+{\bold Задача.} Даны строки {\ital text} и {\ital search}. Найти позиции всех вхождений {\ital search} в {\ital text}.
+\end{theorem}
+
+{\bold Идея.} Образовать новую строку конкатенацией:
+% ---
+$$search+\#+text$$
+% ---
+Вычислить {\ital префикс-функцию} от новой строки: индексы элементов, которые численно равны длине {\ital search}, будут ответом. 
+
+Алгоритм {\ital онлайновый}...
+
+\subsection{Вхождения префиксов}
+
+\begin{theorem}
+{\bold Задача.} Дана строка $S$. Посчитать для каждого префикса $S$, сколько раз он встречается в $S$.
+\end{theorem}
+
+{\bold Идея.} Вычислить префикс-функцию от $S$. Затем составить отдельный массив {\ital occur} по принципу:
+% ---
+\begin{list*}[][\#]
+\item Посчитать для каждого значения $\pi$, сколько раз оно встречалось в $\pi$.
+\item Посчитать {\ital динамику}: вхождения большего префикса $i$ добавить к наибольшему собственному суффиксу этого префикса $prefixes[i-1]$.
+\end{list*}
+% ---
+\begin{code}{python}
+fill_prefixes()
+for i in range(len(S)):
+  occur[prefixes[i]] += 1
+for i in range(len(S) - 1, 0, -1):
+  occur[prefixes[i - 1]] += occur[i]
+\end{code}
+
+\subsection{Учёт различных подстрок}
+
+\begin{theorem}
+{\bold Задача.} Дана строка $S$. Посчитать количество её различных подстрок.
+\end{theorem}
+
+{\bold Идея.} Добавим один символ в конец неполной строки: появятся новые подстроки, которые оканчиваются в новом символе. Нужно найти {\ital уникальные} среди них.
+
+Инвертируем строку, чтобы символ стал префиксом. Тогда число уникальных подстрок равно числу элементов $\pi$ с нулевым значением:
+% ---
+$$\text{len}(S)-\pi_\text{\tinyt max}$$
+% ---
+Аналогично можно дописывать символы в начало или удалять символы с конца или с начала.
+
+\subsection{Сжатие строки}
+
+\begin{theorem}
+{\bold Задача.} Дана строка $S$. Найти такую строку наименьшей длины, что $S$ можно представить в виде конкатенации её копий.
+\end{theorem}
+
+{\bold Идея.} Пусть $n=\text{len}(S)$, $k=n-\pi[n-1]$. Тогда верно:
+% ---
+$$k\mid n\implies k\text{ --- длина искомой строки}$$
+% ---
+Иначе $S$ {\ital невозможно} сжать.
+
+\subsection{Z-функция}
+
+{\bold Блок} строки $S$ --- подстрока $S$, которая равна её собственному префиксу.
+
+{\bold Z-функция} строки $S$ --- массив, $i$-ый элемент которого равен длине максимального блока с началом в $i$.
+
+{\bold Алгоритм} реализации {\ital z-функции}:
+
+\begin{code}{python}
+def get_block(S, l, r):
+  idx = 0
+  while S[l + idx] == S[r + idx]:
+    if r + idx < len(S):
+      break
+    idx += 1
+  return idx
+
+blocks = [0] * len(S)
+def fill_blocks(string, blocks):
+  l, r = 0, 0
+  for i in range(len(S)):
+    if i > r: # I
+      value = get_block(S, 0, i)
+      if value:
+        l, r = i, value
+    else: # II
+      k = i - l
+      if blocks[k] < r - i + 1:
+        blocks[i] = blocks[k]
+      else:
+        blocks[i] = r - i + 1
+        l, q = i, get_block(S, blocks[i], r + 1)
+        if q:
+          blocks[i] += q
+          r = i + blocks[i] - 1
+\end{code}
+
+\begin{tabularx}{\textwidth}{r|C|L}
+\bold I &
+\begin{tikzpicture}[baseline]
+\draw [pattern=north east lines] (-2,0) rectangle (-1.3,.35);
+\draw [pattern=north east lines] (1,0) rectangle (1.7,.35);
+\draw [->, line width=2pt] (-2,0) -- (2,0);
+\draw [fill=black] (-2,0) circle (2.5pt) node [below] {$0$};
+\draw [fill=black] (-1,0) circle (2.5pt) node [below] {$l$};
+\draw [fill=black] (0,0) circle (2.5pt) node [below] {$r$};
+\draw [fill=black] (1,0) circle (2.5pt) node [below] {$i$};
+\end{tikzpicture} &
+Поиск нового блока с позиций $0$ и $i$, обновление $l$, $r$ при нахождении\\\hline
+\multirow{2}{*}{\bold II} &
+\begin{tikzpicture}[baseline]
+\draw (-2.5,0) rectangle (-.9,.5);
+\draw (.1,0) rectangle (1.7,.5);
+\draw [pattern=north east lines] (-1.7,0) rectangle (-1.4,.35);
+\draw [pattern=north east lines] (.9,0) rectangle (1.7,.35);
+\draw [->, line width=2pt] (-2.5,0) -- (2.5,0);
+\draw [fill=black] (-2.5,0) circle (2.5pt) node [below] {$0$};
+\draw [fill=black] (-1.7,0) circle (2.5pt) node [below] {$k$};
+\draw [fill=black] (.1,0) circle (2.5pt) node [below] {$l$};
+\draw [fill=black] (.9,0) circle (2.5pt) node [below] {$i$};
+\draw [fill=black] (1.7,0) circle (2.5pt) node [below] {$r$};
+\end{tikzpicture} &
+\multirow{2}{=}{Рассмотреть две ситуации}\\\cline{2-2}
+& \begin{tikzpicture}[baseline]
+\draw (-2.5,0) rectangle (-.9,.5);
+\draw (.1,0) rectangle (1.7,.5);
+\draw [pattern=north east lines] (-1.7,0) rectangle (-.4,.35);
+\draw [pattern=north east lines] (.9,0) rectangle (1.7,.35);
+\draw [pattern=north east lines, dashed] (1.7,0) rectangle (2.2,.35) node [midway, yshift=4pt] {$q$};
+\draw [->, line width=2pt] (-2.5,0) -- (2.5,0);
+\draw [fill=black] (-2.5,0) circle (2.5pt) node [below] {$0$};
+\draw [fill=black] (-1.7,0) circle (2.5pt) node [below] {$k$};
+\draw [fill=black] (.1,0) circle (2.5pt) node [below] {$l$};
+\draw [fill=black] (.9,0) circle (2.5pt) node [below] {$i$};
+\draw [fill=black] (1.7,0) circle (2.5pt) node [below] {$r$};
+\end{tikzpicture} &\\
+\end{tabularx}
+
+\subsection{Редакционное расстояние}
+
+К {\bold элементарным операциям редактирования} строки относятся:
+% ---
+\begin{list*}
+\item {\ital удаление} символа;
+\item {\ital вставка} символа;
+\item {\ital замещение} символа.
+\end{list*} 
+% ---
+{\bold Редакционное расстояние} между строками $S_1$ и $S_2$ --- минимальное количество {\ital элементарных операций редактирования}, которые нужно совершить, чтобы перевести $S_1$ в $S_2$.
+
+{\bold Редакционный граф} для строк $S_1$ и $S_2$ --- орграф с вершинами-состояниями строк, у которых есть до трёх рёбер, {\ital эквивалентных} элементарным операциям редактирования:
+
+{\centering
+\begin{tikzpicture}
+\node (start) [draw, line width=1pt, align=left] at (0,1) {$S_1[0\dots n]$\\$S_2[0\dots m]$};
+\node (remove) [draw, line width=1pt, anchor=east, align=left] at (-1.5,-1) {$S_1[1\dots n]$\\$S_2[0\dots m]$};
+\node (change) [draw, line width=1pt, align=left] at (0,-1) {$S_1[1\dots n]$\\$S_2[1\dots m]$};
+\node (insert) [draw, line width=1pt, anchor=west, align=left] at (1.5,-1) {$S_1[0\dots n]$\\$S_2[1\dots m]$};
+\draw [-{>[length=6pt]}, line width=.8pt] (start.west) -- (remove.north) node [midway, above, sloped] {De};
+\draw [-{>[length=6pt]}, line width=.8pt] (start.south) -- (change.north) node [midway, right, yshift=2pt] {Re};
+\draw [-{>[length=6pt]}, line width=.8pt] (start.east) -- (insert.north) node [midway, above, sloped] {In};
+\end{tikzpicture}\par}
+
+\subsection{Алгоритм Вагнера-Фишера}
+
+{\bold Редакционное предписание} --- сертификат редакционного расстояния между двумя строками:
+
+{\centering{\bold D}elete, {\bold I}nsert, {\bold R}eplace, {\bold M}atch.\par}
+
+{\bold Алгоритм Вагнера-Фишера} находит редакционное предписание по {\ital матрице расстояний}, минимизируя выбор элементарных операций редактирования.
+
+\subsection{Общая подпоследовательность}
+
+\begin{theorem}
+{\bold Задача.} Даны строки $S_1$ и $S_2$. Определить длину их наибольшей общей подпоследовательности $LCS(S_1,S_2)$.
+\end{theorem}
+
+{\bold Идея.} Используем принцип оптимальности на префиксе:
+
+{\centering\begin{tikzpicture}
+\node (start) [draw, line width=1pt, align=left] at (0,0.5) {$LCS(n,m)$};
+\node (neql) [draw, line width=1pt, anchor=east, align=left] at (-2.3,-1) {$LCS(n-1,m)$};
+\node (eq) [draw, line width=1pt, align=left] at (0,-1) {$LCS(n-1,m-1)$};
+\node (neqr) [draw, line width=1pt, anchor=west, align=left] at (2.3,-1) {$LCS(n,m-1)$};
+\draw [-{>[length=6pt]}, line width=.8pt] (start.west) -- (neql.north) node [midway, above, sloped, scale=.8] {$S_1[n]\neq S_2[m]$};
+\draw [-{>[length=6pt]}, line width=.8pt] (start.south) -- (eq.north) node [midway, yshift=2pt, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$S_1[n]=S_2[m]$};
+\draw [-{>[length=6pt]}, line width=.8pt] (start.east) -- (neqr.north) node [midway, above, sloped, scale=.8] {$S_1[n]\neq S_2[m]$};
+\end{tikzpicture}\par}
+
+\begin{list*}[][\#]
+\item Если $S_1[n]=S_2[m]\implies$инкрементируем прошлый узел.
+\item Если $S_1[n]\neq S_2[m]\implies$максимизируем прошлые узлы.
+\end{list*}
+
+\subsection{Алгоритм Нидлмана-Вунша}
+
+\begin{theorem}
+{\bold Задача.} Даны две строки $S_1$ и $S_2$. Составить их оптимальное выравнивание.
+\end{theorem}
+
+{\bold Идея.} Составить {\ital матрицу схожести} с весовой функцией:
+
+\begin{tabularx}{\textwidth}{r@{ --- }L}
+$+1$ & вес совпадения;\\
+$-\mu$ & штраф за замену;\\
+$-\delta$ & штраф за удаление, вставку.
+\end{tabularx}
+
+Задача сводится к нахождению пути с {\ital максимальным весом}.
+
+\subsection{Скобочная последовательность}
+
+Когда-нибудь...
+
+\newpage
+\subsection{Алгоритм сортировочной станции}
+
+{\bold Обратная польская нотация} --- форма записи математических выражений, в которой операторы расположены {\ital после} операндов.
+
+\begin{theorem}
+{\bold Задача.} Дано математическое выражение в инфиксной нотации. Перевести его в постфиксную нотацию.
+\end{theorem}
+
+{\bold Идея.} Сначала запарсить строку {\ital регулярным выражением}:
+
+{\centering \textbackslash d+\textbackslash.?\textbackslash d*|[+\textbackslash$-$*/\^{}()]\par}
+% ---
+Затем ввести две структуры: {\ital строку} с ответом и {\ital стек} для операторов. Их заполнение происходит при считывании по токену за раз:
+% ---
+\begin{list*}[][\#]
+\item Токен --- {\ital число}$\implies$добавить к строке.
+\item Токен --- {\ital бинарный оператор}:
+\begin{list*}[2]
+\item если приоритет последнего элемента в стеке $\geq$, чем у~токена, то вытолкнуть его из стека в строку {\ital\color{desc} (повторить при необходимости)};
+\item добавить токен в стек.
+\end{list*}
+\item Токен --- {\ital открывающая скобка}$\implies$добавить в стек.
+\item Токен --- {\ital закрывающая скобка}$\implies$вытолкнуть все операторы до «$($» из стека в строку, а «$($» удалить.  
+\end{list*}
+% ---
+Для поддержки унарных операторов ввести флаги {\ital next\_unary} и {\ital is\_unary}.

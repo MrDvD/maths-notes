@@ -9,6 +9,9 @@
 \usepackage[a5paper, margin=12mm]{geometry}
 
 \usepackage{tikz}
+\usetikzlibrary{intersections}                                  % 'name intersections'
+\usetikzlibrary{patterns}                                       % 'pattern'
+\usetikzlibrary{arrows.meta}                                    % arrows customization
 \usepackage{cellspace}
 \usepackage{adjustbox}
 % Пакеты
@@ -71,6 +74,7 @@
 {\hspace*{-18pt}#1 #2}}
 \newcommand{\multiset}[2]{\left(\!\!\binom{#1}{#2}\!\!\right)}
 \newcommand{\stirl}{\genfrac\{\}{0pt}{}}
+\newcommand\pluseq{\mathrel{+}=}                     % += operator
 
 % Смена шрифта для \mathcal
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
