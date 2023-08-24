@@ -5,14 +5,57 @@
 
 \subsection{Виды выражений}
 
-{\ital Одночлен \color{desc}(моном)} --- произведение переменных и коэффи"=циентов; {\ital многочлен \color{desc}(полином)} --- сумма одночленов.
+{\bold Одночлен} {\ital (моном)} --- произведение переменных и коэффи"=циентов.
 
-{\ital Двучлен \color{desc}(бином)} --- многочлен из двух одночленов; {\ital трёхчлен {\color{desc}(трином)}} --- многочлен из трёх одночленов.
+{\bold Многочлен} {\ital (полином)} --- сумма одночленов.
+
+{\bold Двучлен} {\ital (бином)} --- многочлен из двух одночленов.
+
+{\bold Трёхчлен} {\ital (трином)} --- многочлен из трёх одночленов.
 
 Многочлен $P$ от одной переменной $x$ можно представить так:
 % ---
 $$P=\sum^{n}_{k=0}a_kx^{n-k}$$
 
+\subsection{Квадратный трёхчлен}
+
+Расположение корней относительно числа $p$:
+
+\begin{sheet*}[SC|SC]
+\rowcolor{table}
+\bold Расположение корней & \bold Равносильно\\
+\adjustbox{valign=c}{\begin{tikzpicture}[baseline={(0,0.25)}]
+\draw [->,line width=2pt](-2,0) -- (2,0) node[below] {$x$};
+\draw [fill=white, draw=black, line width=1.5pt] (-1,0) circle (2.5pt) node[below] {$p$};
+\draw [fill=black] (0,0) circle (2.5pt) node[below] {$x_1$};
+\draw [fill=black] (1,0) circle (2.5pt) node[below] {$x_2$};
+\end{tikzpicture}} &
+$\left\{\begin{aligned}
+&D\greater 0\\
+&af(p)\greater 0\\
+&p\less x_0
+\end{aligned}\right.$\\\hline
+\adjustbox{valign=c}{\begin{tikzpicture}[baseline={(0,0.25)}]
+\draw [->,line width=2pt](-2,0) -- (2,0) node[below] {$x$};
+\draw [fill=black] (-1,0) circle (2.5pt) node[below] {$x_1$};
+\draw [fill=black] (0,0) circle (2.5pt) node[below] {$x_2$};
+\draw [fill=white, draw=black, line width=1.5pt] (1,0) circle (2.5pt) node[below] {$p$};
+\end{tikzpicture}} &
+$\left\{\begin{aligned}
+&D\greater 0\\
+&af(p)\greater 0\\
+&x_0\less p
+\end{aligned}\right.$\\\hline
+\adjustbox{valign=c}{\begin{tikzpicture}[baseline={(0,0.25)}]
+\draw [->,line width=2pt](-2,0) -- (2,0) node[below] {$x$};
+\draw [fill=black] (-1,0) circle (2.5pt) node[below] {$x_1$};
+\draw [fill=white, draw=black, line width=1.5pt] (0,0) circle (2.5pt) node[below] {$p$};
+\draw [fill=black] (1,0) circle (2.5pt) node[below] {$x_2$};
+\end{tikzpicture}} &
+$af(p)\less 0$
+\end{sheet*}
+
+\newpage
 \subsection{Малая теорема Безу}
 
 Для многочлена $P=:P(x)$ справедливо:
@@ -41,9 +84,9 @@ a^k\less b^k
 \end{cases}
 $$
 % ---
-При умножении на отрицательное число знак неравенства {\ital инвертируется}:
+При умножении на отрицательное число $m$ знак неравенства {\ital инвертируется}:
 % ---
-$$a\less b\iff am\greater bm,\quad m\in\mathbb{R}^-$$
+$$a\less b\iff am\greater bm$$
 
 \subsection{Неравенство Коши}
 

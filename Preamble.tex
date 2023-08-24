@@ -4,8 +4,13 @@
 \RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 % Ошибки ^
 \documentclass[fleqn]{article}
+\usepackage[table]{xcolor} % Цвет
 \usepackage{amsmath,nccmath} % Математика
 \usepackage[a5paper, margin=12mm]{geometry}
+
+\usepackage{tikz}
+\usepackage{cellspace}
+\usepackage{adjustbox}
 % Пакеты
 \usepackage{polyglossia} % Язык
 \setmainlanguage{russian}
@@ -17,7 +22,6 @@
 \usepackage[shortlabels]{enumitem} % Списки
 \usepackage{xargs}
 \usepackage{graphicx,float} % Графика
-\usepackage{xcolor} % Цвет
 \usepackage{empheq}
 \usepackage[makeroom]{cancel}
 \usepackage{listings}
@@ -95,6 +99,14 @@
 \setlength\extrarowheight{#2}
 \begin{tabular}{#3}
 }{\end{tabular}\par}
+
+% sheet test environment
+\newenvironmentx{sheet*}[2][1=,2=0]{
+\setlength\cellspacetoplimit{3pt}
+\setlength\cellspacebottomlimit{3pt}
+\renewcommand\arraystretch{#2}
+\tabularx{\textwidth}[m]{#1}
+}{\endtabularx\par}
 
 % Tabularx environment
 \newenvironment{tabularcx}[4]{
