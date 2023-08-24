@@ -68,7 +68,7 @@ C'=0\qquad & (x^n)'=nx^{n-1},\ n\neq 0\qquad & \ln'x=1/x
 \end{aligned}\\
 \begin{align*}
 \sin'\alpha&=\cos\alpha\hspace*{1cm} & \cos'\alpha&=-\sin\alpha\hspace*{2.05cm}\\
-\tg'\alpha&=1/\cos^2\alpha & \ctg'\alpha&=-1/\sin\trsp^2\alpha\\
+\tg'\alpha&=1/\cos^2\alpha & \ctg'\alpha&=-1/\sin^2\alpha\\
 \arcsin'x&=1/\sqrt{1-x^2} & \arccos'x&=-1/\sqrt{1-x^2}\\
 \arctg'x&=1/(1+x^2) & \arcctg'x&=-1/(1+x^2)
 \end{align*}
@@ -124,10 +124,10 @@ $$f'(x_0)\greater 0\iff \lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}\greater 0\
 % ---
 При достаточно малом $\Delta x$ верно:
 % ---
-$$\frac{\Delta f}{\Delta x}\greater 0\iff\begin{sqcases}
-\Delta f,\Delta x\greater 0\\
-\Delta f,\Delta x\less 0
-\end{sqcases}\hspace*{-12pt}\iff
+$$\frac{\Delta f}{\Delta x}\greater 0\iff\begin{sqcases*}
+&\Delta f,\Delta x\greater 0\\
+&\Delta f,\Delta x\less 0
+\end{sqcases*}\iff
 f\kern-4pt\uparrow\text{около }x_0\qedw$$
 % ---
 Для $f'(x_0)\less 0$ доказательство аналогично.$\qedb$
@@ -151,10 +151,10 @@ $$\lim_{x\to x_0}\frac{\Delta f}{\Delta x}=f'(x_0)$$
 % ---
 По предельному переходу:
 % ---
-$$\begin{sqcases}
-\Delta x\greater 0\implies\Delta f/\Delta x\less 0\implies f'(x_0)\leq 0\\
-\Delta x\less 0\implies\Delta f/\Delta x\greater 0\implies f'(x_0)\geq 0
-\end{sqcases}\hspace*{-12pt}\iff$$
+$$\begin{sqcases*}
+&\Delta x\greater 0\implies\Delta f/\Delta x\less 0\implies f'(x_0)\leq 0\\
+&\Delta x\less 0\implies\Delta f/\Delta x\greater 0\implies f'(x_0)\geq 0
+\end{sqcases*}\iff$$
 $$0\leq f'(x_0)\leq 0\iff f'(x_0)=0\qedw$$
 % ---
 Для локального минимума доказательство аналогично.$\qedb$
@@ -165,10 +165,10 @@ $$0\leq f'(x_0)\leq 0\iff f'(x_0)=0\qedw$$
 % ---
 {\bold Доказательство.} По определению критической точки:
 % ---
-$$\begin{sqcases}
-f'(x_0)=0\\
-f'(x_0)=\text{undefined}
-\end{sqcases}$$
+$$\begin{sqcases*}
+&f'(x_0)=0\\
+&f'(x_0)=\text{undefined}
+\end{sqcases*}$$
 % ---
 Допустим для определённости:
 % ---

@@ -50,13 +50,13 @@ $$\forall v,w\in V\ \langle v,w\rangle\in E\implies\langle w,v\rangle\in E$$
 
 {\bold Путь} от вершины $v_i$ до вершины $v_j$ графа $G$ --- последо"=вательность вершин или рёбер:
 % ---
-$$\begin{cases}
-\begin{sqcases}
-[v_i,v_{i+1},\dots,v_{j-1},v_j]\text{ вершины}\\
-[e_i,e_{i+1},\dots,e_{j-1},e_j]\text{ рёбра}
-\end{sqcases}\\
-e_k=\langle v_{k-1},v_k\rangle,k\in\{i+1,\dots,j\}
-\end{cases}$$
+$$\begin{cases*}
+&\begin{sqcases*}
+&[v_i,v_{i+1},\dots,v_{j-1},v_j]\text{ вершины}\\
+&[e_i,e_{i+1},\dots,e_{j-1},e_j]\text{ рёбра}
+\end{sqcases*}\\
+&e_k=\langle v_{k-1},v_k\rangle,k\in\{i+1,\dots,j\}
+\end{cases*}$$
 % ---
 {\bold Закрытым} называется такой путь, где начальная и~конечная вершины совпадают.
 
@@ -242,11 +242,11 @@ $$\gamma_{\text{\tinyt min}}=\text{min}(\{\gamma(E)\mid\forall E\})$$
 % ---
 {\ital Редакционный граф} для $T_1$ и $T_2$ --- неорграф $G=\langle V,E\rangle$ с~вершинами вида $vw$, $v\in V_1\cup\{v_0\}$, $w\in V_2\cup\{w_0\}$ {\ital\color{desc}($v_0,w_0$} {\color{desc}--- {\ital мнимые узлы)}}, рёбра которого определяются по правилу:
 % ---
-$$\begin{sqcases}
-\text{depth}_{v_{i+1}}\geq\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_{i+1}w_j\rangle\in E\ {\ital\color{desc}(v_{i+1}\hspace*{-3pt}\mapsto\hspace*{-3pt}\lambda)}\\
-\text{depth}_{v_{i+1}}=\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_{i+1}w_{j+1}\rangle\in E\ {\ital\color{desc}(v_{i+1}\hspace*{-3pt}\mapsto\hspace*{-3pt}w_{j+1})}\\
-\text{depth}_{v_{i+1}}\leq\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_iw_{j+1}\rangle\in E\ {\ital\color{desc}(\lambda\hspace*{-3pt}\mapsto\hspace*{-3pt}w_{j+1})}
-\end{sqcases}$$
+$$\begin{sqcases*}
+&\text{depth}_{v_{i+1}}\geq\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_{i+1}w_j\rangle\in E\ {\ital\color{desc}(v_{i+1}\hspace*{-3pt}\mapsto\hspace*{-3pt}\lambda)}\\
+&\text{depth}_{v_{i+1}}=\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_{i+1}w_{j+1}\rangle\in E\ {\ital\color{desc}(v_{i+1}\hspace*{-3pt}\mapsto\hspace*{-3pt}w_{j+1})}\\
+&\text{depth}_{v_{i+1}}\leq\text{depth}_{w_{j+1}}\hspace*{-9pt}\iff\hspace*{-6pt}\langle v_iw_j,v_iw_{j+1}\rangle\in E\ {\ital\color{desc}(\lambda\hspace*{-3pt}\mapsto\hspace*{-3pt}w_{j+1})}
+\end{sqcases*}$$
 % ---
 {\ital Лемма.} Пусть $G$ --- редакционный граф для $T_1$ и $T_2$. Тогда маршрут $P$ от $v_0w_0$ до $v_{n_1}w_{n_2}$ задаёт трансформацию:
 % ---

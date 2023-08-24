@@ -1,66 +1,89 @@
-\RequirePackage{silence}
-\WarningFilter{latexfont}{Font shape `TU/}
-\WarningFilter{latexfont}{Size substitutions}
-\RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 % Ошибки ^
-\documentclass[fleqn]{article}
-\usepackage[table]{xcolor} % Цвет
-\usepackage{amsmath,nccmath} % Математика
-\usepackage[a5paper, margin=12mm]{geometry}
+\documentclass[12pt]{article}
 
-\usepackage{tikz}
+% packages
+\usepackage{cellspace}
+\usepackage{adjustbox}
+\usepackage[table]{xcolor} % Цвет
+
+\usepackage[a5paper,margin=12mm]{geometry}                      % макет
+\usepackage{polyglossia}                                        % язык
+\usepackage[warnings-off={mathtools-colon,
+                          mathtools-overbracket}]{unicode-math} % \setmathfont
+\usepackage{titlesec}                                           % \titleformat
+\usepackage[open,openlevel=1]{bookmark}                         % индексация pdf
+\usepackage[shortlabels]{enumitem}                              % списки
+\usepackage{xargs}                                              % \newenvironmentx
+\usepackage[most]{tcolorbox}                                    % блоки
+\usepackage[makeroom]{cancel}                                   % сокращение (maths)
+\usepackage{tabularx,multicol,multirow,makecell}                % таблицы
+\usepackage{tikz}                                               % графика
 \usetikzlibrary{intersections}                                  % 'name intersections'
 \usetikzlibrary{patterns}                                       % 'pattern'
 \usetikzlibrary{arrows.meta}                                    % arrows customization
-\usepackage{cellspace}
-\usepackage{adjustbox}
-% Пакеты
-\usepackage{polyglossia} % Язык
-\setmainlanguage{russian}
+
+% enables russian hyphenation
+\setmainlanguage[babelshorthands=true]{russian}
 \setotherlanguage{english}
-\setkeys{russian}{babelshorthands=true}
-\usepackage{fontspec} % Шрифты .otf
-\usepackage{titlesec} % Заголовки
-\usepackage{tabularx,multicol,multirow,array,makecell} % Таблицы
-\usepackage[shortlabels]{enumitem} % Списки
-\usepackage{xargs}
-\usepackage{graphicx,float} % Графика
-\usepackage{empheq}
-\usepackage[makeroom]{cancel}
-\usepackage{listings}
-\usepackage[most]{tcolorbox} % Удобные рамки
-\tcbuselibrary{listings}
-\usepackage[open,openlevel=1]{bookmark} % Секции в pdf-файле
-\graphicspath{{svg/}}
-% Нумерация
-\pagenumbering{gobble} % Страницы
-\setcounter{secnumdepth}{0} % Заголовки
-% Шрифты
-\setmainfont[SizeFeatures={Size=12}]{Century Schoolbook}
-\setmathfont[Scale=1.2]{TeX Gyre Schola Math}
-\newfontfamily\bold[SizeFeatures={Size=12}]{Century Schoolbook Bold}
-\newfontfamily\ital[SizeFeatures={Size=12}]{Century Schoolbook Italic}
-\newfontfamily\boldital[SizeFeatures={Size=12}]{Century Schoolbook Bold Italic}
-\newfontfamily\gilroysub[SizeFeatures={Size=16},UprightFont={*-Medium}]{Gilroy}
-\newfontfamily\gilroy[SizeFeatures={Size=19},UprightFont={*-UltraLight}]{Gilroy}
-\newfontfamily\tinyt[SizeFeatures={Size=10}]{Century Schoolbook}
-\newfontfamily\mono[SizeFeatures={Size=12}]{Anonymous Pro Regular}
-\newfontfamily\monobold[SizeFeatures={Size=12}]{Anonymous Pro Bold}
-\newfontfamily\monoital[SizeFeatures={Size=12}]{Anonymous Pro Italic}
-% Стили
+
+% mainfont
+\newfontfamily\bold{Century Schoolbook Bold}
+\newfontfamily\ital{Century Schoolbook Italic}
+\newfontfamily\boldital{Century Schoolbook Bold Italic}
+% titlefont
+\newfontfamily\gilroysub[Scale=1.31,UprightFont={*-Medium}]{Gilroy}
+\newfontfamily\gilroy[Scale=1.59,UprightFont={*-UltraLight}]{Gilroy}
+\newfontfamily\tinyt[Scale=.835]{Century Schoolbook}
+% monofont
+\newfontfamily\mono{Anonymous Pro Regular}
+\newfontfamily\monobold{Anonymous Pro Bold}
+\newfontfamily\monoital{Anonymous Pro Italic}
+
+% font format
+\setmainfont{Century Schoolbook}
+\setmathfont{TeX Gyre Schola Math}
+
 \titleformat*{\subsection}{\raggedright\gilroysub}
 \titleformat*{\section}{\gilroy\centering}
 \titlespacing*{\subsection}{0pt}{6pt}{0pt}
 \titlespacing*{\section}{0pt}{6pt}{1pt}
+
+% colors
 \definecolor{desc}{HTML}{888888}
 \definecolor{table}{HTML}{D9D9D9}
-\newcommand{\modb}[1]{\ \left(\mathrm{mod}\ #1\right)}
-\newcommand{\modn}[1]{\ \mathrm{mod}\ #1}
-\newcommand{\qedb}{\ \char"25A0}
-\newcommand{\qedw}{\ \char"25A1}
+
+% disables numeration
+\pagenumbering{gobble}
+\setcounter{secnumdepth}{0}
+
+% shorthands
+\newcommand\en[1]{\foreignlanguage{english}{#1}}     % english hyphenation
+\newcommand\qedb{\ \char"25A0}                       % q.e.d filled
+\newcommand\qedw{\ \char"25A1}                       % q.e.d empty
+\newcommand\abs[1]{\left|#1\right|}                  % abs function
+\newcommand\modb[1]{\ \left(\mathrm{mod}\ #1\right)} % modulo w brackets
+\newcommand\modn[1]{\ \mathrm{mod}\ #1}              % modulo w/o brackets
+\newcommand\pluseq{\mathrel{+}=}                     % += operator
+
+% cases env
+\newenvironment{cases*}{
+\left\{\begin{aligned}
+}{\end{aligned}\right.}
+
+% rcases env
+\newenvironment{rcases*}{
+\left.\begin{aligned}
+}{\end{aligned}\right\}}
+
+% sqcases env
+\newenvironment{sqcases*}{
+\left[\begin{aligned}
+}{\end{aligned}\right.}
+
+
+
 \newcommand{\id}[1]{\text{id}_{#1}}
 \newcommand{\norm}[1]{\lVert#1\rVert}
-\newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\sgnb}[1]{\text{sgn}\hspace*{-2pt}\left(#1\right)}
 \newcommand{\sgnn}[1]{\text{sgn}\ #1}
 \newcommand{\ren}[1]{\Re\text{e}\ #1}
@@ -74,14 +97,10 @@
 {\hspace*{-18pt}#1 #2}}
 \newcommand{\multiset}[2]{\left(\!\!\binom{#1}{#2}\!\!\right)}
 \newcommand{\stirl}{\genfrac\{\}{0pt}{}}
-\newcommand\pluseq{\mathrel{+}=}                     % += operator
 
 % Смена шрифта для \mathcal
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
-
-% Понижает высоту степени тригонометрических функций
-\newcommand{\trsp}{\hspace*{-2.3pt}\phantom{}}
 
 % Minipage environment
 \newenvironment{column*}[2]{
@@ -122,19 +141,6 @@
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
-
-% Square cases environment
-\makeatletter\newenvironment{sqcases}{%
-  \matrix@check\sqcases\env@sqcases
-}{%
-  \endarray\right.%
-}
-\def\env@sqcases{%
-  \let\@ifnextchar\new@ifnextchar
-  \left\lbrack
-  \def\arraystretch{1.2}%
-  \array{@{}l@{\quad}l@{}}%
-}\makeatother
 
 % Theorem Tcolorbox
 \newtcolorbox{theorem}{

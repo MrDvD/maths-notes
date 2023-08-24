@@ -17,16 +17,16 @@ $$C_v:=\{w\mid w\in V_2,\ \text{depth}_v=\text{depth}_w\}\cup\{\lambda\}.$$
 % ---
 {\ital Возвратное дерево} для $T_1$ и $T_2$ --- такое дерево $T=\langle V,E\rangle$ с~мнимым корнем, что:
 % ---
-$$\begin{cases}
-M\subseteq V_1\times W\text{ \ital\color{desc}(упорядочено, биективно)}\\
-\begin{rcases}
-W=[\text{root}_T,\dots,w]\backslash\{\text{root}_T\}\subseteq V_2\cup\{\lambda\}\subseteq V\\
-\text{children}_w=\emptyset\end{rcases}\text{ I}\\
-\begin{rcases}
-\forall\langle w_1,w_2\rangle\subseteq W\ \text{order}(w_1)\less\text{order}(w_2)\hspace*{23pt}\\
-w_1,w_2\neq\lambda\end{rcases}\text{ II}\\
-\forall\langle v_i,w_j\rangle\in M\ w_j\in C_{v_i}\hspace*{115pt}\bigr\}\text{\hspace*{6.3pt}III}
-\end{cases}$$
+$$\begin{cases*}
+&M\subseteq V_1\times W\text{ \ital\color{desc}(упорядочено, биективно)}\\
+&{\begin{rcases*}
+&W=[\text{root}_T,\dots,w]\backslash\{\text{root}_T\}\subseteq V_2\cup\{\lambda\}\subseteq V\\
+&\text{children}_w=\emptyset\end{rcases*}}\text{ I}\\
+&{\begin{rcases*}
+&\forall\langle w_1,w_2\rangle\subseteq W\ \text{order}(w_1)\less\text{order}(w_2)\hspace*{23pt}\\
+&w_1,w_2\neq\lambda\end{rcases*}}\text{ II}\\
+&\forall\langle v_i,w_j\rangle\in M\ w_j\in C_{v_i}\hspace*{115pt}\bigr\}\text{\hspace*{6.3pt}III}
+\end{cases*}$$
 % ---
 \begin{tabularcx}{0pt}{3pt}{r @{ --- } L}{.98\textwidth}
 I & всякая простая цепь возвратного дерева от корня до~листа без корня соответствует {\ital уникальному} отображению $T_1$ в $T_2$;\\
@@ -77,14 +77,15 @@ v_i,v_j\in V_1,\ w_k,w_l\in V_2\\
 % ---
 Шаг рекурсивного построения решения $M$:
 % ---
-$$\begin{cases}
-v_i=v_j,\ w_k=w_l\implies v_i\mapsto w_k\text{, комбинировать}\\
-v_i\neq v_j,\ w_k=w_l\implies A_1\to T_2\ (B_1\to\lambda)\\
-v_i=v_j,\ w_k\neq w_l\implies T_1\to A_2\ (\lambda\to B_2)\\
-v_i\neq v_j,\ w_k\neq w_l\implies\begin{sqcases}
-A_1\to A_2\text{ или }A_1\to T_2\\
-B_1\to B_2\text{ или }T_1\to A_2
-\end{sqcases}\end{cases}$$
+$$\begin{cases*}
+&v_i=v_j,\ w_k=w_l\implies v_i\mapsto w_k\text{, комбинировать}\\
+&v_i\neq v_j,\ w_k=w_l\implies A_1\to T_2\ (B_1\to\lambda)\\
+&v_i=v_j,\ w_k\neq w_l\implies T_1\to A_2\ (\lambda\to B_2)\\
+&v_i\neq v_j,\ w_k\neq w_l\implies\begin{sqcases*}
+&A_1\to A_2\text{ или }A_1\to T_2\\
+&B_1\to B_2\text{ или }T_1\to A_2
+\end{sqcases*}\end{cases*}$$
+
 
 \subsection{Динамика}
 
