@@ -1,15 +1,14 @@
 \input{Preamble}
 
 \begin{document}
-\raggedright % Выравнивание
-\columnsep=6mm % Колонка
-\setlength\multicolsep{6pt} % Колонка
-\setlength{\baselineskip}{13.4pt} % Строка
-\setlength{\parskip}{6pt} % Абзац
-\abovedisplayskip=6pt % Формула над
-\belowdisplayskip=6pt % Формула под
-\setlist[itemize]{nosep,noitemsep} % Список
-% Отступы ^
+
+% indentation
+\setlength\baselineskip{13.4pt} 
+\setlength\parskip{6pt}
+\setlength\parindent{0pt}
+\abovedisplayskip=6pt % displaymath
+\belowdisplayskip=6pt % displaymath
+\raggedright          % forced linebreaks
 
 \include{sections/элементарная_алгебра}
 \include{sections/элементарная_теория_чисел}

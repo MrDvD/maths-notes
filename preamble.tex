@@ -1,10 +1,10 @@
-% Ошибки ^
 \documentclass[12pt]{article}
+
+% remove: microtype, xcolor, empheq, float, nccmath, graphicx
 
 % packages
 \usepackage{cellspace}
 \usepackage{adjustbox}
-\usepackage[table]{xcolor} % Цвет
 
 \usepackage[a5paper,margin=12mm]{geometry}                      % макет
 \usepackage{polyglossia}                                        % язык
@@ -13,6 +13,7 @@
 \usepackage{titlesec}                                           % \titleformat
 \usepackage[open,openlevel=1]{bookmark}                         % индексация pdf
 \usepackage[shortlabels]{enumitem}                              % списки
+\usepackage[table]{xcolor}                                      % \rowcolor
 \usepackage{xargs}                                              % \newenvironmentx
 \usepackage[most]{tcolorbox}                                    % блоки
 \usepackage[makeroom]{cancel}                                   % сокращение (maths)
@@ -80,8 +81,40 @@
 \left[\begin{aligned}
 }{\end{aligned}\right.}
 
+% itemize & enumerate env
+\newenvironmentx{list*}[2][1=1,2=-]{
+\if #2-
+\def\listenv{itemize}
+\ifnum #1=2
+\begin{\listenv}[leftmargin=4.5mm,itemsep=-3pt,topsep=-3pt,label=>]
+\else
+\begin{\listenv}[leftmargin=6.5mm,itemsep=-3pt,topsep=0pt,label=---]
+\fi
+\fi
+\if #2\#
+\def\listenv{enumerate}
+\begin{\listenv}[leftmargin=6.5mm,itemsep=-3pt,topsep=0pt,label=\theenumi)]
+\fi
+}{\end{\listenv}}
+
+% theorem box
+\newtcolorbox{theorem}{
+enhanced,
+boxrule=0mm,frame hidden,arc=0mm,
+colback=white!0,
+boxsep=0mm,left=3.5mm,
+borderline west={2pt}{0pt}{black},
+before skip=6pt,after skip=7pt,
+halign=left,
+parbox=false
+}
+
+% raises power of cosine functions
+\protected\def\arccos{\qopname\relax o{\vphantom{i}arccos}}
+\protected\def\cos{\qopname\relax o{\vphantom{i}cos}}
 
 
+% Стили
 \newcommand{\id}[1]{\text{id}_{#1}}
 \newcommand{\norm}[1]{\lVert#1\rVert}
 \newcommand{\sgnb}[1]{\text{sgn}\hspace*{-2pt}\left(#1\right)}
@@ -101,6 +134,9 @@
 % Смена шрифта для \mathcal
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
+
+% Понижает высоту степени тригонометрических функций
+\newcommand{\trsp}{\hspace*{-2.3pt}\phantom{}}
 
 % Minipage environment
 \newenvironment{column*}[2]{
@@ -123,14 +159,6 @@
 \begin{tabular}{#3}
 }{\end{tabular}\par}
 
-% sheet test environment
-\newenvironmentx{sheet*}[2][1=,2=0]{
-\setlength\cellspacetoplimit{3pt}
-\setlength\cellspacebottomlimit{3pt}
-\renewcommand\arraystretch{#2}
-\tabularx{\textwidth}[m]{#1}
-}{\endtabularx\par}
-
 % Tabularx environment
 \newenvironment{tabularcx}[4]{
 \setlength\tabcolsep{#1}
@@ -141,34 +169,6 @@
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
-
-% Theorem Tcolorbox
-\newtcolorbox{theorem}{
-enhanced,
-boxrule=0mm,frame hidden,arc=0mm,
-colback=white!0,
-boxsep=0mm,left=3.5mm,
-borderline west={2pt}{0pt}{black},
-before skip=6pt,after skip=7pt,
-halign=left,
-parbox=false
-}
-
-% itemize X enumerate environment
-\newenvironmentx{list*}[2][1=1,2=-]{
-\if #2-
-\def\listenv{itemize}
-\ifnum #1=2
-\begin{\listenv}[leftmargin=4.5mm,itemsep=1pt,topsep=-3pt,label=>]
-\else
-\begin{\listenv}[leftmargin=6.5mm,itemsep=1pt,label=---]
-\fi
-\fi
-\if #2\#
-\def\listenv{enumerate}
-\begin{\listenv}[leftmargin=6.5mm,itemsep=-3pt,topsep=0pt,label=\theenumi)]
-\fi
-}{\end{\listenv}}
 
 % framed codebox with language customization
 \lstset{columns=fixed,basicstyle=\mono,basewidth=0.55em,keywordstyle=\monobold,commentstyle=\monoital\color[HTML]{888888}}
@@ -187,3 +187,11 @@ top=-1mm,bottom=-1mm,
 borderline west={2pt}{0pt}{black},
 before skip=6pt,after skip=7pt,
 listing options={language=#1,showstringspaces=false}}
+
+% sheet test environment
+\newenvironmentx{sheet*}[2][1=,2=0]{
+\setlength\cellspacetoplimit{3pt}
+\setlength\cellspacebottomlimit{3pt}
+\renewcommand\arraystretch{#2}
+\tabularx{\textwidth}[m]{#1}
+}{\endtabularx\par}
