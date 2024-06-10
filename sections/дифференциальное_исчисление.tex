@@ -55,8 +55,18 @@ $$\frac{\Delta f}{\Delta x}=1\colon\frac{\Delta x}{\Delta f}$$
 % ---
 По предельному переходу и непрерывности функций:
 % ---
-$$\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=1\colon\lim_{\Delta f\to 0}\frac{\Delta x}{\Delta f}\overset{\text{\tinyt опр}}{\iff} f'(x)=1\colon f^{-1'}(y)\iff$$
-$$\iff f^{-1'}(y)=\frac{1}{f'(x)},\ f'(x)\neq 0\qedb$$
+$$\begin{gathered}\lim_{\Delta x\to 0}\frac{\Delta f}{\Delta x}=1\colon\lim_{\Delta f\to 0}\frac{\Delta x}{\Delta f}\overset{\text{\tinyt опр}}{\iff} f'(x)=1\colon f^{-1'}(y)\iff\\
+\iff f^{-1'}(y)=\frac{1}{f'(x)},\ f'(x)\neq 0\qedb\end{gathered}$$
+% ---
+\begin{theorem}
+{\bold Инвариантность.} Пусть $f(x)$, $g(x)$ --- дифференцируемые функции. Тогда верно:
+% ---
+$$\diff f=f'(x)\diff x\implies \diff(f\circ g)=f'(g(x))\diff g$$ 
+\end{theorem}
+% ---
+{\bold Доказательство.} По правилам дифференцирования:
+% ---
+$$\diff(f\circ g)=f'(g(x))\diff x=f'(g(x))g'(x)\diff x=f'(g(x))\diff g\qedb$$
 
 \subsection{Элементарные производные}
 
@@ -76,7 +86,7 @@ C'=0\qquad & (x^n)'=nx^{n-1},\ n\neq 0\qquad & \ln'x=1/x
 
 \subsection{Касательная}
 
-{\bold Касательная} --- прямая, которая проходит через точку $x_0$ кривой и представляет {\ital предельное} положение секущей при $x\to x_0$, или $\Delta x\to 0$.
+{\bold Касательная} к кривой в точке $x_0$ --- прямая, которая проходит через $x_0$ и представляет {\ital предельное} положение секущей при $x\to x_0$, или $\Delta x\to 0$.
 
 \begin{theorem}
 {\bold Геометрический смысл производной.} Угловой коэф"=фициент {\ital\color{desc}(тангенс)} касательной к графику функции $f$ равен {\ital производной} в этой точке:
@@ -95,7 +105,7 @@ $$f'(x_0)=\tg\alpha=k\qedb$$
 \begin{theorem}
 {\bold Уравнение касательной} к графику функции $f$ в точке $x_0$ имеет вид:
 % ---
-$$y-f(x_0)=f'(x_0)(x-x_0)$$
+$$f'(x_0)=\frac{y-f(x_0)}{x-x_0}$$
 \end{theorem}
 % ---
 {\bold Доказательство.} По уравнению секущей графика $f$:
@@ -105,6 +115,42 @@ $$\frac{x-x_0}{x_1-x_0}=\frac{y-f(x_0)}{f(x_1)-f(x_0)}\implies y-f(x_0)=\frac{f(
 По определению касательной:
 % ---
 $$y-f(x_0)=\lim_{x_1\to x_0}\frac{f(x_1)-f(x_0)}{x_1-x_0}(x-x_0)=f'(x_0)(x-x_0)\qedb$$
+
+\subsection{Нормаль}
+
+{\bold Нормаль} к кривой в точке $x_0$ --- прямая, которая проходит через $x_0$ и образует с касательной в $x_0$ {\ital прямой угол}:
+% ---
+$$\vec{n}=\begin{pmatrix}
+A\\B\end{pmatrix}\text{ для }Ax+By+C=0$$
+% ---
+{\bold Доказательство.} По скалярному произведению векторов:
+% ---
+$$\begin{gathered}(\vec{f}'\cdot\vec{n})=0\implies A(x-x_0)+B(y-y_0)=0\\
+Ax-Ax_0+By-By_0=0
+\end{gathered}$$
+% ---
+Пусть $C=-(Ax_0+By_0)$, тогда:
+% ---
+$$Ax+By+C=0\qedb$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Прямые $f_1$ и $f_2$ перпендикулярны, если:
+% ---
+$$(\vec{n}_1\cdot\vec{n}_2)=0\text{, или }k_1=-\frac{1}{k_2}$$
+\end{theorem}
+% ---
+{\bold Доказательство.} По скалярному произведению векторов:
+% ---
+$$\begin{gathered}
+(\vec{n_1}\cdot\vec{n}_2)=0\implies\cos\alpha=0\implies\alpha=\frac{\pi}{2}\qedw\\
+(\vec{n_1}\cdot\vec{n}_2)=0\implies k_1k_2+1=0\implies k_1=-\frac{1}{k_2}\qedb
+\end{gathered}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Уравнение прямой по точке и нормальному вектору:
+% ---
+$$(\vec{n}\cdot\vec{l})=0\text{, или }A(x-x_0)+B(y-y_0)=0$$
+\end{theorem}
 
 \subsection{Промежутки монотонности}
 
@@ -132,10 +178,27 @@ f\kern-4pt\uparrow\text{около }x_0\qedw$$
 % ---
 Для $f'(x_0)\less 0$ доказательство аналогично.$\qedb$
 
-\subsection{Условие существования экстремума}
+\subsection{Экстремум}
 
+{\ital Локальный} {\bold максимум} функции $f$ --- такая точка $x_0$, что:
+% ---
+$$\exists\delta\greater 0\colon\sup U_\delta(x_0)=f(x_0)$$ 
+% ---
+{\ital Локальный} {\bold минимум} функции $f$ --- такая точка $x_0$, что:
+% ---
+$$\exists\delta\greater 0\colon\inf U_\delta(x_0)=f(x_0)$$
+% ---
+Их объединяют в точки {\bold экстремума}.
+ 
+{\bold Критической} называется такая точка $x_0$, в которой:
+% ---
+$$\begin{sqcases*}
+&f'(x_0)=0\text{ \ital\color{desc}(стационарна)}\\
+&f'(x_0)=\text{undefined}
+\end{sqcases*}$$
+% ---
 \begin{theorem}
-Точка локального экстремума $\implies$ критическая точка.
+Экстремум --- {\ital критическая точка} первого порядка. {\ital\color{desc} (не~наоборот)}
 \end{theorem}
 
 {\bold Доказательство.} По определению локального максимума:
@@ -160,7 +223,7 @@ $$0\leq f'(x_0)\leq 0\iff f'(x_0)=0\qedw$$
 Для локального минимума доказательство аналогично.$\qedb$
 % ---
 \begin{theorem}
-Если в критической точке производная меняет знак, она является локальным экстремумом.
+{\bold Условие.} Критическая точка --- {\ital экстремум}, если в~ней первая производная {\ital меняет знак}.
 \end{theorem}
 % ---
 {\bold Доказательство.} По определению критической точки:
@@ -187,10 +250,47 @@ f\kern-4pt\downarrow\text{на }U_{\delta+}(x_0)
 % ---
 Для локального минимума доказательство аналогично.$\qedb$
 
-\subsection{Теорема Ролля}
+\begin{theorem}
+{\bold Условие.} Критическая точка --- {\ital экстремум}, если в ней вторая производная {\ital ненулевая}, причём:
+% ---
+$$\begin{aligned}
+&f''(x_0)\less 0\implies x_0\text{ --- локальный максимум}\\
+&f''(x_0)\greater 0\implies x_0\text{ --- локальный минимум}
+\end{aligned}$$
+\end{theorem}
+
+\subsection{Выпуклость}
+
+Кривая $f$ {\bold выпукла вверх} в точке $M$, если в окрестности точки $f$ лежит {\ital ниже} своей касательной в этой точке.
+
+Кривая $f$ {\bold выпукла вниз} в точке $M$, если в окрестности точки $f$ лежит {\ital выше} своей касательной в этой точке.
+
+Кривая $f$ {\bold выпукла} на интервале $(a;b)$, если она выпукла в~{\ital каждой} её точке.
 
 \begin{theorem}
-Пусть $f$ дифференцируема на $[a;b]$. Тогда:
+{\bold Условие.} Пусть $f$ дважды дифференцируема на $(a;b)$:
+% ---
+$$\begin{aligned}
+&\forall x\in(a;b)\ f''(x)\leq 0\implies f\text{ выпукла вверх}\\
+&\forall x\in(a;b)\ f''(x)\geq 0\implies f\text{ выпукла вниз}
+\end{aligned}$$
+\end{theorem}
+
+В {\bold точке перегиба} происходит смена {\ital характера выпуклости} функции.
+
+\begin{theorem}
+Точка перегиба --- {\ital критическая точка} второго порядка. {\ital\color{desc} (не наоборот)}
+\end{theorem}
+
+\begin{theorem}
+{\bold Условие.} Критическая точка --- {\ital точка перегиба}, если в~ней вторая производная {\ital меняет знак}.
+\end{theorem}
+
+\newpage
+\subsection{Теоремы о среднем}
+
+\begin{theorem}
+{\bold Теорема Ролля.} Пусть $f$ дифференцируема на $[a;b]$. Тогда:
 % ---
 $$f(a)=f(b)\implies\exists\xi\in(a;b)\colon f'(\xi)=0$$
 \end{theorem}
@@ -205,10 +305,8 @@ $$f(a)=f(b)=f(m)\implies f'(M)=0\qedw$$
 % ---
 При $f(m)=f(M)$ функция --- константа на $[a;b]$, произ"=водная которой равна нулю.$\qedb$
 
-\subsection{Теорема Лагранжа}
-
 \begin{theorem}
-Пусть $f$ дифференцируема на $[a;b]$. Тогда верно:
+{\bold Теорема Лагранжа.} Пусть $f$ дифференцируема на $[a;b]$. Тогда верно:
 % ---
 $$\exists\xi\in(a;b)\colon f'(\xi)=\frac{\Delta f}{\Delta x}$$
 \end{theorem}
@@ -229,11 +327,12 @@ f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
 \iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}=\frac{\Delta f}{\Delta x}\qedb
 \end{gather*}
 
-\subsection{Условие постоянства функции}
+\subsection{Постоянство функции}
 
 \begin{theorem}
-Пусть $f$ непрерывна на $[a;b]$ и состоит из стационарных точек на $(a;b)$. Тогда 
-$f([a;b])=C$.
+Пусть $f\in\mathbb{C}[a;b]$ и состоит из стационарных точек на~$(a;b)$. Тогда:
+% ---
+$$f([a;b])=C$$
 \end{theorem}
 % ---
 {\bold Доказательство.} По теореме Лагранжа:
@@ -256,3 +355,78 @@ $$\forall x\in(a;b)\ \varphi'(x)=f'(x)-g'(x)=0$$
 По условию постоянства функции:
 % ---
 $$\varphi'(x)=0\iff\varphi(x)=C\iff f(x)-g(x)=C\qedb$$
+
+\subsection{Частные производные}
+
+{\bold Функция нескольких переменных} $x_1,\dots,x_n$ задана соответствием вида:
+% ---
+$$f\colon\mathbb{R}^n\xrightarrow{x_1,\dots,x_n\to y}\mathbb{R}$$
+% ---
+{\bold Частная производная} функции $f(x_1,\dots,x_n)$ по $x_i$ --- производная $f$ с переменной $x_i$ и др. {\ital фикс. аргументами}:
+% ---
+$$\frac{\partial f}{\partial x_i}\text{ --- нотация}$$
+% ---
+{\bold Вторая} частная производная по $x$:
+% ---
+$$\frac{\partial^2f}{\partial x^2}\text{ --- нотация}$$
+% ---
+{\bold Смешанная} частная производная по $x$, $y$:
+% ---
+$$\frac{\partial f}{\partial x\partial y}\text{ --- нотация}$$
+% ---
+\begin{theorem}
+{\bold Условие.} Критическая точка $M$ --- {\ital экстремум} $f(x,y)$, если верно:
+% ---
+$$\begin{gathered}
+B^2-AC\less 0\\
+A=\left.\frac{\partial^2f}{\partial x^2}\right|_M\quad B=\left.\frac{\partial^2f}{\partial x\partial y}\right|_M\quad C=\left.\frac{\partial^2f}{\partial y^2}\right|_M
+\end{gathered}$$
+% ---
+Причём:
+% ---
+$$\begin{aligned}
+&A\less 0\implies M\text{ --- локальный максимум}\\
+&A\greater 0\implies M\text{ --- локальный минимум}\\
+\end{aligned}$$
+\end{theorem}
+
+\subsection{Неявная производная}
+
+{\bold Неявной} называется функция...
+
+\newpage
+\subsection{Устойчивость}
+
+Пусть дано дифференциальное уравнение:
+% ---
+$$\frac{\diff x}{\diff t}=f(x),\ x\in\mathbb{R}^n$$
+% ---
+{\bold Нейтрально устойчивым} называется такое {\ital стационарное} решение $\tilde{\varphi}(t)$ дифференциального уравнения, что:
+% ---
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon\forall x_t\in U_\delta(x^*)\ x_t\in U_\varepsilon(x^*)$$
+$$\forall\varepsilon\greater 0\ \exists\delta\greater 0\colon\forall x_t\in U_\delta(x^*)\ x_t\in U_\varepsilon(x^*)$$
+% ---
+\begin{theorem}
+Малые отклонения от решения не выводят систему из~окрестности стационарного решения.
+\end{theorem}
+% ---
+{\bold Асимптотически устойчивым} называется такое {\ital нейтрально устойчивое} решение $x^*$ дифференциального уравнения, что:
+% ---
+$$t\to+\infty,\ \abs{x_t-x^*}\to 0$$
+% ---
+\begin{theorem}
+Малые отклонения от нейтрально устойчивого решения со временем затухают.
+\end{theorem}
+% ---
+Решения дифференциального уравнения делятся на:
+% ---
+\begin{list*}
+\item{\bold притягивающие} --- асимптотически устойчивые;
+\item{\bold отталкивающие} --- неустойчивые.
+\end{list*}
+% ---
+\begin{theorem}
+{\bold Линеаризация Ляпунова.} Устойчивость стационарного состояния уравнения определяется знаком производной правой части в стационарной точке:
+% ---
+$$\frac{\diff x}{\diff t}=f(x)$$
+\end{theorem}

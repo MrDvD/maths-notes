@@ -66,22 +66,18 @@ $$\int(u'v+uv')\diff x=uv+C\iff\int u'v\diff x+\int uv'\diff x=uv+C$$
 % ---
 По определению дифференциала:
 % ---
-$$\begin{cases*}
+$$\begin{gathered}\begin{cases*}
 \diff u=u'\diff x\\
 \diff v=v'\diff x
 \end{cases*}\implies
-\int v\diff u+\int u\diff v=uv+C\iff$$
-$$\iff\int u\diff v=uv-\int v\diff u\qedb$$
-% ---
-\begin{theorem}
-{\bold Инвариантность.} Смена переменной интегрирования на другую дифференцируемую функцию является {\ital равносильным} переходом:
-% ---
-$$\int f(x)\diff x=F(x)+C\iff\int f(\varphi(x))\diff\varphi(x)=F(\varphi(x))+C$$
-\end{theorem}
+\int v\diff u+\int u\diff v=uv+C\iff\\
+\iff\int u\diff v=uv-\int v\diff u\qedb\end{gathered}$$
 
 \subsection{Дифференциальное уравнение}
 
 {\bold Дифференциальным} называется уравнение с неизвестной функцией под знаком {\ital производной} или {\ital дифференциала}.
+
+{\bold Интегральная кривая} --- график решения дифференциального уравнения.
 
 \begin{theorem}
 {\bold Метод Фурье.} Решение дифференциального уравнения $y'=\varphi(x)\psi(y)$ удовлетворяет условию: {\ital\color{desc}(Ж. Фурье)}
@@ -359,8 +355,34 @@ $$L\geq\sum_{k=0}^n\Delta x_k\sqrt{1-f'^2(\xi)}\implies L=\lim_{n\to\infty}\sum_
 \implies L=\int_a^b\sqrt{1-f'^2(x)}\diff x\qedb
 \end{gather*}
 
-\subsection{Объём тела}
+% \subsection{Объём тела}
+% 
+% {\bold Гладкой} называется такая поверхность...
+% 
+% Скоро...
 
-{\bold Гладкой} называется такая поверхность...
+\subsection{Среднее значение}
 
-Скоро...
+\begin{theorem}
+{\bold Теорема.} {\ital Среднее значение} $f(x)$ на $[a;b]$ равно:
+% ---
+$$f_\text{avg}(x)=\frac{\int_a^bf(x)\diff x}{b-a}$$
+\end{theorem}
+
+{\bold Доказательство.} По определению среднего значения:
+% ---
+$$f_\text{avg}(x)\approx\frac{\sum_{k=1}^nf(\xi_k)}{n},\quad\xi_k\in\Delta x_k$$
+% ---
+Допустим, что все частичные отрезки {\ital равны}:
+% ---
+$$n=\frac{b-a}{\Delta x}\implies f_\text{avg}(x)\approx\frac{\sum_{k=1}^nf(\xi_k)\Delta x}{b-a}$$
+% ---
+По предельному переходу: 
+% ---
+$$f_\text{avg}(x)=\frac{\int_a^bf(x)\diff x}{b-a}\qedb$$
+% ---
+\begin{theorem}
+{\bold Следствие.} {\ital Среднее значение} $f(x)$ на $[a;b]$ равно угловому коэффициенту прямой, которая проходит через точки $\langle a,f(a)\rangle$ и $\langle b,f(b)\rangle$.
+\end{theorem}
+
+Это видно, если расписать утверждение выше по {\ital формуле Ньютона-Лейбница}.

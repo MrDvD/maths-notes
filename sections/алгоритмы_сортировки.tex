@@ -1,0 +1,116 @@
+\section{Алгоритмы сортировки}
+
+\subsection{Merge Sort}
+
+{\bold Сортировка слиянием} основана на принципе {\ital «разделяй и~властвуй»}:
+% ---
+\begin{list*}[][\#]
+\item Выбрать опорный элемент $mid$.
+\item Разделить массив на две части:
+
+{\centering
+\begin{tabular}{|Sc|Sc|}
+\hline
+$0\dots mid-1$ & $mid\dots N - 1$\\\hline
+\end{tabular}\par}
+% ---
+\item Запустить сортировку в обеих частях.
+\item Объединить два отсортированных массива {\ital\color{desc}(2P-метод)}.
+\end{list*}
+
+\subsection{Инверсия}
+
+{\bold Инверсия} --- такая пара чисел $a_i,a_j$ из массива $a$, что:
+% ---
+$$i\less j,\quad a_i\greater a_j$$ 
+% ---
+{\bold Разделённой} называется такая {\ital инверсия}, которая относится к двум элементам {\ital разных} массивов.
+
+{\bold Модификация} {\ital сортировки слиянием} считает количество инверсий в массиве:
+% ---
+\begin{list*}
+\item алгоритм обрабатывает элемент из отсортированного правого массива;
+\item к счётчику инверсий добавляется количество необработанных элементов отсортированного левого массива {\ital\color{desc}(разделённые инверсии)}. 
+\end{list*}
+
+\subsection{Quicksort}
+
+{\bold Быстрая сортировка} основана на принципе {\ital «разделяй и~властвуй»}:
+% ---
+\begin{list*}[][\#]
+\item Выбрать опорный элемент $pivot$.
+\item Разделить массив на три части:
+
+{\centering
+\begin{tabular}{|Sc|Sc|Sc|}
+\hline
+$\less pivot$ & $pivot$ & $\greater pivot$\\\hline
+\end{tabular}\par}
+% ---
+\item Запустить сортировку в крайних частях.
+\end{list*}
+
+{\bold Алгоритм} реализации:
+% ---
+\begin{code}{python}
+def quick_sort(low, high):
+  i, j = low, high
+  pivot = arr[(i + j) // 2]
+  while i <= j:
+    while arr[i] < pivot:
+      i += 1
+    while arr[j] > pivot:
+      j -= 1
+    if i <= j:
+      arr[i], arr[j] = arr[j], arr[i]
+      i += 1
+      j -= 1
+  if j > low:
+    quick_sort(low, j)
+  if i < high:
+    quick_sort(i, high)
+\end{code}
+
+\begin{theorem}
+{\bold Задача.} Дано $N\leq 10^5$ чисел длины $[1;100]$. Составить из них конкатенацией максимальное число. {\ital\color{desc}(одно из них точно начинается не с нуля)}
+\end{theorem}
+% ---
+{\bold Идея.} Отсортировать числа быстрой сортировкой с~{\ital компаратором}:
+% ---
+\begin{code}{python}
+def compare(num1, num2):
+  if str1 + str2 > str2 + str1:
+    return True
+  return False
+\end{code}
+
+\subsection{k-Порядковая статистика}
+
+{\bold $\symbfit{k}$-Порядковая статистика} --- элемент линейно упорядоченного множества, который стоит на $k$-ом месте.
+
+{\bold Quickselect} --- модификация {\ital быстрой сортировки}, которая ищет $k$-порядковую статистику за $\mathcal{O}(n)$:
+% ---
+\begin{list*}
+\item сортируется лишь та крайная часть, в которую входит $k$.
+\end{list*}
+
+\subsection{Radix Sort}
+
+{\bold Поразрядная сортировка} предназначена для больших объектов {\ital\color{desc} (чисел, строк)}, которые можно разбить на {\ital разряды}:
+% ---
+\begin{list*}
+\item LSD {\ital (least significant digit)} --- от младших к старшим разрядам;
+\item MSD {\ital (most significant digit)} --- от старших к младшим разрядам.
+\end{list*}
+% ---
+{\bold Алгоритм} LSD-сортировки:
+% ---
+\begin{code}{python}
+yes
+\end{code}
+% ---
+{\bold Алгоритм} MSD-сортировки:
+% ---
+\begin{code}{python}
+yes
+\end{code}

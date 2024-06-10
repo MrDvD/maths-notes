@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 
-% remove: microtype, xcolor, empheq, float, nccmath, graphicx
+% remove: microtype, empheq, float, nccmath, graphicx
 
 % packages
 \usepackage{cellspace}
@@ -17,7 +17,9 @@
 \usepackage{xargs}                                              % \newenvironmentx
 \usepackage[most]{tcolorbox}                                    % блоки
 \usepackage[makeroom]{cancel}                                   % сокращение (maths)
+\usepackage{mathtools}                                          % \mathclap
 \usepackage{tabularx,multicol,multirow,makecell}                % таблицы
+\usepackage{tabularray}                                         % tblr environment
 \usepackage{tikz}                                               % графика
 \usetikzlibrary{intersections}                                  % 'name intersections'
 \usetikzlibrary{patterns}                                       % 'pattern'
@@ -52,6 +54,7 @@
 % colors
 \definecolor{desc}{HTML}{888888}
 \definecolor{table}{HTML}{D9D9D9}
+\definecolor{code}{HTML}{F3F3F3}
 
 % disables numeration
 \pagenumbering{gobble}
@@ -62,17 +65,29 @@
 \newcommand\qedb{\ \char"25A0}                       % q.e.d filled
 \newcommand\qedw{\ \char"25A1}                       % q.e.d empty
 \newcommand\abs[1]{\left|#1\right|}                  % abs function
+\newcommand\floor[1]{\left\lfloor#1\right\rfloor}    % floor function
+\newcommand\ceil[1]{\left\lceil#1\right\rceil}       % ceil function
 \newcommand\modb[1]{\ \left(\mathrm{mod}\ #1\right)} % modulo w brackets
 \newcommand\modn[1]{\ \mathrm{mod}\ #1}              % modulo w/o brackets
 \newcommand\pluseq{\mathrel{+}=}                     % += operator
 
+% column types
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\addparagraphcolumntypes{X}
+\addparagraphcolumntypes{L}
+\addparagraphcolumntypes{C}
+\addparagraphcolumntypes{R}
+
 % cases env
-\newenvironment{cases*}{
+\renewenvironment{cases*}{
 \left\{\begin{aligned}
 }{\end{aligned}\right.}
 
 % rcases env
-\newenvironment{rcases*}{
+\renewenvironment{rcases*}{
 \left.\begin{aligned}
 }{\end{aligned}\right\}}
 
@@ -114,6 +129,7 @@ parbox=false
 \protected\def\cos{\qopname\relax o{\vphantom{i}cos}}
 
 
+
 % Стили
 \newcommand{\id}[1]{\text{id}_{#1}}
 \newcommand{\norm}[1]{\lVert#1\rVert}
@@ -134,9 +150,6 @@ parbox=false
 % Смена шрифта для \mathcal
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
-
-% Понижает высоту степени тригонометрических функций
-\newcommand{\trsp}{\hspace*{-2.3pt}\phantom{}}
 
 % Minipage environment
 \newenvironment{column*}[2]{
@@ -166,10 +179,6 @@ parbox=false
 \tabularx{#4}{#3}
 }{\endtabularx\par}
 
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-\newcolumntype{C}{>{\centering\arraybackslash}X}
-
 % framed codebox with language customization
 \lstset{columns=fixed,basicstyle=\mono,basewidth=0.55em,keywordstyle=\monobold,commentstyle=\monoital\color[HTML]{888888}}
 
@@ -186,7 +195,18 @@ boxsep=0mm,left=3.5mm,
 top=-1mm,bottom=-1mm,
 borderline west={2pt}{0pt}{black},
 before skip=6pt,after skip=7pt,
-listing options={language=#1,showstringspaces=false}}
+listing options={language=#1,showstringspaces=false,literate={*}{{\raisebox{2pt}{$\ast$}}}{1},mathescape=true}}
+
+\newtcbox{\cdesc}{
+before upper=\monoital\color{desc},
+on line,
+enhanced,
+boxsep=0pt,
+size=fbox,
+colback=code,
+borderline={.4pt}{0pt}{desc!30},
+arc=0pt
+}
 
 % sheet test environment
 \newenvironmentx{sheet*}[2][1=,2=0]{

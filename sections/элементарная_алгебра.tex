@@ -3,69 +3,6 @@
 % Вспомнить о понятии окрестности точки,
 % функции расстояния --- метрики (см. п. 5)
 
-\subsection{Виды выражений}
-
-{\bold Одночлен} {\ital (моном)} --- произведение переменных и коэффи"=циентов.
-
-{\bold Многочлен} {\ital (полином)} --- сумма одночленов.
-
-{\bold Двучлен} {\ital (бином)} --- многочлен из двух одночленов.
-
-{\bold Трёхчлен} {\ital (трином)} --- многочлен из трёх одночленов.
-
-Многочлен $P$ от одной переменной $x$ можно представить так:
-% ---
-$$P=\sum^{n}_{k=0}a_kx^{n-k}$$
-
-\subsection{Квадратный трёхчлен}
-
-Расположение корней относительно числа $p$:
-
-\begin{sheet*}[SC|SC]
-\rowcolor{table}
-\bold Расположение корней & \bold Равносильно\\
-\adjustbox{valign=c}{\begin{tikzpicture}[baseline={(0,0.25)}]
-\draw [->,line width=2pt](-2,0) -- (2,0) node[below] {$x$};
-\draw [fill=white, draw=black, line width=1.5pt] (-1,0) circle (2.5pt) node[below] {$p$};
-\draw [fill=black] (0,0) circle (2.5pt) node[below] {$x_1$};
-\draw [fill=black] (1,0) circle (2.5pt) node[below] {$x_2$};
-\end{tikzpicture}} &
-$\left\{\begin{aligned}
-&D\greater 0\\
-&af(p)\greater 0\\
-&p\less x_0
-\end{aligned}\right.$\\\hline
-\adjustbox{valign=c}{\begin{tikzpicture}[baseline={(0,0.25)}]
-\draw [->,line width=2pt](-2,0) -- (2,0) node[below] {$x$};
-\draw [fill=black] (-1,0) circle (2.5pt) node[below] {$x_1$};
-\draw [fill=black] (0,0) circle (2.5pt) node[below] {$x_2$};
-\draw [fill=white, draw=black, line width=1.5pt] (1,0) circle (2.5pt) node[below] {$p$};
-\end{tikzpicture}} &
-$\left\{\begin{aligned}
-&D\greater 0\\
-&af(p)\greater 0\\
-&x_0\less p
-\end{aligned}\right.$\\\hline
-\adjustbox{valign=c}{\begin{tikzpicture}[baseline={(0,0.25)}]
-\draw [->,line width=2pt](-2,0) -- (2,0) node[below] {$x$};
-\draw [fill=black] (-1,0) circle (2.5pt) node[below] {$x_1$};
-\draw [fill=white, draw=black, line width=1.5pt] (0,0) circle (2.5pt) node[below] {$p$};
-\draw [fill=black] (1,0) circle (2.5pt) node[below] {$x_2$};
-\end{tikzpicture}} &
-$af(p)\less 0$
-\end{sheet*}
-
-\newpage
-\subsection{Малая теорема Безу}
-
-Для многочлена $P=:P(x)$ справедливо:
-% ---
-$$P(x)=f(x)(x-r)+P(r)$$
-% ---
-Это следует из деления многочлена с остатком. Значит,
-% ---
-$$(x-r)\mid P(x)\iff P(r)=0.$$
-
 \subsection{Свойства неравенств}
 
 Отношение сравнения {\ital транзитивно}; неравенства можно {\ital складывать}
@@ -191,25 +128,6 @@ $$\sgnn x=\begin{cases}
 -1, &x\less 0
 \end{cases}$$
 
-\subsection{Условия выпуклости функции}
-
-Функция $f$ {\ital выпукла} {\bold вверх} на отрезке $[a;b]$, когда для отрез"=ка $g$
-с концами в точках $\langle a;f(a)\rangle$, $\langle b;f(b)\rangle$ справедливо:
-% ---
-$$\forall x\in[a;b]\ f(x)\geq g(x)$$
-% ---
-Функция $f$ {\ital выпукла} {\bold вниз} на отрезке $[a;b]$, когда для отрез"=ка $g$
-с концами в точках $\langle a;f(a)\rangle$, $\langle b;f(b)\rangle$ справедливо:
-% ---
-$$\forall x\in[a;b]\ f(x)\leq g(x)$$
-% ---
-Функция $f$ выпукла вверх $\iff$ функция $-f$ выпукла вниз.
-
-Функция $f$ выпукла вверх на $[a;b]$, если для $a\leq x\leq b$ верно:
-% ---
-$$\tg\alpha_{bx}\leq\tg\alpha_{ab}\leq\tg\alpha_{ax}\quad\quad\tg\alpha_{mn}:=\tg
-(\overrightarrow{oX};\overrightarrow{mn})$$
-
 \subsection{Функция натурального логарифма}
 
 {\bold Функция натурального логарифма} --- значение инте"=грала:
@@ -229,14 +147,18 @@ $$\ln x=\int_1^x\frac{\diff t}{t},\quad\ln\colon\mathbb{R}^+\to\mathbb{R}$$
 % ---
 $$\log_ax=\frac{\ln x}{\ln a},\quad\log_a\colon\mathbb{R}^+\to\mathbb{R},\quad a\neq 1$$
 % ---
+Логарифмические тождества:
+% ---
+$$\log_aa^\beta=\beta\qquad a^{\text{\tinyt log}_ab}=b$$
+% ---
+Переход к новому основанию:
+% ---
+$$\log_ab=\frac{\log_cb}{\log_ca}$$
+% ---
 Свойства:
 % ---
-\begin{align*}
-&\log_aa^{\frac{m}{n}}=\frac{m}{n}\\
-&\log_ab=\frac{\log_cb}{\log_ca},\quad c\neq 1\\
-&\log_aa^x=x\\
-&a^{\text{\tinyt log}_ab}=b
-\end{align*}
-\begin{align*}
-\log_ab=\frac{1}{\log_ba},\quad a,b\neq 1
-\end{align*}
+$$\begin{aligned}
+&\log_ab=\frac{1}{\log_ba}\\
+&\log_ab\log_cd=\log_cb\log_ad\\
+&\log_ab\log_bc=\log_ac
+\end{aligned}$$

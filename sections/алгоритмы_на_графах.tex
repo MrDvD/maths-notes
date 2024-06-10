@@ -1,38 +1,45 @@
 \section{Алгоритмы на графах}
 
-\subsection{Обход графа}
+\subsection{Обход в глубину}
 
 {\bold Обход в глубину} {\ital (Depth-First Search, DFS)} --- метод, при котором граф обходят сначала по детям, потом по сиблингам.
-% ---
-\begin{theorem}
+
 {\bold Алгоритмы:}
 % ---
 \begin{list*}
-\item поиск эйлерового пути, цикла;
-\item тест ацикличности;
-\item поиск мостов, точек сочленения;
-\item топологическая сортировка;
+\item поиск эйлерового пути, цикла
+\item тест ацикличности
+\item поиск мостов, точек сочленения
+\item топологическая сортировка
 \item построение компонент связности:
 \begin{list*}[2]
-\item обыкновенных {\ital\color{desc} (грядки, водостоки)};
-\item сильных {\ital\color{desc} (алгоритм Косараджу, конденсация)}.
+\item обыкновенных {\ital\color{desc} (грядки, водостоки)}
+\item сильных {\ital\color{desc} (алгоритм Косараджу, конденсация)}
 \end{list*}
-\item 2-SAT;
-\item алгоритм Куна.
+\item 2-SAT
+\item алгоритм Куна
+\end{list*}
+
+\begin{theorem}
+{\bold Маркировка.} Когда нужно найти {\ital циклы}, вершины маркируются в зависимости от типа графа: 
+% ---
+\begin{list*}
+\item неорграф $\implies$ {\ital бинарные} метки
+\item орграф $\implies$ {\ital тернарные} метки
 \end{list*}
 \end{theorem}
-% ---
+
+\subsection{Обход в ширину}
+
 {\bold Обход в ширину} {\ital (Breadth-First Search, BFS)} --- метод, при котором граф обходят сначала по сиблингам, потом по детям.
-% ---
-\begin{theorem}
+
 {\bold Алгоритмы:}
 % ---
 \begin{list*}
-\item алгоритм Кана;
-\item проверка графа на двудольность;
-\item поиск кратчайших рёберных путей.
+\item алгоритм Кана
+\item проверка графа на двудольность
+\item поиск кратчайших рёберных путей
 \end{list*}
-\end{theorem}
 
 Нет циклов $\implies$ не требуется массив {\ital visited}.
 
@@ -97,24 +104,24 @@ def get_epath(v): # DFS
 
 \subsection{Топологическая сортировка}
 
-{\bold Алгоритм} топологической сортировки через {\ital DFS}:
+{\bold Топологическая сортировка} --- упорядочивание вершин ориентированного леса согласно {\ital частичному порядку}, который задан рёбрами орграфа. 
+
+{\bold Алгоритм Тарьяна} --- реализация через {\ital DFS}:
 
 \begin{code}{python}
 def topo_sort(v): # DFS
   vertices[v].visited = 1
   stack = list()
   for n in vertices[v].adjacent:
-    if not vertices[v].visited:
+    if not vertices[n].visited:
       stack += topo_sort(n)
   return stack + [v]
 \end{code}
 
-\subsection{Алгоритм Кана}
-
-{\bold Алгоритм} топологической сортировки через {\ital BFS}:
+{\bold Алгоритм Кана} --- реализация через {\ital BFS}:
 
 \begin{code}{python}
-def topo_sort(queue=deque()):
+def topo_sort(queue=deque()): # BFS
   for v in vertices: #1
     if vertices[v].indegree == 0:
       queue.append(v)
@@ -141,6 +148,42 @@ def topo_sort(queue=deque()):
 \item топологическое маркирование;
 \item тест ацикличности.
 \end{list*}
+
+\begin{theorem}
+{\bold Задача.} В игре есть $N$ уровней, соединённых $M$ телепортами. Сколько есть способов добраться от первого уровня до $N$-го? {\ital\color{desc}(телепорты не образуют циклов)}
+\end{theorem}
+
+{\bold Идея.} Представим уровни как вершины, а телепорты как рёбра графа.
+
+Пусть каждая вершина маркирована числом путей, исходящих от первой вершины {\ital\color{desc}(оно не всегда равно входящей валентности)}.
+
+Запустим алгоритм Кана из первой вершины, и при обработке ребёнка очередной вершины будем добавлять к его маркировке родителькую.
+
+Ответ к задаче --- значение маркировки вершины $N$.
+
+\begin{theorem}
+{\bold Задача.} Требуется выполнить $N$ курсов. Есть $M$ требований вида {\ital «курс $a$ должен быть выполнен до курса $b$»}. Составить, если возможно, порядок прохождения курсов. 
+\end{theorem}
+
+{\bold Идея.} Представим курсы как вершины, а требования как рёбра графа.
+
+Проверим, что граф {\ital ацикличен}: иначе решение составить невозможно.
+
+Запустим алгоритм Кана из корневой вершины --- полученная последовательность удовлетворяет условию.
+
+\begin{theorem}
+{\bold Задача.} Леви нужно добраться от города $1$ до $N$, но он хочет это сделать через наибольшее количество промежуточных городов. Составить, если возможно, такой маршрут.
+\end{theorem}
+
+{\bold Идея.} Представим города как вершины, а рейсы как рёбра графа.
+
+Проверим, что граф {\ital ацикличен}: иначе решение составить невозможно.
+
+Пусть каждая вершина маркирована максимальным путём, исходящих от первой вершины.
+
+Запустим алгоритм Кана из первой вершины, и при обработке ребёнка очередной вершины будем добавлять к его маркировке максимальный путь из родительских с инкрементом.
+
+Ответ к задаче --- значение маркировки вершины $N$.
 
 \subsection{Алгоритм Косараджу}
 
@@ -300,67 +343,328 @@ def has_ichain(v): # DFS
 \item Если пары нет или если есть {\ital увеличивающаяся цепь}.
 \end{list*}
 
+\subsection{Алгоритм Дейкстры}
+
+{\bold Алгоритм Дейкстры} ищёт кратчайшие пути из заданной вершины до всех остальных вершин взвешенного графа {\ital\color{desc} (вес рёбер неотрицательный)}.
+
+{\bold Наивная} реализация за $\mathcal{O}(n^2+m)$:
+
+\begin{code}{python}
+def dijkstra(root): # tabulation
+  # base (default = INF)
+  verts[root].min = 0
+  while True:
+    # minimization - O(N)
+    v = -1
+    for i in verts:
+      if not verts[i].visited and \
+         (v == -1 or verts[i].min < verts[v].min):
+           v = i
+    if v == -1: # reachable vertices are visited
+      break
+    verts[v].visited = 1
+    # relaxation
+    for n in verts[v].adjacent:
+      curr_cost = verts[v].min + edges[n][v].cost
+      if curr_cost < verts[n].min:
+        verts[n].min = curr_cost
+        verts[n].parent = v # certificate
+\end{code}
+
+{\bold Кучная} реализация за $\mathcal{O}(m\log n)$:
+
+\begin{code}{python}
+def dijksrta(root):
+  # base (default = INF)
+  verts[root].min = 0
+  queue = [(0, root)]
+  heapq.heapify(queue)
+  while queue:
+    # minimization - O(log N)
+    dist, v = heapq.heappop(queue)
+    if dist > verts[v].min:
+      continue
+    # relaxation
+    verts[v].visited = True
+    for n in verts[v].adjacent:
+      if verts[n].visited:
+        continue
+      curr_cost = verts[v].min + edges[v][n].cost
+      if curr_cost < verts[n].min:
+        verts[n].min = curr_cost
+        verts[n].parent = v # certificate
+        heapq.heappush((verts[n].min, n))
+\end{code}
+
+\subsection{Алгоритм A*}
+
+{\bold Алгоритм A*} ищет кратчайший путь между двумя заданными вершинами взвешенного графа на основе {\ital эвристики} {\ital\color{desc} (вес рёбер неотрицательный)}.
+
+{\bold Кучная} реализация алгоритма за $\mathcal{O}(m\log n)$:
+
+\begin{code}{python}
+def a_star(start, goal):
+  # base (default = INF)
+  verts[start].min = 0
+  queue = [(eur(start), start)]
+  heapq.heapify(queue)
+  while queue:
+    # minimization - O(log N)
+    heur, v = heapq.heappop(queue)
+    if v == goal:
+      break
+    if heur != verts[v].heur:
+      continue
+    # relaxation
+    verts[v].visited = True
+    for n in verts[v].adjacent:
+      if verts[n].visited:
+        continue
+      curr = verts[v].min + edges[v][n].cost
+      if curr < verts[n].min:
+         verts[n].min = curr
+         verts[n].heur = verts[n].min + heur(n)
+         verts[n].parent = v # certificate
+         heapq.heappush(queue, (verts[n].heur, n))
+\end{code}
+
 \subsection{Кратчайший путь}
 
 {\bold Волновой алгоритм} --- да.
-
-{\bold Алгоритм Дейкстры} ищёт кратчайшие пути из заданной вершины до всех остальных вершин взвешенного графа {\ital\color{desc} (вес рёбер неотрицательный)}:
-
-\begin{code}{python}
-def dijkstra(): # tabulation
-  vertices[1].cost = 0 #1
-  for _ in vertices:
-    v = (None, inf)
-    for i in vertices:
-      if not vertices[i].visited and \
-         vertices[i].min < v[1]:
-           v = (i, vertices[i].min)
-    if v[0] == None: #2
-      break
-    vertices[v[0]].visited = 1
-    for n in vertices[v[0]].adjacent:
-      curr_cost = vertices[v[0]].min + \
-                  edges[n][v[0]].cost
-      if curr_cost < vertices[n].min:
-        vertices[n].min = curr_cost
-        vertices[n].parent = v[0] #3
-\end{code}
-
-\begin{list*}[][\#]
-\item База динамики; по умолчанию вес рёбер --- $\infty$.
-\item Если добраться до вершины невозможно.
-\item Параметр для составления сертификата решения.
-\end{list*}
 
 {\bold Алгоритм Беллмана-Форда} --- да.
 
 \subsection{Алгоритм Прима}
 
-{\bold Алгоритм} поиска минимального остовного дерева {\ital\color{desc} (по структуре идентичен алгоритму Дейкстры)}:
+{\bold Алгоритм} поиска {\ital миностова}:
 
 \begin{code}{python}
-def prim(): # greedy
-  vertices[1].min = 0 #1
-  for _ in vertices:
-    v = (None, inf)
-    for i in vertices:
-      if not vertices[i].visited and \
-         vertices[i].min < v[1]:
-           v = (i, vertices[i].min)
-    if v[0] == None: #2
+def prim(start): # greedy
+  # base (default = INF)
+  verts[start].min = 0
+  while True:
+    # minimization
+    v = -1
+    for i in verts:
+      if not verts[i].visited and \
+         (v == -1 or verts[i].min < v[1]):
+           v = i
+    if v == -1: # reachable vertices are visited
       break
-    vertices[v[0]].visited = 1
-    if vertices[v[0]].parent != None: #3
-      add_safe_edge(v[0], vertices[v[0]].parent)
-    for n in vertices[v[0]].adjacent:
-      curr_cost = edges[v[0]][n]
-      if curr_cost < vertices[n].min:
-        vertices[n].min = curr_cost
-        vertices[n].parent = v[0]
+    verts[v].visited = 1
+    if verts[v].parent != -1: # got safe edge
+      add_safe_edge(v, verts[v].parent)
+    # relaxation
+    for n in verts[v].adjacent:
+      curr_cost = edges[v][n].cost
+      if curr_cost < verts[n].min:
+        verts[n].min = curr_cost
+        verts[n].parent = v # certificate
 \end{code}
 
-\begin{list*}[][\#]
-\item База динамики; по умолчанию вес рёбер --- $\infty$.
-\item Если добраться до вершины невозможно.
-\item Вывести {\ital безопасное ребро}, если обработано хотя бы две вершины.
+Структура идентична {\ital алгоритму Дейкстры}.
+
+\subsection{Disjoint Set Union}
+
+{\bold Система непересекающихся множеств} {\ital (СНМ, или DSU)} --- дерево, которое обладает операциями:
+% ---
+\begin{list*}
+\item\cdesc{make\_set(v)} --- создать новое множество за $\mathcal{O}(1)$
+\item\cdesc{find\_set(v)} --- найти множество элемента за $\mathcal{O}(\log n)$
+\item\cdesc{union(v, u)} --- объединить два множества за $\mathcal{O}(\log n)$
 \end{list*}
+
+{\bold Создание} нового множества:
+% ---
+\begin{code}{python}
+def make_set(v):
+  prev[v] = v # tree root
+  rank[v] = 0 # tree depth (~log n)
+\end{code}
+% ---
+{\bold Определение} множества элемента:
+% ---
+\begin{code}{python}
+def find_set(v): # path compression heurisitc
+  if v == prev[v]:
+    return v
+  return find_set(prev[v])
+\end{code}
+% ---
+{\bold Объединение} двух множеств:
+% ---
+\begin{code}{python}
+def unite(v, u):
+  v, u = find_set(v), find_set(u)
+  if v != u:
+    if rank[v] < rank[u]: # rank heurisitc
+      v, u = u, v
+    prev[u] = v
+    if rank[v] == rank[u]:
+      rank[v] += 1
+\end{code}
+
+\begin{theorem}
+{\bold Задача.} Дан взвешенный неорграф $G\langle N, M\rangle$. Цена пути между вершинами --- вес его максимального ребра. Найти число пар с мин. ценой пути между ними, равной $X$.
+\end{theorem}
+
+{\bold Идея.} Добавим «рёбра» весом $\less X$ в СНМ, метрикой которого является {\ital количество вершин}.
+
+Искомое число --- суммарная {\ital разница} числа новых и старых связей* при добавлении рёбер весом $X$ {\ital (так исключатся их внутренние связи)}.
+
+* --- число пар всех вершин в $n$-компоненте:
+% ---
+$$S_n=\frac{n(n-1)}{2}$$
+
+\subsection{Алгоритм Краскала}
+
+{\bold Алгоритм Краскала} помогает составить {\ital миностов} на~основе {\ital DSU}.
+
+В СНМ хранятся вершины графа, которые объединяются {\ital безопасными рёбрами} в порядке {\ital возрастания веса}.
+
+{\bold Безопасным} называется ребро, которое соединяет {\ital разные} компоненты связности.
+
+{\bold Алгоритм} поиска миностова:
+% ---
+\begin{code}{python}
+def kraskal():
+  span = list()
+  edges.sort()
+  for i in range(len(edges)):
+    e = edges[i]
+    if find_set(e.start) != find_set(e.end):
+      union(e.start, e.end)
+      span.append(i)
+\end{code}
+
+\begin{theorem}
+{\bold Задача.} Дан архипелаг из $N$ островов с $M$ мостами. Стоимость постройки моста --- {\ital расстояние} между островами. Объединить архипелаг мостами за {\ital минимальную} стоимость. 
+\end{theorem}
+
+{\bold Идея.} Представим архипелаг как несвязный неорграф, который нужно сделать связным.
+
+Сделаем граф полным, добавив все отсутствующие рёбра.
+
+Ответ на задачу --- стоимость {\ital миностова}, который можно составить {\ital алгоритмом Краскала}.
+
+\subsection{Дерево отрезков}
+
+{\bold Дерево отрезков} {\ital\color{desc} (segment tree)} --- бинарное дерево, которое обладает операциями:
+% ---
+\begin{list*}
+\item\cdesc{build(arr)} --- построить дерево на массиве {\ital arr} за $\mathcal{O}(n)$
+\item\cdesc{get(l, r)} --- вернуть $f(arr[l:r])$ за $\mathcal{O}(\log n)$
+\item\cdesc{get(i)} --- вернуть $f(arr[i])$ за $\mathcal{O}(\log n)$
+\item\cdesc{update(i, val)} --- обновить $arr[i]$ за $\mathcal{O}(\log n)$
+\item\cdesc{update(l, r, val)} --- обновить $arr[l:r]$ за $\mathcal{O}(\log n)$
+\end{list*}
+
+{\bold Требования} к операции $f$:
+% ---
+\begin{list*}
+\item ассоциативность
+\item наличие нейтрального элемента $\perp$
+\end{list*}
+% ---
+{\bold Построение} дерева {\ital «сверху»}:
+% ---
+\begin{code}{python}
+def build(root, tl, tr):
+  if tl + 1 == tr: # we use [tl; tr)
+    verts[root].value = arr[tl]
+  else:
+    tm = (tl + tr) // 2
+    build(2 * root, tl, tm)
+    build(2 * root + 1, tm, tr)
+    verts[root].value = f(verts[2 * v].value, \
+                          verts[2 * v + 1].value)
+\end{code}
+
+{\bold Получение} значения функции на отрезке:
+% ---
+\begin{code}{python}
+def get(root, tl, tr, ql, qr):
+  if $[t_l;t_r)\cap[q_l;q_r)=\emptyset$: # don't go further
+    return $\perp$
+  if $[t_l;t_r)\subseteq[q_l;q_r)$: # subtree is covered
+    return verts[root].value
+  tm = (tl + tr) // 2
+  return f(get(2 * root, tl, tm, ql, qr), \
+           get(2 * root + 1, tm, tr, ql, qr))
+\end{code}
+
+{\bold Обновление} элемента массива:
+% ---
+\begin{code}{python}
+def update(root, tl, tr, i, val):
+  if tl + 1 == tr:
+    verts[root] = val
+    return
+  tm = (tl + tr) // 2
+  if i < tm:
+    update(2 * root, tl, tm, i, val)
+  else:
+    update(2 * root + 1, tm, tr, i, val)
+  verts[root].value = f(verts[2 * root].value, \
+                        verts[2 * root + 1].value)
+\end{code}
+
+\subsection{Несогласованные поддеревья}
+
+{\bold Отложенной} ({\bold массовой}) называется операция, которая применяется к {\ital подотрезку} массива в дереве отрезков.
+
+{\bold Несогласованным} называется поддерево, которое хранит в~своих вершинах {\ital частичный} результат выполнения отложенной операции.
+
+{\bold Проталкивание} массовой операции $g$:
+% ---
+\begin{code}{python}
+def push(root, tl, tr):
+  if tl + 1 != tr:
+    verts[2 * root] = g(verts[2 * root], \
+                        verts[root].diff)
+    verts[2 * root + 1] = g(verts[2 * root + 1], \
+                            verts[root].diff)
+  verts[root].diff = 0
+\end{code}
+
+{\bold Обновление} отрезка массива:
+% ---
+\begin{code}{python}
+def update(root, tl, tr, ql, qr, val):
+  push(root, tl, tr) # ???
+  if $[t_l;t_r)\cap[q_l;q_r)=\emptyset$: # don't go further
+    return $\perp$
+  if $[t_l;t_r)\subseteq[q_l;q_r)$: # subtree is covered
+    verts[root].diff = g(verts[root].diff, val)
+    return
+  push(root, tl, tr) # ???
+  tm = (tl + tr) // 2
+  update(2 * root, tl, tm, ql, qr)
+  update(2 * root + 1, tm, tr, ql, qr)
+  verts[root].val = f(g(verts[2 * root].val, \
+                        verts[2 * root].diff), \
+                      g(verts[2 * root + 1].val, \
+                        verts[2 * root + 1].diff))
+\end{code}
+
+{\bold Получение} значения функции на отрезке:
+% ---
+\begin{code}{python}
+def get(root, tl, tr, ql, qr):
+  if qr <= tl or tr <= ql: # don't go further
+    return $\perp$
+  if ql <= tl and tr <= qr: # subtree is covered
+    return g(verts[root].val, verts[root].diff)
+  push(root, tl, tr)
+  ans = f(get(2 * root, tl, tm, ql, qr), \
+          get(2 * root + 1, tm, tr, ql, qr))
+  verts[root].val = f(g(verts[2 * root].val, \
+                        verts[2 * root].diff), \
+                      g(verts[2 * root + 1].val, \
+                        verts[2 * root + 1].diff))
+  return ans
+\end{code}
+
+\subsection{Корневая декомпозиция}
+
+Да.

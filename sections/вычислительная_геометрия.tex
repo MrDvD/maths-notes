@@ -31,6 +31,30 @@ $$\left\{\begin{aligned}
 &y_C=\frac{y_A+\lambda y_B}{1+\lambda}
 \end{aligned}\right.\qedb$$
 
+\subsection{Направляющий вектор}
+
+{\bold Направляющим} называется вектор, параллельный данной прямой:
+% ---
+$$\vec{l}=\begin{pmatrix}
+A\\B\end{pmatrix}\implies\begin{cases*}
+&x=x_0+At\\
+&y=y_0+Bt
+\end{cases*}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Уравнение прямой по точке и направляющему вектору:
+% ---
+$$\frac{A}{B}=\frac{x-x_0}{y-y_0}$$
+\end{theorem}
+% ---
+Уравнение легко выводится из определения направляющего вектора.
+
+\begin{theorem}
+{\bold Свойство.} Связь угла между прямыми и их направляющими векторами:
+% ---
+$$\cos\angle(a,b)=\abs{\cos\angle(\overrightarrow{a},\overrightarrow{b})}$$
+\end{theorem}
+
 \subsection{Коллинеарность}
 
 {\bold Коллинеарными} называются:
@@ -111,12 +135,12 @@ $\alpha$ --- угол между векторами.
 \end{theorem}
 
 \begin{theorem}
-{\bold Теорема.} Если вектора $\overrightarrow{a}$ и $\overrightarrow{b}$ коллинеарны, то:
-
+{\bold Следствие.} Если векторы $\overrightarrow{a}$ и $\overrightarrow{b}$ {\ital коллинеарны}, то:
+% ---
 \begin{list*}
-\item$\overrightarrow{a}\cdot\overrightarrow{b}\greater 0\implies$ вектора {\ital сонаправлены};
-\item$\overrightarrow{a}\cdot\overrightarrow{b}\less 0\implies$ вектора {\ital несонаправлены};
-\item$\overrightarrow{a}\cdot\overrightarrow{b}=0\implies$ один из векторов {\ital нулевой}.
+\item$\overrightarrow{a}\cdot\overrightarrow{b}\greater 0\implies$ векторы {\ital сонаправлены}
+\item$\overrightarrow{a}\cdot\overrightarrow{b}\less 0\implies$ векторы {\ital несонаправлены}
+\item$\overrightarrow{a}\cdot\overrightarrow{b}=0\implies$ один из векторов {\ital нулевой}
 \end{list*}
 \end{theorem}
 
@@ -154,7 +178,7 @@ $\alpha$ --- угол между векторами.
 
 Доказательство вытекает из {\ital чётности} синуса угла между векторами.
 
-\subsection{Взаимное расположение объектов}
+\subsection{Взаимное расположение}
 
 Расположение {\ital точки} $A$ относительно {\ital прямой, луча или отрезка} $BC$:
 
@@ -213,3 +237,48 @@ $$\left\{\begin{aligned}
 \subsection{Метод заметающей прямой}
 
 Да.
+
+\newpage
+\subsection{Уравнения кривых}
+
+{\bold Алгебраическая кривая} --- это...
+
+Кривые первого порядка --- прямая.
+
+Уравнение ромба
+
+Кривые второго порядка {\ital (коники)} --- эллипс, парабола, гипербола.
+
+\subsection{ГМТ}
+
+{\bold Биссектриса} --- это
+
+{\bold Биссекторная плоскость} --- это...
+
+Свойство равноудалённости, расстояния и пр..
+
+Гомотетия также
+
+\subsection{Геометрические тела}
+
+Правильный тетраэдр, пирамида...
+
+\subsection{Прямые в пространстве}
+
+{\ital По взаимному расположению} прямые бывают трёх видов:
+% ---
+\begin{list*}
+\item{\bold пересекающиеся}: имеют {\ital общую точку}
+\item{\bold параллельные}: {\ital лежат} в одной плоскости и {\ital не~имеют} общих точек
+\item{\bold скрещивающиеся}: {\ital не лежат} в одной плоскости
+\end{list*}
+% ---
+\begin{theorem}
+{\bold Свойство.} Угол между скрещивающимися прямыми равен углу между двумя {\ital пересекающимися} прямыми, которые соответственно им параллельны.
+\end{theorem}
+
+{\bold Сонаправленные} {\ital лучи} лежат в одной полуплоскости на параллельных прямых.
+
+\begin{theorem}
+{\bold Свойство.} Углы с сонаправленными сторонами {\ital равны}.
+\end{theorem} 

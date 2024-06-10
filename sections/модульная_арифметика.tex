@@ -97,7 +97,7 @@ $1-1/p$ & часть чисел, взаимно простых с $p$.
 \subsection{Теорема Эйлера}
 
 \begin{theorem}
-{\bold Теорема.} Пусть $a\in\mathbb{Z}$, $(a,m)=1$. Тогда верно {\ital\color{desc}(Л. Эйлер)}:
+{\bold Теорема.} Пусть $a\in\mathbb{Z}$, $(a,m)=1$. Тогда: {\ital\color{desc}(Л. Эйлер)}
 % ---
 $$a^{\phi(m)}\equiv 1\modb{m},\quad a\not\equiv 0\modb{m}$$
 \end{theorem}
@@ -150,26 +150,32 @@ $$a^{\phi(m)\lfloor b/\phi(m)\rfloor+b\modn{\phi(m)}}=(a^{\phi(m)})^{\lfloor b/\
 % ---
 Так как $a^{\phi(m)}\equiv 1$, получается $a^b\equiv a^{b\modn{\phi(m)}}.\qedb$
 
-\newpage
 \subsection{Алгоритм Евклида}
-Пусть $a,b\in\mathbb{N}^{0}\ (a>b)$, тогда:
+
+Пусть $a,b\in\mathbb{N}^0$ $(a\greater b)$, тогда:
+% ---
 $$(a,b)=(a\modn{b},b)$$
 % ---
-{\bold Доказательство.} Допустим, $m\mid (a-b),b$:
-$$+
-\begin{cases}
-a-b\equiv 0&\modb{m}\\
-b\equiv 0&\modb{m}
-\end{cases}\implies
-\begin{cases}
-a\equiv 0&\modb{m}\\
-b\equiv 0&\modb{m}
-\end{cases}
-$$
-Получаем, что любой общий делитель {\ital m} у $a-b$, $b$ есть у $a$, $b$.
-Следовательно, $(a,b)=(a-b,b)$.\par
-При повторе вычитания получится остаток от деления на {\ital b}:
-$$(a,b)=(a\modn{b},b)\qedb$$
+{\bold Доказательство.} Пусть $m\mid a-b,b$:
+% ---
+$$+\begin{cases*}
+&a-b\equiv 0 &\modb{m}\\
+&b\equiv 0 &\modb{m}
+\end{cases*}\implies
+\begin{cases*}
+&a\equiv 0 &\modb{m}\\
+&b\equiv 0 &\modb{m}
+\end{cases*}$$
+% ---
+Значит, любой общий делитель $a-b,b$ имеется у $a,b$.
+
+По определению НОД:
+% ---
+$$(a,b)=(a-b,b)$$
+% ---
+По определению конкруэнтных чисел:
+% ---
+$$(a,b)=(a\modn{b},b)$$
 
 \subsection{Мультипликативная инверсия}
 
@@ -190,14 +196,14 @@ $$\begin{cases}\begin{aligned}
 {\ital Линейное} сравнение вида $ax\equiv b\modb{m}$ разрешимо отно"=сительно $x$, когда $(m,a)\mid b$. {\ital\color[HTML]{888888} (по соотношению Безу)}
 
 План решения:
-
-\begin{itemize}
-\item[---]упростить линейное сравнение;
-\item[---]рассчитать $(m,a)$ по алгоритму Евклида;
-\item[---]выразить $(m,a)$ через полученные остатки;
-\item[---]домножить соотношение Безу на {\ital b}.  
-\end{itemize}
-
+% ---
+\begin{list*}
+\item упростить линейное сравнение
+\item рассчитать $(m,a)$ по алгоритму Евклида
+\item выразить $(m,a)$ через полученные остатки
+\item домножить соотношение Безу на $b$
+\end{list*}
+% ---
 {\bold Пример.} Решить линейное сравнение: $4x\equiv 4\modb{6}$.\par
 Упростим сравнение:
 \begin{align*}

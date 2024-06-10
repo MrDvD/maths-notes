@@ -36,10 +36,12 @@ $$A\land\overline{A}=0\qquad A\lor\overline{A}=1$$
 \begin{theorem}
 {\bold Закон поглощения.}
 % ---
-$$\begin{aligned}
+$$\begin{gathered}\begin{aligned}
 &A\land 1=A &\quad &A\land 0=0\\
 &A\lor 1=1 &\quad &A\lor 0=A
-\end{aligned}$$
+\end{aligned}\\
+A\land (A\lor B)=A\qquad A\lor (A\land B)=A\\
+A\land (\overline{A}\lor B)=A\land B\qquad A\lor (\overline{A}\land B)=A\lor B\end{gathered}$$
 \end{theorem}
 % ---
 \begin{theorem}
@@ -47,16 +49,25 @@ $$\begin{aligned}
 % ---
 $$\overline{A\land B}=\overline{A}\lor\overline{B}\qquad\overline{A\lor B}=\overline{A}\land\overline{B}$$
 \end{theorem}
+% ---
+\begin{theorem}
+{\bold Закон склеивания.}
+% ---
+$$\begin{aligned}
+&(A\lor B)\land(A\lor \overline{B})=A\\
+&(A\land B)\lor(A\land \overline{B})=A\\
+\end{aligned}$$
+\end{theorem}
 
 \subsection{Нормальная форма}
 
 {\bold Терм} --- компонент логической функции:
 
 \begin{list*}
-\item{\bold макстерм} --- переменные прямой и инверсной форм связаны {\ital дизъюнкцией};
-\item{\bold минтерм} --- переменные прямой и инверсной форм связаны {\ital конъюнкцией};
+\item{\bold макстерм} --- переменные прямой и инверсной форм связаны {\ital дизъюнкцией}
+\item{\bold минтерм} --- переменные прямой и инверсной форм связаны {\ital конъюнкцией}
 \end{list*}
-
+% ---
 {\bold Ранг} {\ital терма} --- число переменных, которые в него входят.
 
 {\bold Нормальная дизъюнктивная форма} {\ital (DNF)} --- дизъюнк"=ция минтермов любого ранга.
