@@ -1,68 +1,133 @@
 \section{Общая алгебра}
 
-\subsection{Соответствие}
+\subsection{Вектор}
 
-{\bold Соответствие} {\ital (бинарное отношение)} между множествами
-$X$~и $Y$ --- произвольное множество $\rho\subseteq X\times Y$.\par
+{\bold Вектор} {\ital (кортеж, или упорядоченная n-ка)} --- упорядоченный набор элементов --- {\ital координат (компонент)} вектора.
+
+{\bold Размерность} вектора --- число его координат.
+
+\begin{theorem}
+{\bold Декартово} {\ital (прямое)} {\bold произведение} множеств $X_1,\dots,X_n$ --- множество векторов вида:
 % ---
-Упрощённая запись $x\in X,\ y\in Y$, $\langle x, y\rangle\in\rho=:x\rho y$.\par
+$$X_1\times\dots\times X_n=\{(x_1,\dots,x_n)\mid x_1\in X_1,\dots,x_n\in X_n\}$$
+% ---
+Свойства:
+% ---
+\begin{list*}
+\item дистрибутивность относительно {\ital пересечения} $\cap$
+\item дистрибутивность относительно {\ital разности} $\backslash$
+\item {\ital *не коммутативность}
+\item {\ital *не ассоциативность}
+\item $(A\cap B)\times(C\cap D)=(A\times C)\cap(B\times D)$
+\end{list*}
+\end{theorem}
+% ---
+{\bold Декартова степень} множества --- прямое произведение одинаковых множеств:
+% ---
+$$A^3=A\times A\times A$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Мощность декартова произведения конечных множеств равна {\ital произведению мощностей} данных множеств:
+% ---
+$$\abs{A_1\times\dots\times A_n}=\abs{A_1}\times\dots\times\abs{A_n}$$
+\end{theorem}
+
+\subsection{Отношение}
+
+{\bold Отношение} $\rho$ между множествами $X_1,\dots,X_n$ --- подмножество их {\ital декартова произведения}.
+
+\begin{theorem}
+{\bold Бинарное} отношение включает {\ital два} множества, что можно упрощённо записать:
+% ---
+$$x\in X,\ y\in Y, \langle x, y\rangle\in\rho=:x\rho y$$
+% ---
+{\bold Унарное} отношение {\ital\color{desc} (свойство)} включает в себя...?
+\end{theorem}
 
 \begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
-$X\supseteq D_\rho$ & область определения {\ital (прообраз)} соответствия;\\
-$Y\supseteq E_\rho$ & область значений {\ital (образ)} соответствия.
+$X\supseteq D_\rho$ & область определения {\ital (прообраз)} отношения;\\
+$Y\supseteq E_\rho$ & область значений {\ital (образ)} отношения.
 \end{tabularc} 
 
-Соответствие $\rho$ {\ital инъективно}, когда
+\subsection{Виды отношений}
+
+Отношение $\rho$ {\ital инъективно}, когда
 % ---
 $$\forall x_1,x_2\in D_\rho\ \exists y\in E_\rho\colon x_1\rho y,\ x_2\rho y\iff
 x_1=x_2.$$
 % ---
-Соответствие $\rho$ {\ital функционально}, когда
+Отношение $\rho$ {\ital функционально}, когда
 % ---
 $$\forall x\in D_\rho\ \exists! y\in E_\rho\colon x\rho y.$$
 % ---
-Такое соответствие называется {\bold отображением} {\ital (функцией)}
+\begin{theorem}
+Функциональное отношение называется {\bold отображением} {\ital (функцией)}
 и обозначается:
 % ---
 $$\rho\colon X\xrightarrow{x\mapsto y} Y$$
+\end{theorem}
 % ---
-Соответствие $\rho$ {\ital сюръективно}, когда
+Отношение $\rho$ {\ital сюръективно}, когда
 % ---
 $$\forall y\in Y\ \exists x\in D_\rho\colon x\mapsto y.$$
 % ---
-Соответствие $\rho$ {\ital всюду определено}, когда
+Отношение $\rho$ {\ital всюду определено}, когда
 % ---
 $$\forall x\in X\ \exists y\in E_\rho\colon x\mapsto y.$$
-
-\subsection{Свойства соответствий}
-
-Пусть $\ast\subseteq X\times X$, $\circ\subseteq X\times X$ --- произвольные
-соответствия.\par
-
-Соответствие $\ast$ {\ital ассоциативно}, когда
 % ---
-$$\forall x,y,z\in X\implies (x\ast y)\ast z=x\ast (y\ast z).$$
+\begin{theorem}
+{\bold Композиция} {\ital (суперпозиция)} бинарных отношений\\ $f\subseteq X\times Y,\ g\subseteq Y\times Z$ --- такое $h\subseteq X\times Z\iff f\circ g$, что:
 % ---
-Соответствие $\ast$ {\ital коммутативно}, когда
+$$\forall x\in X,\ z\in Z\exists y\in Y\ x(f\circ g)z\iff xfy\land ygz$$
 % ---
-$$\forall x,y\in X\implies x\ast y=y\ast x.$$
+Свойства:
+
+\begin{list*}
+\item ассоциативность
+\item {\ital *не коммутативность}
+\end{list*}
+\end{theorem}
+
+\begin{theorem}
+{\bold Обратное} бинарное отношение $\rho^{-1}$ получается переста"=новкой исходных множеств в декартовом произведении:
 % ---
-Соответствие $\ast$ {\ital дистрибутивно} относительно $\circ$, когда
+$$\rho\subseteq X\times Y\iff\rho^{-1}\subseteq Y\times X$$
 % ---
-$$\forall x,y,z\in X\implies
-\begin{cases}
-x\ast(y\circ z)=x\ast y\circ x\ast z\\
-(y\circ z)\ast x=y\ast x\circ z\ast x
-\end{cases}\hspace{-12pt}.$$
+Свойства:
+% ---
+\begin{list*}
+\item идемпотентность
+\item дистрибутивность относительно {\ital пересечения} $\cap$
+\item дистрибутивность относительно {\ital объединения} $\cup$
+\item дистрибутивность относительно {\ital композиции} $\circ$:
+% ---
+$$(P\circ Q)^{-1}=Q^{-1}\circ R^{-1}$$
+\end{list*}
+\end{theorem}
 
-\subsection{Композиция отображений}
+\subsection{Свойства отношений}
 
-Для отображений $f\colon X\to Y,\ g\colon Y\to Z$ существует $h\colon X\to Z$,
-которое называется их {\bold композицией}.\par
+Пусть $\ast\subseteq X^2$ --- произвольное бинарное отношение.
 
-Упрощённая запись $\forall x\in X\ h(x)=g(f(x))=(g\circ f)(x)$.
-
-Композиция {\ital ассоциативна}, однако {\ital не коммутативна}.
+Отношение $\ast$ {\ital симметрично}, когда
+% ---
+$$\forall x,y\in X\ x\ast y=y\ast x.$$
+% ---
+Отношение $\ast$ {\ital антисимметрично}, когда
+% ---
+$$\forall x,y\in X\ x\ast y\land y\ast x\implies x=y$$
+% ---
+Отношение $\ast$ {\ital транзитивно}, когда
+% ---
+$$\forall x,y,z\in X\ x\ast y\land y\ast z\implies x\ast z$$
+% ---
+Отношение $\ast$ {\ital рефлексивно}, когда
+% ---
+$$\forall x\in X\ x\ast x$$
+% ---
+Отношение $\ast$ {\ital антирефликсивно}, когда
+% ---
+$$\forall x\in X\ \lnot (x\ast x)$$
 
 \subsection{Ограничение и продолжение}
 
@@ -72,6 +137,216 @@ x\ast(y\circ z)=x\ast y\circ x\ast z\\
 $$\forall s\in S\colon f\vert_S(s)=f(s).$$
 % ---
 В свою очередь, $f$ является {\ital продолжением} отображения $f\vert_S$.\par
+
+\subsection{Алгебраическая операция}
+
+$n$-местная {\bold алгебраическая операция} --- отображение:
+% ---
+$$\ast\colon X^n\to X$$
+% ---
+{\bold Нейтральным} называется такой элемент $e\in X$, что:
+% ---
+$$\forall x\in X\ e\ast x=x\ast e=x$$
+% ---
+{\bold Поглощающим} называется такой элемент $w\in X$, что:
+% ---
+$$\forall x\in X\ w\ast x=x\ast w=w$$
+% ---
+{\bold Симметричным} {\ital (противоположным, обратным)} к элементу $x\in X$ называется такой элемент $x^{-1}\in X$, что:
+% ---
+$$x\ast x^{-1}=x^{-1}\ast x=e\text{ {\ital\color{desc}(нейтр.)}}$$
+% ---
+\begin{theorem}
+Если $y\colon X\to Y$ и $x\colon Y\to X$ --- отображения, то $y$ 
+{\ital инъективно}, а $x$ {\ital сюръективно}.
+\end{theorem}
+
+{\bold Доказательство.} По условию, множество $X$ накладывается на себя.
+Значит, $f$ {\ital всюду определено}.\par
+
+Так как $g$ функционально, то
+% ---
+$$\forall x_1,x_2\in X\ \exists y\in E_f\colon x_1fy,\ x_2fy\iff x_1=x_2,$$
+% ---
+то есть $f$ {\ital инъективно}.$\qedw$\par
+
+Когда $X$ накладывается на себя, то
+% ---
+$$\forall x\in E_g\ \exists y\in D_g\colon x\mapsto y,$$
+% ---
+то есть $g$ {\ital сюръективно}.$\qedb$
+
+\subsection{Свойства операций}
+
+Пусть $\ast\colon X^2\to X$, $\circ\colon X^2\to X$ --- бинарные алгебраические операции.
+
+Операция $\ast$ {\ital коммутативна}, когда
+% ---
+$$\forall x,y\in X\ x\ast y=y\ast x$$
+% ---
+Операция $\ast$ {\ital ассоциативна}, когда
+% ---
+$$\forall x,y,z\in X\ (x\ast y)\ast z=x\ast(y\ast z)$$
+% ---
+Операция $\ast$ {\ital дистрибутивна} относительно $\circ$, когда
+% ---
+$$\forall x,y,z\in X\ 
+\begin{cases*}
+&x\ast(y\circ z)=(x\ast y)\circ (x\ast z)\text{ {\ital\color{desc} (дистр. справа)}}\\
+&(x\circ y)\ast z=(x\ast z)\circ(y\ast z)\text{ {\ital\color{desc} (дистр. слева)}}
+\end{cases*}$$
+
+\subsection{Алгебраическая структура}
+
+{\bold Алгебраическая структура} {\ital (система)} --- множество $X$ с~введёнными на нём 
+алгебраическими операциями:
+% ---
+$$\langle X;\ \ast_1,\ast_2,\dots,\ast_n\rangle$$
+% ---
+{\bold Полугруппа} --- алгебраическая структура $\langle X;\ \ast\rangle$ с двухмест"=ной 
+ассоциативной операцией $\ast$.
+
+{\bold Группа} --- полугруппа, для которой существуют нейтраль"=ный и обратный элементы.
+\par
+
+{\bold Кольцо} --- коммутативная аддитивная группа, мультиплика"=тивная полугруппа, где
+$\times$ дистрибутивно относительно $+$.\par
+
+{\bold Поле} --- коммутативное кольцо с обратным элементом для $\times$.
+
+\subsection{Числовые системы}
+
+{\bold Система натуральных чисел} --- коммутативная аддитивная и мультипликативная полугруппа $\langle\mathbb{N};\ +,\times\rangle$.\par
+
+{\bold Система целых чисел} --- коммутативное кольцо $\langle\mathbb{Z};\ +,\times\rangle$.
+\par
+
+{\bold Система рациональных чисел} --- упорядоченное поле $\langle\mathbb{Q};\ +,\times
+\rangle$.\par
+
+{\bold Система действительных чисел} --- непрерывное упорядо"=ченное поле $\langle\mathbb
+{R};\ +,\times\rangle$.
+
+{\bold Проективно расширенная числовая прямая} --- расширение множества действительных 
+чисел $\widehat{\mathbb{R}}=\mathbb{R}\cup\{\infty\}$:
+% ---
+\begin{alignat*}{2}
+a\pm\infty&=\infty\pm a=\infty,\quad &&a\neq\infty\\
+b\cdot\infty&=\infty\cdot b=\infty, &&b\neq 0\\
+\end{alignat*}\\[-26pt]
+% ---
+$$\frac{a}{\infty}=0\quad\quad\frac{b}{0}=\infty$$
+
+\newpage
+\subsection{Комплексные числа}
+
+{\bold Система комплéксных чисел} --- непрерывное поле:
+% ---
+$$\langle\mathbb{C}=\mathbb{R}^2;\ +,\cdot\rangle$$
+% ---
+{\bold Комплексное число} --- элемент $z=(a,b)\in\mathbb{C}$.
+% ---
+\begin{theorem}
+{\bold Свойство.} Множество $\mathbb{C}$ включает в себя множество $\mathbb{R}$:
+% ---
+$$\forall a\in\mathbb{R}\ (a,0)\leftrightarrow a\implies\mathbb{R}\subset\mathbb{C}$$
+\end{theorem}
+% ---
+{\bold Мнимая единица} --- комплексное число вида:
+% ---
+$$(0,1)\leftrightarrow i,\quad i^2=-1$$
+% ---
+{\bold Плоскость комплексных чисел} --- декартова система координат $Oab$ с биекцией вида:
+% ---
+$$z=(a,b)\leftrightarrow M(a,b)$$
+
+\begin{list*}
+\item $Oa$ есть действительная ось {\ital\color{desc}($a=\ren{z}$)}
+\item $Ob$ есть мнимая ось {\ital\color{desc}($b=\imn{z}$)}
+\end{list*}
+% ---
+\begin{theorem}
+{\bold Свойство.} Комплексные числа {\ital равны}, если соответственно равны их действительные и мнимые части:
+% ---
+$$(a_1,b_1)=(a_2,b_2)\iff a_1=a_2\land b_1=b_2$$
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Формы записи.} Пусть $z=(a,b)\in\mathbb{C}$.
+% ---
+\begin{list*}
+\item алгебраическая форма: $z=a+bi$
+\item тригонометрическая форма: $z=\abs{z}(\cos\varphi+i\sin\varphi)$
+\end{list*}
+\end{theorem}
+
+\subsection{Операции комплексных чисел}
+
+\begin{theorem}
+{\bold Сложение и умножение.} Пусть $z_1=(a,b)$, $z_2=(c,d)$:
+% ---
+$$\begin{aligned}
+&z_1+z_2=(a,b)+(c,d)=(a+c,b+d)\\
+&z_1\cdot z_2=(a,b)\cdot(c,d)=(ac-bd,ad+bd)
+\end{aligned}$$
+% ---
+Cвойства операций {\ital индуцируются} из множества дейст"=вительных чисел $\mathbb{R}$. 
+\end{theorem}
+
+\begin{theorem}
+{\bold Сопряжение} --- операция смены знака $\imn{z}$:
+% ---
+$$z=(a,b)\to\bar{z}=(a,-b)$$
+% ---
+Свойства:
+% ---
+\begin{list*}
+\item дистрибутивность относительно {\ital сложения} $+$
+\item дистрибутивность относительно {\ital умножения} $\cdot$
+\end{list*}
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Модуль} комплексного числа $z$ --- расстояние $\rho(O;M)$:
+% ---
+$$\abs{z}=r=\abs{OM}=\sqrt{a^2+b^2}=\sqrt{z\bar{z}}$$
+% ---
+Свойства:
+% ---
+\begin{list*}
+\item дистрибутивность относительно {\ital умножения} $\cdot$ {\ital (деления $\colon$)}
+\end{list*}
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Аргумент} комплексного числа --- угол, образованный $\overrightarrow{OM}$ с~действительной осью:
+% ---
+$$\arg z=\varphi=\arctg\frac{b}{a},\quad\varphi\in(-\pi;\pi]$$
+% ---
+Свойства:
+% ---
+\begin{list*}
+\item $\arg(z_1\cdot z_2)=\arg z_1+\arg z_2$
+\item $\arg(z_1\slash z_2)=\arg z_1-\arg z_2$
+\item $\arg z^n=n\arg z,\ n\in\mathbb{Z}$
+\end{list*}
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Формула Муавра.} Возведение в степень числа $z\in\mathbb{C}$:
+% ---
+$$z^n=\abs{z}^n(\cos n\varphi+i\sin n\varphi),\quad n\in\mathbb{Z}$$
+% ---
+{\bold Следствие.} Корень $n$-й степени из числа $z\in\mathbb{C}$:
+% ---
+$$\sqrt[n]{z}=\sqrt[n]{\abs{z}}\left(\cos\frac{\varphi+2\pi k}{n}+i\sin\frac{\varphi+2\pi k}{n}\right),\quad k\in\mathbb{Z}$$
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Квадратный корень.} Корень из числа $z\in\mathbb{C}$:
+% ---
+$$\sqrt{z}=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)$$
+\end{theorem}
 
 \subsection{Метрическое пространство}
 
@@ -92,190 +367,6 @@ $$d(x,y)=\sqrt{\sum^{n}_{k=1}(x_k-y_k)^2}$$
 --- $d(x,y)=0\iff x=y$ --- {\ital тождество};\\
 --- $d(x,y)=d(y,x)$ --- {\ital симметрия};\\
 --- $d(x,y)\leq d(x,z) + d(y,z)$ --- {\ital «неравенство треугольника»}.
-
-\subsection{Алгебраическая операция}
-
-Отображение $\ast\colon X^n\to X$ называется $n$-местной {\ital алгебраичес"=кой 
-операцией} на $X$.\par
-
-{\ital Нейтральным} называется такой элемент $e\in X$, что
-% ---
-$$\forall x\in X\implies e\ast x=x\text{ и }x\ast e=x.$$
-% ---
-{\bold Левым} или {\bold правым} {\ital нейтральным} называется такой элемент
-$e\in X$, что
-% ---
-$$\forall x\in X\implies e\ast x=x\text{ или }x\ast e=x.$$
-% ---
-Если $x\ast y=e$, то $x$ --- {\bold левый} {\ital обратный} элемент к $y$, а $y$ ---
-{\bold правый} {\ital обратный} к $x$.\par
-
-Стоит отметить, что если $y\colon X\to Y$ и $x\colon Y\to X$ --- отображе"=ния, то $y$ 
-{\ital инъективно}, а $x$ {\ital сюръективно}.\par
-
-{\bold Доказательство.} По условию, множество $X$ накладывается на себя.
-Значит, $f$ {\ital всюду определено}.\par
-
-Так как $g$ функционально, то
-% ---
-$$\forall x_1,x_2\in X\ \exists y\in E_f\colon x_1fy,\ x_2fy\iff x_1=x_2,$$
-% ---
-то есть $f$ {\ital инъективно}.$\qedw$\par
-
-Когда $X$ накладывается на себя, то
-% ---
-$$\forall x\in E_g\ \exists y\in D_g\colon x\mapsto y,$$
-% ---
-то есть $g$ {\ital сюръективно}.$\qedb$
-
-Элементы $x$ и $y$ {\bold взаимно} {\ital обратны}, когда $x\ast y=y\ast x=e$.
-
-\newpage
-\subsection{Алгебраическая структура}
-
-{\bold Алгебраическая структура} {\ital (система)} --- множество $X$ с~введёнными на нём 
-алгебраическими операциями:
-% ---
-$$\langle X;\ \ast_1,\ast_2,\dots,\ast_n\rangle$$
-% ---
-{\ital Полугруппа} --- алгебраическая структура $\langle X;\ \ast\rangle$ с двухмест"=ной 
-ассоциативной операцией $\ast$.
-
-{\ital Группа} --- полугруппа, для которой существуют нейтраль"=ный и обратный элементы.
-\par
-
-{\ital Кольцо} --- коммутативная аддитивная группа, мультиплика"=тивная полугруппа, где
-$\times$ дистрибутивно относительно $+$.\par
-
-{\ital Поле} --- коммутативное кольцо с обратным элементом для $\times$.
-
-\subsection{Числовые системы}
-
-{\ital Система натуральных чисел} --- коммутативная аддитивная и мультипликативная полугруппа $\langle\mathbb{N};\ +,\times\rangle$.\par
-
-{\ital Система целых чисел} --- коммутативное кольцо $\langle\mathbb{Z};\ +,\times\rangle$.
-\par
-
-{\ital Система рациональных чисел} --- упорядоченное поле $\langle\mathbb{Q};\ +,\times
-\rangle$.\par
-
-{\ital Система действительных чисел} --- непрерывное упорядо"=ченное поле $\langle\mathbb
-{R};\ +,\times\rangle$.
-
-{\ital Проективно расширенная числовая прямая} --- расширение множества действительных 
-чисел $\widehat{\mathbb{R}}=\mathbb{R}\cup\{\infty\}$:
-% ---
-\begin{alignat*}{2}
-a\pm\infty&=\infty\pm a=\infty,\quad &&a\neq\infty\\
-b\cdot\infty&=\infty\cdot b=\infty, &&b\neq 0\\
-\end{alignat*}\\[-26pt]
-% ---
-$$\frac{a}{\infty}=0\quad\quad\frac{b}{0}=\infty$$
-
-\newpage
-\subsection{Комплексные числа}
-
-{\bold Система комплéксных чисел} --- непрерывное поле $\langle\mathbb{C};\ +,
-\times\rangle$, в котором есть {\ital мнимая единица} $i$:
-% ---
-$$i^2=-1$$
-% ---
-{\bold Плоскость комплексных чисел} --- декартова система координат $Oab$ с биективным соответствием вида:
-% ---
-$$z=a+bi\leftrightarrow M\langle a,b\rangle\equiv M\langle z\rangle$$
-% ---
-$Oa$ --- действительная ось {\ital\color{desc}($a\equiv\ren{z}$)};\\
-$Ob$ --- мнимая ось {\ital\color{desc}($b\equiv\imn{z}$)}.
-
-{\ital Модуль} $z\in\mathbb{C}$ --- расстояние от $O$ до $M(z)$:
-% ---
-$$\abs{z}=r=\abs{OM}=\sqrt{a^2+b^2}=\sqrt{z\bar{z}}$$
-% ---
-Тригонометрическая форма $z\in\mathbb{C}$ ---
-% ---
-$$z=r(\cos\varphi+i\sin\varphi),\ \varphi\in(-\pi;\pi]$$\\
-
-\begin{tabularcx}{0pt}{0pt}{r @{ --- } L}{\textwidth}
-$\varphi\equiv\arg z$ & {\ital аргумент комплексного числа}, или угол, обра"=зованный $\overrightarrow{OM}$ с действительной осью.
-\end{tabularcx}
-
-{\bold Сопряжение} --- операция смены знака мнимой части $z$:
-% ---
-$$z=a+bi\to\bar{z}=a-bi$$
-% ---
-Она {\ital дистрибутивна} относительно $+,\ \times$.
-
-Извлечение квадратного корня из $z=a+bi$:
-% ---
-$$\sqrt{z}=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)
-$$
-% ---
-{\bold Доказательство.} По определению нужно найти такое $v$, что
-% ---
-$$v^2=(x+yi)^2=x^2+2xyi-y^2=a+bi=z.$$
-% ---
-Получаем систему уравнений:
-% ---
-$$\begin{cases}
-x^2-y^2=a\\
-2xy=b
-\end{cases}\hspace*{-12pt}\iff
-+\begin{cases}
-(x^2-y^2)^2=a^2\\
-4x^2y^2=b^2
-\end{cases}\hspace*{-12pt}\iff
-(x^2+y^2)^2=\abs{z}^2$$
-% ---
-Извлечём корень из обеих частей уравнения:
-% ---
-$$\pm\begin{cases}
-x^2+y^2=\abs{z}\\
-x^2-y^2=a
-\end{cases}\hspace*{-12pt}\iff
-\begin{cases}
-2x^2=\abs{z}+a\\
-2y^2=\abs{z}-a
-\end{cases}\hspace*{-12pt}\iff$$
-$$x=\pm\sqrt{\frac{\abs{z}+a}{2}},\quad y=\pm\sqrt{\frac{\abs{z}-a}{2}}$$
-% ---
-Так как $xy=b/2$, то при $b\geq 0\implies\sgnn{x}=\sgnn{y}$, иначе
-$\sgnn{x}=-\sgnn{y}$. В общем виде это записывается так:
-% ---
-$$v=\pm\left(\sqrt{\frac{\abs{z}+a}{2}}+\sgnb{b}i\sqrt{\frac{\abs{z}-a}{2}}\right)\qedb$$
-% ---
-Произведение чисел $z_1,z_2\in\mathbb{C}$ --- число с модулем $\abs{z_1z_2}=$
-$\abs{\abs{z_1}\cdot\abs{z_2}}$ и аргументом $\arg(z_1z_2)=\arg z_1+\arg z_2$.
-
-{\bold Следствие.} Возведение в степень числа $z=r(\cos\phi+i\sin\phi)$:
-% ---
-$$z^n=r^n(\cos n\phi+i\sin n\phi),\ n\in\mathbb{Z}$$
-% ---
-Частное чисел $z_1,z_2\in\mathbb{C}$ --- число с модулем $\abs{z_1/z_2}=$
-$\abs{\abs{z_1}/\abs{z_2}}$ и аргументом $\arg(z_1/z_2)=\arg z_1-\arg z_2$.
-
-Извлечение корня $n$ степени из $z=r(\cos\phi+i\sin\phi)$:
-% ---
-$$\sqrt[n]{z}=\sqrt[n]{r}\left(\cos\frac{\phi+2\pi k}{n}+i\sin\frac{\phi+2\pi k}{n}
-\right),\ k\in\{m\}_{m=0}^{n-1}$$
-% ---
-{\bold Доказательство.} По определению нужно найти такое $v$, что
-% ---
-$$v^n=\rho^n(\cos n\alpha+i\sin n\alpha)=r(\cos\phi+i\sin\phi)=z$$
-% ---
-Получаем систему уравнений:
-% ---
-$$\begin{cases}
-\rho^n=r\\
-n\alpha=\phi+2\pi k
-\end{cases}\hspace{-12pt}\iff\begin{cases}
-\rho=\sqrt[n]{r}\\
-\alpha=(\phi+2\pi k)/n,\ k\in\mathbb{Z}
-\end{cases}$$
-% ---
-Значит,
-% ---
-$$v=\sqrt[n]{r}\left(\cos\frac{\phi+2\pi k}{n}+i\sin\frac{\phi+2\pi k}{n}\right).
-\qedb$$
 
 \subsection{Длина отрезка}
 
