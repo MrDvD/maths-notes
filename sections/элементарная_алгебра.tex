@@ -89,11 +89,24 @@ $$\forall x\in D_f\ \exists T\neq 0\colon f(x)=f(x\pm T),$$
 
 \subsection{Функция модуля}
 
-{\bold Абсолютная величина} {\ital (модуль)} --- чётная функция $f\colon\mathbb{R}
+{\bold Модуль} {\ital (абсолютная величина)} --- чётная функция $f\colon\mathbb{R}
 \to\mathbb{R}^+_0$, которая задаётся формулой:
 % ---
 $$f(x)=|x|=\begin{cases}x,\quad &x\geq 0\\-x,\quad &x\less 0\end{cases}$$
 % ---
+Свойства:
+% ---
+\begin{list*}
+\item $\abs{x}=\abs{y}\iff (x=y)\lor(x=-y)$
+\item дистрибутивность относительно {\ital умножения} $\cdot$ {\ital\color{desc} (деления)}
+\item {\ital неравенство треугольника:}
+% ---
+$$\begin{gathered}
+\abs{x+y}\leq \abs{x}+\abs{y}\\
+\abs{x-y}\geq\abs{\abs{x}-\abs{y}}
+\end{gathered}$$
+\end{list*}
+
 Она {\ital дистрибутивна} относительно умножения, отчасти --- относительно
 сложения: $|a+b|\leq |a|+|b|$.
 

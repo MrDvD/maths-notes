@@ -125,3 +125,141 @@ $$A\subseteq B\land A\supseteq B$$
 \end{theorem}
 
 {\bold Мощность} {\ital конечного} множества --- число его элементов.
+
+\subsection{Вектор}
+
+{\bold Вектор} {\ital (кортеж, или упорядоченная n-ка)} --- упорядоченный набор элементов --- {\ital координат (компонент)} вектора.
+
+{\bold Размерность} вектора --- число его координат.
+
+\begin{theorem}
+{\bold Декартово} {\ital (прямое)} {\bold произведение} множеств $X_1,\dots,X_n$ --- множество векторов вида:
+% ---
+$$X_1\times\dots\times X_n=\{(x_1,\dots,x_n)\mid x_1\in X_1,\dots,x_n\in X_n\}$$
+% ---
+Свойства:
+% ---
+\begin{list*}
+\item дистрибутивность относительно {\ital пересечения} $\cap$
+\item дистрибутивность относительно {\ital разности} $\backslash$
+\item {\ital *не коммутативность}
+\item {\ital *не ассоциативность}
+\item $(A\cap B)\times(C\cap D)=(A\times C)\cap(B\times D)$
+\end{list*}
+\end{theorem}
+% ---
+{\bold Декартова степень} множества --- прямое произведение одинаковых множеств:
+% ---
+$$A^3=A\times A\times A$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Мощность декартова произведения конечных множеств равна {\ital произведению мощностей} данных множеств:
+% ---
+$$\abs{A_1\times\dots\times A_n}=\abs{A_1}\times\dots\times\abs{A_n}$$
+\end{theorem}
+
+\subsection{Отношение}
+
+{\bold Отношение} $\rho$ между множествами $X_1,\dots,X_n$ --- подмножество их {\ital декартова произведения}.
+
+\begin{theorem}
+{\bold Бинарное} отношение включает {\ital два} множества, что можно упрощённо записать:
+% ---
+$$x\in X,\ y\in Y, \langle x, y\rangle\in\rho=:x\rho y$$
+% ---
+{\bold Унарное} отношение {\ital\color{desc} (свойство)} включает в себя...?
+\end{theorem}
+
+\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
+$X\supseteq D_\rho$ & область определения {\ital (прообраз)} отношения;\\
+$Y\supseteq E_\rho$ & область значений {\ital (образ)} отношения.
+\end{tabularc} 
+
+\subsection{Виды отношений}
+
+Отношение $\rho$ {\ital инъективно}, когда
+% ---
+$$\forall x_1,x_2\in D_\rho\ \exists y\in E_\rho\colon x_1\rho y,\ x_2\rho y\iff
+x_1=x_2.$$
+% ---
+Отношение $\rho$ {\ital функционально}, когда
+% ---
+$$\forall x\in D_\rho\ \exists! y\in E_\rho\colon x\rho y.$$
+% ---
+\begin{theorem}
+Функциональное отношение называется {\bold отображением} {\ital (функцией)}
+и обозначается:
+% ---
+$$\rho\colon X\xrightarrow{x\mapsto y} Y$$
+\end{theorem}
+% ---
+Отношение $\rho$ {\ital сюръективно}, когда
+% ---
+$$\forall y\in Y\ \exists x\in D_\rho\colon x\mapsto y.$$
+% ---
+Отношение $\rho$ {\ital всюду определено}, когда
+% ---
+$$\forall x\in X\ \exists y\in E_\rho\colon x\mapsto y.$$
+% ---
+\begin{theorem}
+{\bold Композиция} {\ital (суперпозиция)} бинарных отношений\\ $f\subseteq X\times Y,\ g\subseteq Y\times Z$ --- такое $h\subseteq X\times Z\iff f\circ g$, что:
+% ---
+$$\forall x\in X,\ z\in Z\exists y\in Y\ x(f\circ g)z\iff xfy\land ygz$$
+% ---
+Свойства:
+
+\begin{list*}
+\item ассоциативность
+\item {\ital *не коммутативность}
+\end{list*}
+\end{theorem}
+
+\begin{theorem}
+{\bold Обратное} бинарное отношение $\rho^{-1}$ получается переста"=новкой исходных множеств в декартовом произведении:
+% ---
+$$\rho\subseteq X\times Y\iff\rho^{-1}\subseteq Y\times X$$
+% ---
+Свойства:
+% ---
+\begin{list*}
+\item идемпотентность
+\item дистрибутивность относительно {\ital пересечения} $\cap$
+\item дистрибутивность относительно {\ital объединения} $\cup$
+\item дистрибутивность относительно {\ital композиции} $\circ$:
+% ---
+$$(P\circ Q)^{-1}=Q^{-1}\circ R^{-1}$$
+\end{list*}
+\end{theorem}
+
+\subsection{Свойства отношений}
+
+Пусть $\ast\subseteq X^2$ --- произвольное бинарное отношение.
+
+Отношение $\ast$ {\ital симметрично}, когда
+% ---
+$$\forall x,y\in X\ x\ast y=y\ast x.$$
+% ---
+Отношение $\ast$ {\ital антисимметрично}, когда
+% ---
+$$\forall x,y\in X\ x\ast y\land y\ast x\implies x=y$$
+% ---
+Отношение $\ast$ {\ital транзитивно}, когда
+% ---
+$$\forall x,y,z\in X\ x\ast y\land y\ast z\implies x\ast z$$
+% ---
+Отношение $\ast$ {\ital рефлексивно}, когда
+% ---
+$$\forall x\in X\ x\ast x$$
+% ---
+Отношение $\ast$ {\ital антирефликсивно}, когда
+% ---
+$$\forall x\in X\ \lnot (x\ast x)$$
+
+\subsection{Ограничение и продолжение}
+
+{\ital Ограничением} отображения $f\colon X\to Y$ на $S\subseteq D_f$ называется
+такое $f\vert_S\colon S\to Y$, что
+% ---
+$$\forall s\in S\colon f\vert_S(s)=f(s).$$
+% ---
+В свою очередь, $f$ является {\ital продолжением} отображения $f\vert_S$.\par

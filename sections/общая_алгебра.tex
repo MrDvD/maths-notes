@@ -1,163 +1,43 @@
 \section{Общая алгебра}
 
-\subsection{Вектор}
-
-{\bold Вектор} {\ital (кортеж, или упорядоченная n-ка)} --- упорядоченный набор элементов --- {\ital координат (компонент)} вектора.
-
-{\bold Размерность} вектора --- число его координат.
-
-\begin{theorem}
-{\bold Декартово} {\ital (прямое)} {\bold произведение} множеств $X_1,\dots,X_n$ --- множество векторов вида:
-% ---
-$$X_1\times\dots\times X_n=\{(x_1,\dots,x_n)\mid x_1\in X_1,\dots,x_n\in X_n\}$$
-% ---
-Свойства:
-% ---
-\begin{list*}
-\item дистрибутивность относительно {\ital пересечения} $\cap$
-\item дистрибутивность относительно {\ital разности} $\backslash$
-\item {\ital *не коммутативность}
-\item {\ital *не ассоциативность}
-\item $(A\cap B)\times(C\cap D)=(A\times C)\cap(B\times D)$
-\end{list*}
-\end{theorem}
-% ---
-{\bold Декартова степень} множества --- прямое произведение одинаковых множеств:
-% ---
-$$A^3=A\times A\times A$$
-% ---
-\begin{theorem}
-{\bold Теорема.} Мощность декартова произведения конечных множеств равна {\ital произведению мощностей} данных множеств:
-% ---
-$$\abs{A_1\times\dots\times A_n}=\abs{A_1}\times\dots\times\abs{A_n}$$
-\end{theorem}
-
-\subsection{Отношение}
-
-{\bold Отношение} $\rho$ между множествами $X_1,\dots,X_n$ --- подмножество их {\ital декартова произведения}.
-
-\begin{theorem}
-{\bold Бинарное} отношение включает {\ital два} множества, что можно упрощённо записать:
-% ---
-$$x\in X,\ y\in Y, \langle x, y\rangle\in\rho=:x\rho y$$
-% ---
-{\bold Унарное} отношение {\ital\color{desc} (свойство)} включает в себя...?
-\end{theorem}
-
-\begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
-$X\supseteq D_\rho$ & область определения {\ital (прообраз)} отношения;\\
-$Y\supseteq E_\rho$ & область значений {\ital (образ)} отношения.
-\end{tabularc} 
-
-\subsection{Виды отношений}
-
-Отношение $\rho$ {\ital инъективно}, когда
-% ---
-$$\forall x_1,x_2\in D_\rho\ \exists y\in E_\rho\colon x_1\rho y,\ x_2\rho y\iff
-x_1=x_2.$$
-% ---
-Отношение $\rho$ {\ital функционально}, когда
-% ---
-$$\forall x\in D_\rho\ \exists! y\in E_\rho\colon x\rho y.$$
-% ---
-\begin{theorem}
-Функциональное отношение называется {\bold отображением} {\ital (функцией)}
-и обозначается:
-% ---
-$$\rho\colon X\xrightarrow{x\mapsto y} Y$$
-\end{theorem}
-% ---
-Отношение $\rho$ {\ital сюръективно}, когда
-% ---
-$$\forall y\in Y\ \exists x\in D_\rho\colon x\mapsto y.$$
-% ---
-Отношение $\rho$ {\ital всюду определено}, когда
-% ---
-$$\forall x\in X\ \exists y\in E_\rho\colon x\mapsto y.$$
-% ---
-\begin{theorem}
-{\bold Композиция} {\ital (суперпозиция)} бинарных отношений\\ $f\subseteq X\times Y,\ g\subseteq Y\times Z$ --- такое $h\subseteq X\times Z\iff f\circ g$, что:
-% ---
-$$\forall x\in X,\ z\in Z\exists y\in Y\ x(f\circ g)z\iff xfy\land ygz$$
-% ---
-Свойства:
-
-\begin{list*}
-\item ассоциативность
-\item {\ital *не коммутативность}
-\end{list*}
-\end{theorem}
-
-\begin{theorem}
-{\bold Обратное} бинарное отношение $\rho^{-1}$ получается переста"=новкой исходных множеств в декартовом произведении:
-% ---
-$$\rho\subseteq X\times Y\iff\rho^{-1}\subseteq Y\times X$$
-% ---
-Свойства:
-% ---
-\begin{list*}
-\item идемпотентность
-\item дистрибутивность относительно {\ital пересечения} $\cap$
-\item дистрибутивность относительно {\ital объединения} $\cup$
-\item дистрибутивность относительно {\ital композиции} $\circ$:
-% ---
-$$(P\circ Q)^{-1}=Q^{-1}\circ R^{-1}$$
-\end{list*}
-\end{theorem}
-
-\subsection{Свойства отношений}
-
-Пусть $\ast\subseteq X^2$ --- произвольное бинарное отношение.
-
-Отношение $\ast$ {\ital симметрично}, когда
-% ---
-$$\forall x,y\in X\ x\ast y=y\ast x.$$
-% ---
-Отношение $\ast$ {\ital антисимметрично}, когда
-% ---
-$$\forall x,y\in X\ x\ast y\land y\ast x\implies x=y$$
-% ---
-Отношение $\ast$ {\ital транзитивно}, когда
-% ---
-$$\forall x,y,z\in X\ x\ast y\land y\ast z\implies x\ast z$$
-% ---
-Отношение $\ast$ {\ital рефлексивно}, когда
-% ---
-$$\forall x\in X\ x\ast x$$
-% ---
-Отношение $\ast$ {\ital антирефликсивно}, когда
-% ---
-$$\forall x\in X\ \lnot (x\ast x)$$
-
-\subsection{Ограничение и продолжение}
-
-{\ital Ограничением} отображения $f\colon X\to Y$ на $S\subseteq D_f$ называется
-такое $f\vert_S\colon S\to Y$, что
-% ---
-$$\forall s\in S\colon f\vert_S(s)=f(s).$$
-% ---
-В свою очередь, $f$ является {\ital продолжением} отображения $f\vert_S$.\par
-
 \subsection{Алгебраическая операция}
 
-$n$-местная {\bold алгебраическая операция} --- отображение:
+$n$-местная {\bold алгебраическая операция} $\ast$ --- отображение:
 % ---
-$$\ast\colon X^n\to X$$
+$$\ast\colon X_1\times\dots\times X_n\to Y$$
 % ---
-{\bold Нейтральным} называется такой элемент $e\in X$, что:
+Операция $\ast$ {\bold внутренняя} для множества $X$ {\ital (множество $X$ {\boldital замкнуто} относительно операции $\ast$)}, если:
+% ---
+$$X_1=\dots=X_n=Y=X$$
+% ---
+Иначе операция $\ast$ {\bold внешняя} для множества $X$ {\ital (множество $X$ {\boldital не замкнуто} относительно операции $\ast$)}.
+
+{\bold Нейтральным} от-но $\ast$ наз-ся такой элемент $e\in X$, что:
 % ---
 $$\forall x\in X\ e\ast x=x\ast e=x$$
 % ---
-{\bold Поглощающим} называется такой элемент $w\in X$, что:
+\begin{theorem}
+Если нейтральный элемент $e$ от-но $\ast$ существует, то он {\ital единственный}.
+\end{theorem}
+% ---
+{\bold Поглощающим} от-но $\ast$ наз-ся такой элемент $w\in X$, что:
 % ---
 $$\forall x\in X\ w\ast x=x\ast w=w$$
 % ---
-{\bold Симметричным} {\ital (противоположным, обратным)} к элементу $x\in X$ называется такой элемент $x^{-1}\in X$, что:
+\begin{theorem}
+Если поглощающий элемент $w$ от-но $\ast$ существует, то он {\ital единственный}.
+\end{theorem}
+% ---
+{\bold Симметричным} {\ital (противоположным, обратным)} к~элементу $x\in X$ от-но $\ast$ наз-ся такой элемент $x^{-1}\in X$, что:
 % ---
 $$x\ast x^{-1}=x^{-1}\ast x=e\text{ {\ital\color{desc}(нейтр.)}}$$
 % ---
 \begin{theorem}
-Если $y\colon X\to Y$ и $x\colon Y\to X$ --- отображения, то $y$ 
+Если симметричный элемент $x^{-1}$ к элементу $x$ от-но ассоциативной $\ast$ существует, то он {\ital единственный}.
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Теорема.} Если $y\colon X\to Y$ и $x\colon Y\to X$ --- отображения, то $y$ 
 {\ital инъективно}, а $x$ {\ital сюръективно}.
 \end{theorem}
 
@@ -201,16 +81,21 @@ $$\forall x,y,z\in X\
 {\bold Алгебраическая структура} {\ital (система)} --- множество $X$ с~введёнными на нём 
 алгебраическими операциями:
 % ---
-$$\langle X;\ \ast_1,\ast_2,\dots,\ast_n\rangle$$
+$$(X,\ast_1,\ast_2,\dots,\ast_n)$$
 % ---
-{\bold Полугруппа} --- алгебраическая структура $\langle X;\ \ast\rangle$ с двухмест"=ной 
-ассоциативной операцией $\ast$.
+{\bold Магма} {\ital (группоид)} --- алгебраическая структура $(X,\ast)$ с~внутренней бинарной операцией $\ast$.
 
-{\bold Группа} --- полугруппа, для которой существуют нейтраль"=ный и обратный элементы.
-\par
-
-{\bold Кольцо} --- коммутативная аддитивная группа, мультиплика"=тивная полугруппа, где
-$\times$ дистрибутивно относительно $+$.\par
+{\bold Группа} --- магма, для которой справедливо:
+% ---
+\begin{list*}[][\#]
+\item Ассоциативность $\ast$ --- для {\bold полугруппы}.
+\item $\exists$ нейтральный элемент от-но $\ast$ --- для {\bold моноида}.
+\item $\forall x\in G\ \exists$ симметричный элемент от-но $\ast$.
+{\color{desc}\item Коммутативность $\ast$ --- для {\bold абелевой} группы.}
+\end{list*}
+% ---
+{\bold Кольцо} --- коммутативная аддитивная группа, мультипликативная полугруппа, где
+$\times$ дистрибутивно относительно $+$.
 
 {\bold Поле} --- коммутативное кольцо с обратным элементом для $\times$.
 
@@ -227,15 +112,165 @@ $\times$ дистрибутивно относительно $+$.\par
 {\bold Система действительных чисел} --- непрерывное упорядо"=ченное поле $\langle\mathbb
 {R};\ +,\times\rangle$.
 
-{\bold Проективно расширенная числовая прямая} --- расширение множества действительных 
-чисел $\widehat{\mathbb{R}}=\mathbb{R}\cup\{\infty\}$:
+\subsection{Действительные числа}
+
+{\bold Система действительных чисел} --- алгебраическая структура $\langle\mathbb{R};\ +,\cdot,\leq\rangle$, в которой выполняется следующая {\ital аксиоматика}.
 % ---
-\begin{alignat*}{2}
-a\pm\infty&=\infty\pm a=\infty,\quad &&a\neq\infty\\
-b\cdot\infty&=\infty\cdot b=\infty, &&b\neq 0\\
-\end{alignat*}\\[-26pt]
+\begin{theorem}
+{\bold Аксиомы сложения.} {\ital Сложение} --- алгебраическая операция $+\colon\mathbb{R}^2\to\mathbb{R}$.
+
+Свойства:
 % ---
-$$\frac{a}{\infty}=0\quad\quad\frac{b}{0}=\infty$$
+\begin{list*}[][\#]
+\item коммутативность
+\item ассоциативность
+\item существование нейтрального элемента
+\item существование противоположного {\ital (симметричного)} элемента
+\end{list*}
+% ---
+Следствия из аксиом:
+% ---
+\begin{list*}[][\#]
+\item Единственность нуля {\ital (нейтрального элемента)}.
+\item Единственность противоположного {\ital (симметричного)} элемента.
+\item Умножение на $-1$ порождает противоположный элемент.
+\end{list*}
+\end{theorem}
+
+\begin{theorem}
+{\bold Аксиомы умножения.} {\ital Умножение} --- алгебраическая операция $\cdot\colon\mathbb{R}^2\to\mathbb{R}$.
+
+Свойства:
+% ---
+\begin{list*}[][\#]
+\item коммутативность
+\item ассоциативность
+\item существование нейтрального элемента
+\item существование обратного {\ital (симметричного)} элемента
+\end{list*}
+% ---
+Следствия из аксиом:
+% ---
+\begin{list*}[][\#]
+\item Единственность единицы {\ital (нейтрального элемента)}.
+\item Единственность обратного {\ital (симметричного)} элемента.
+\item Нуль --- поглощающий элемент.
+\end{list*}
+\end{theorem}
+
+\begin{theorem}
+{\bold Связь сложения и умножения.} {\ital\color{desc} (Дистрибутивность $\cdot$ от-но $+$)}
+% ---
+$$\forall x,y,z\in\mathbb{R}\ x\cdot(y+z)=x\cdot y+x\cdot z$$
+\end{theorem}
+
+\begin{theorem}
+{\bold Аксиомы порядка.} {\ital Неравенство} --- алгебраическая операция $\leq\colon\mathbb{R}^2\to\mathbb{R}$.
+
+Свойства:
+% ---
+\begin{list*}[][\#]
+\item рефлексивность
+\item антисимметричность
+\item транзитивность
+\item {\ital линейная упорядоченность:}
+% ---
+$$\forall x,y\in\mathbb{R}\ (x\leq y)\lor(y\leq x)$$
+\end{list*}
+\end{theorem}
+
+\begin{theorem}
+{\bold Связь сложения и порядка.}
+% ---
+$$\forall x,y,z\in\mathbb{R}\ x\leq y\iff x+z\leq y+z$$
+% ---
+{\bold Следствие.}
+% ---
+$$(x\leq y)\land(z\leq k)\implies x+z\leq y+k$$
+\end{theorem}
+
+\begin{theorem}
+{\bold Связь умножения и порядка.}
+% ---
+$$\forall x,y,z\in\mathbb{R}\ (0\leq x)\land(0\leq y)\implies 0\leq x\cdot y$$
+% ---
+{\bold Следствия.}
+% ---
+$$\begin{aligned}
+0\greater x\land 0\greater y&\implies 0\less xy\\
+0\greater x\land 0\less y&\implies 0\greater xy\\
+x\less y\land z\greater 0&\implies xz\less yz\\
+x\less y\land z\less 0&\implies xz\greater yz
+\end{aligned}$$
+\end{theorem}
+
+\begin{theorem}
+{\bold Аксиома полноты.} Пусть $X,Y\subset\mathbb{R}$ и $X\neq\emptyset$, $Y\neq\emptyset$. 
+% ---
+$$(\forall x\in X,\ y\in Y\ x\leq y)\implies\exists c\in\mathbb{R}\ x\leq c\leq y$$
+\end{theorem}
+
+\begin{theorem}
+{\bold Лемма.} {\ital\color{desc}(Сравнение нуля и единицы)}
+% ---
+$$0\less 1$$
+\end{theorem}
+
+Доказательство леммы следует из {\ital аксиом порядка}.
+
+\subsection{Подмножества $\mathbb{R}$}
+
+Для {\bold индуктивного} множества $X\subset\mathbb{R}$ справедливо:
+% ---
+$$\forall x\in X\ (x+1)\in X$$
+% ---
+Примеры индуктивных множеств: $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{I}$, $\mathbb{R}$.
+
+\begin{theorem}
+{\bold Принцип математической индукции.} Пусть $X\subset\mathbb{N}$:
+% ---
+$$(\underbrace{1\in X}_{1}\land\underbrace{\forall x\in X\ (x+1)\in X}_{2})\implies X=\mathbb{N}$$
+% ---
+\begin{list*}[][\#]
+\item Базис индукции.
+\item Индукционный шаг.
+\end{list*}
+\end{theorem}
+% ---
+{\bold Целые числа} $\mathbb{Z}$ --- объединение $\mathbb{N}$ с множеством чисел, противоположных к $\mathbb{N}$, и нулём.
+
+{\bold Рациональные числа} $\mathbb{Q}$ --- множество чисел вида:
+% ---
+$$m\cdot n^{-1},\quad m,n\in\mathbb{Q}$$
+% ---
+{\bold Иррациональные числа} $\mathbb{I}$ --- множество вида:
+% ---
+$$\mathbb{I}=\mathbb{R}\backslash\mathbb{Q}$$
+
+\subsection{Расширенная числовая прямая}
+
+{\bold Расширенная числовая прямая} --- расширение множества действительных 
+чисел:
+% ---
+$$\bar{\mathbb{R}}=\mathbb{R}\cup\{\pm\infty\}$$
+% ---
+Свойства бесконечности:
+% ---
+$$\begin{gathered}
+(\pm\infty)+(\pm\infty)=\pm\infty\\
+(\pm\infty)\cdot(\pm\infty)=+\infty\\
+(+\infty)\cdot(-\infty)=-\infty\\
+x+(\pm\infty)=(\pm\infty)+x=\pm\infty,\quad x\in\mathbb{R}\\
+x\cdot(\pm\infty)=(\pm\infty)\cdot x=\begin{cases*}
+&\pm\infty,\quad x\greater 0\\
+&\mp\infty,\quad x\less 0
+\end{cases*}\\
+\frac{x}{0}=\begin{cases*}
+&+\infty,\quad x\greater 0\\
+&-\infty,\quad x\less 0
+\end{cases*}\\
+\frac{x}{\infty}=0,\quad x\in\mathbb{R}
+\end{gathered}$$
 
 \newpage
 \subsection{Комплексные числа}
