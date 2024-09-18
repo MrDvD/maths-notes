@@ -1,70 +1,5 @@
 \section{Теория множеств}
 
-\subsection{Открытое множество}
-
-{\ital $\varepsilon$-окрестность} точки $x_0\in X$ метрического пространства
-$\langle X,d\rangle$ --- такое множество точек $x\in X$, что $d(x_0,x)\less\varepsilon$.
-
-Упрощённая запись $\{x\mid d(x_0,x)\less\varepsilon\}=:U_\varepsilon(x_0)$.
-
-Особые случаи:
-% ---
-\begin{align*}
-U_\varepsilon(+\infty)&:=(1/\varepsilon;+\infty)\\
-U_\varepsilon(-\infty)&:=(-\infty;-1/\varepsilon)
-\end{align*}
-% ---
-{\ital Проколотой} называется $\varepsilon$-окрестность точки $x_0$ без неё:\\[-8pt]
-% ---
-$$\overset{\circ}{U}_\varepsilon(x_0):=U_\varepsilon(x_0)\backslash\{x_0\}$$
-% ---
-{\ital Правосторонней (левосторонней)} называется $\varepsilon$-окрестность точки $x_0$
-без левой (правой) половины:
-% ---
-$$U_{\varepsilon+}(x_0):=[x_0;\varepsilon)\quad\quad U_{\varepsilon-}(x_0):=(\varepsilon;x_0]$$
-
-\subsection{Ограниченное множество}
-
-Множество $M$ ограничено {\ital сверху}, если
-% ---
-$$\forall m\in M\ \exists C\in\mathbb{R}\colon m\leq C.$$
-% ---
-{\bold Точной} {\ital (минимальной}, англ. {\ital supremum)} называется такая
-{\ital верхняя} граница множества $M$ --- $\sup M$, что
-% ---
-$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon-}(\sup M).$$
-% ---
-Множество $M$ ограничено {\ital снизу}, если
-% ---
-$$\forall m\in M\ \exists C\in\mathbb{R}\colon m\geq C.$$
-% ---
-{\bold Точной} {\ital (максимальной}, англ. {\ital infimum)} называется такая
-{\ital нижняя} граница множества $M$ --- $\inf M$, что
-% ---
-$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon+}(\inf M).$$
-
-\subsection{Принцип Кантора}
-
-Последовательность вложенных отрезков содержит точки $\xi$, которые принадлежат им всем:
-% ---
-$$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]$$
-% ---
-Если $n\to\infty$, $(b_n-a_n)\to 0$, то $\xi$ единственна:
-% ---
-$$\lim_{n\to\infty}a_n=\sup\{a_n\}=\lim_{n\to\infty}b_n=\inf\{b_n\}=\xi$$
-% ---
-{\bold Доказательство.} По теореме Вейерштрасса:
-% ---
-$$\lim_{n\to\infty}a_n=\sup\{a_n\}\quad\quad\lim_{n\to\infty}b_n=\inf\{b_n\}$$
-% ---
-Значит, $\forall(n\in\mathbb{N},\ \xi\in[\sup\{a_n\};\inf\{b_n\}])\ \xi\in[a_n;b_n]$.
-$\qedw$
-
-Если $\inf\{b_n\}=\sup\{a_n\}$, то $\xi$ единственна:
-% ---
-$$0=\inf\{b_n\}-\sup\{a_n\}=\lim_{n\to\infty}b_n-\lim_{n\to\infty}a_n=\lim_{n\to\infty}
-(b_n-a_n)\qedb$$
-% ---
 \subsection{Определение}
 
 {\bold Множеством} называется объединение {\ital различных} объектов --- {\ital элементов} множества --- в единое целое.
@@ -262,4 +197,142 @@ $$\forall x\in X\ \lnot (x\ast x)$$
 % ---
 $$\forall s\in S\colon f\vert_S(s)=f(s).$$
 % ---
-В свою очередь, $f$ является {\ital продолжением} отображения $f\vert_S$.\par
+В свою очередь, $f$ является {\ital продолжением} отображения $f\vert_S$.
+
+\subsection{Промежутки числовой прямой}
+
+{\bold Отрезок} --- множество вида:
+% ---
+$$[a,b]=\{x\in\mathbb{R}\mid a\leq x\leq b\}$$
+% ---
+{\bold Интервал} --- множество вида:
+% ---
+$$[a,b]=\{x\in\mathbb{R}\mid a\less x\less b\}$$
+% ---
+{\bold Полуинтервал} --- множества вида:
+% ---
+$$\begin{gathered}
+[a,b)=\{x\in\mathbb{R}\mid a\leq x\less b\}\\
+(a,b]=\{x\in\mathbb{R}\mid a\less x\leq b\}
+\end{gathered}$$
+% ---
+{\bold Луч} --- множества вида:
+% ---
+$$\begin{gathered}
+[a,+\infty)=\{x\in\mathbb{R}\mid x\geq a\}\\
+(a,+\infty)=\{x\in\mathbb{R}\mid x\greater a\}\\
+(-\infty,b]=\{x\in\mathbb{R}\mid x\leq a\}\\
+(-\infty,b)=\{x\in\mathbb{R}\mid x\less a\}
+\end{gathered}$$
+% ---
+\begin{theorem}
+{\bold $\symbf{\varepsilon}$-окрестность} точки $x_0\in\mathbb{R}$ --- интервал вида:
+% ---
+$$U_\varepsilon(x_0)=\{x\in\mathbb{R}\colon\abs{x-x_0}\less\varepsilon\}=(x_0-\varepsilon,x_0+\varepsilon)$$
+
+Особые случаи:
+% ---
+$$\begin{gathered}
+U_\varepsilon(+\infty)=(1/\varepsilon,+\infty)\\
+U_\varepsilon(-\infty)=(-\infty,-1/\varepsilon)
+\end{gathered}$$
+\end{theorem}
+% ---
+{\bold Проколотая} $\varepsilon$-окрестность точки $x_0$ не включает саму точку:\\[-8pt]
+% ---
+$$\overset{\circ}{U}_\varepsilon(x_0)=U_\varepsilon(x_0)\backslash\{x_0\}$$
+% ---
+{\bold Правосторонняя (левосторонняя)} $\varepsilon$-окрестность точки $x_0$
+не содержит свою {\ital левую  (правую)} половину:
+% ---
+$$U_{\varepsilon+}(x_0)=[x_0;\varepsilon)\quad\quad U_{\varepsilon-}(x_0)=(\varepsilon;x_0]$$
+
+\subsection{Ограниченное множество}
+
+Множество $M$ {\bold ограничено сверху}, если:
+% ---
+$$\forall m\in M\ \exists C\in\mathbb{R}\colon m\leq C$$
+% ---
+{\bold Верхняя граница} множества $M$ --- такое $N\in\mathbb{R}$, что:
+% ---
+$$\forall x\in M\colon x\leq N$$
+% ---
+{\bold Наибольший элемент} {\ital (максимум)} множества $M$ --- такое $\max M\in M$, что:
+% ---
+$$\forall x\in M\ x\leq\max M$$
+% ---
+{\bold Супремум} {\ital (точная верхняя граница)} --- такая верхняя граница множества $M$ --- $\sup M$, что:
+% ---
+$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon-}(\sup M)$$
+% ---
+\begin{theorem}
+{\bold Связь супремума с максимумом.} Если у множества $M$ существует $\max M$, то:
+% ---
+$$\sup M=\max M$$ 
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Принцип точной грани.} Если непустое множество $M$ ограничено сверху, то существует {\ital единственный} $\sup M$.
+\end{theorem}
+% ---
+Множество $M$ {\bold ограничено снизу}, если:
+% ---
+$$\forall m\in M\ \exists C\in\mathbb{R}\colon m\geq C$$
+% ---
+{\bold Нижняя граница} множества $M$ --- такое $N\in\mathbb{R}$, что:
+% ---
+$$\forall x\in M\colon x\geq N$$
+% ---
+{\bold Наименьший элемент} {\ital (минимум)} множества $M$ --- такое $\min N\in M$, что:
+% ---
+$$\forall x\in M\ x\geq\min M$$
+% ---
+{\bold Инфимум} {\ital (точная нижняя граница)} --- такая нижняя граница множества $M$ --- $\inf M$, что:
+% ---
+$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon+}(\inf M)$$
+% ---
+\begin{theorem}
+{\bold Связь инфимума с минимумом.} Если у множества $M$ существует $\min M$, то:
+% ---
+$$\inf M=\min M$$ 
+\end{theorem}
+% ---
+\begin{theorem}
+{\bold Принцип точной грани.} Если непустое множество $M$ ограничено снизу, то существует {\ital единственный} $\inf M$.
+\end{theorem}
+% ---
+{\bold Ограниченное} множество $M$ ограничено {\ital и сверху, и снизу}:
+% ---
+$$\exists N\in\mathbb{R}\colon\forall x\in M\ \abs{x}\leq N$$
+% ---
+\begin{theorem}
+{\bold Принцип Архимеда.} Пусть $x\in\mathbb{R}^+$. Тогда справедливо:
+% ---
+$$\forall y\in\mathbb{R}\ \exists!k\in\mathbb{Z}\colon (k-1)x\less y\leq kx$$
+% ---
+{\bold Следствие.} Для $x\in\mathbb{R}$ существует такое $k\in\mathbb{Z}$, что:
+% ---
+$$k\leq x\less k+1\qquad{\color{desc} (k=[x])}$$
+\end{theorem}
+
+\subsection{Принцип Кантора}
+
+Последовательность вложенных отрезков содержит точки $\xi$, которые принадлежат им всем:
+% ---
+$$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]$$
+% ---
+Если $n\to\infty$, $(b_n-a_n)\to 0$, то $\xi$ единственна:
+% ---
+$$\lim_{n\to\infty}a_n=\sup\{a_n\}=\lim_{n\to\infty}b_n=\inf\{b_n\}=\xi$$
+% ---
+{\bold Доказательство.} По теореме Вейерштрасса:
+% ---
+$$\lim_{n\to\infty}a_n=\sup\{a_n\}\quad\quad\lim_{n\to\infty}b_n=\inf\{b_n\}$$
+% ---
+Значит, $\forall(n\in\mathbb{N},\ \xi\in[\sup\{a_n\};\inf\{b_n\}])\ \xi\in[a_n;b_n]$.
+$\qedw$
+
+Если $\inf\{b_n\}=\sup\{a_n\}$, то $\xi$ единственна:
+% ---
+$$0=\inf\{b_n\}-\sup\{a_n\}=\lim_{n\to\infty}b_n-\lim_{n\to\infty}a_n=\lim_{n\to\infty}
+(b_n-a_n)\qedb$$
