@@ -106,35 +106,40 @@ $$x\in X,\ y\in Y, \langle x, y\rangle\in\rho=:x\rho y$$
 \end{theorem}
 
 \begin{tabularc}{0pt}{0pt}{r @{ --- } l}{n}
-$X\supseteq D_\rho$ & область определения {\ital (прообраз)} отношения;\\
-$Y\supseteq E_\rho$ & область значений {\ital (образ)} отношения.
-\end{tabularc} 
+$X\supseteq D_\rho$ & область определения {\bold (прообраз)} отношения\\
+$Y\supseteq E_\rho$ & область значений {\bold (образ)} отношения.
+\end{tabularc}
+% ---
+{\bold Наложение} {\ital (сюръекция)} --- бинарное отношение с $Y=E_\rho$:
+% ---
+$$\begin{gathered}
+\forall y\in Y\ \exists x\in D_\rho\colon x\rho y\\
+\rho\colon X\twoheadrightarrow Y
+\end{gathered}$$
+% ---
+У {\bold частично определённого} бинарного отношения $X\neq D_\rho$:
+% ---
+$$\exists x\in X\ \forall y\in E_\rho\colon x\not\rho y$$
 
 \subsection{Виды отношений}
 
-Отношение $\rho$ {\ital инъективно}, когда
+{\bold Вложение} {\ital (инъекция, мономорфизм)} --- бинарное отношение $\rho$ вида:
 % ---
-$$\forall x_1,x_2\in D_\rho\ \exists y\in E_\rho\colon x_1\rho y,\ x_2\rho y\iff
-x_1=x_2.$$
+$$\begin{gathered}
+\forall x_1,x_2\in D_\rho\ \exists y\in E_\rho\colon x_1\rho y,\ x_2\rho y\iff x_1=x_2\\
+\rho\colon X\hookrightarrow Y
+\end{gathered}$$
 % ---
-Отношение $\rho$ {\ital функционально}, когда
+{\bold Функция} {\ital (отображение)} --- бинарное отношение $\rho$ вида:
 % ---
-$$\forall x\in D_\rho\ \exists! y\in E_\rho\colon x\rho y.$$
+$$\begin{gathered}
+\forall x\in D_\rho\ \exists!y\in E_\rho\colon x\rho y\\
+\rho\colon X\xrightarrow{x\mapsto y} Y
+\end{gathered}$$
 % ---
-\begin{theorem}
-Функциональное отношение называется {\bold отображением} {\ital (функцией)}
-и обозначается:
+{\bold Изоморфизм} {\ital (биекция)} --- бинарное отношение, которое является {\ital и вложением, и наложением}:
 % ---
-$$\rho\colon X\xrightarrow{x\mapsto y} Y$$
-\end{theorem}
-% ---
-Отношение $\rho$ {\ital сюръективно}, когда
-% ---
-$$\forall y\in Y\ \exists x\in D_\rho\colon x\mapsto y.$$
-% ---
-Отношение $\rho$ {\ital всюду определено}, когда
-% ---
-$$\forall x\in X\ \exists y\in E_\rho\colon x\mapsto y.$$
+$$\rho\colon X\xrightarrow{\sim}Y$$
 % ---
 \begin{theorem}
 {\bold Композиция} {\ital (суперпозиция)} бинарных отношений\\ $f\subseteq X\times Y,\ g\subseteq Y\times Z$ --- такое $h\subseteq X\times Z\iff f\circ g$, что:
@@ -157,7 +162,7 @@ $$\rho\subseteq X\times Y\iff\rho^{-1}\subseteq Y\times X$$
 Свойства:
 % ---
 \begin{list*}
-\item идемпотентность
+\item инволютивность
 \item дистрибутивность относительно {\ital пересечения} $\cap$
 \item дистрибутивность относительно {\ital объединения} $\cup$
 \item дистрибутивность относительно {\ital композиции} $\circ$:
@@ -189,6 +194,10 @@ $$\forall x\in X\ x\ast x$$
 Отношение $\ast$ {\ital антирефликсивно}, когда
 % ---
 $$\forall x\in X\ \lnot (x\ast x)$$
+
+\subsection{Эквиваленция}
+
+{\bold Эквиваленция} --- бинарное отношение...
 
 \subsection{Ограничение и продолжение}
 
