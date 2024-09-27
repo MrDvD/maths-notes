@@ -75,6 +75,12 @@ $$\forall x,y,z\in X\
 &x\ast(y\circ z)=(x\ast y)\circ (x\ast z)\text{ {\ital\color{desc} (дистр. справа)}}\\
 &(x\circ y)\ast z=(x\ast z)\circ(y\ast z)\text{ {\ital\color{desc} (дистр. слева)}}
 \end{cases*}$$
+% ---
+\begin{theorem}
+{\bold Теорема.} Пусть $e$ --- нейтральный элемент от-но операции $\ast$, дистрибутивной от-но операции $\circ$. Тогда $e$ --- {\ital поглощающий элемент} от-но $\circ$.
+\end{theorem}
+
+{\ital (Работает ли теорема выше в обратную сторону?)}
 
 \subsection{Алгебраическая структура}
 
@@ -83,14 +89,16 @@ $$\forall x,y,z\in X\
 % ---
 $$(X,\ast_1,\dots,\ast_n)$$
 % ---
-Структуры $(M,\circ)$, $(N,\ast)$ {\bold изоморфны}, если существует изоморфизм $f$ вида:
+Для {\bold голоморфных} структур $(M,\circ)$, $(N,\ast)$ существует отображение $f$ вида:
+% ---
+$$f\colon M\to N\iff\forall x,y\in M\ f(x\circ y)=f(x)\ast f(y)$$
+% ---
+Для {\bold изоморфных} структур $(M,\circ)$, $(N,\ast)$ существует изоморфизм $f$ вида:
 % ---
 $$\begin{gathered}
 f\colon M\xrightarrow{\sim} N\iff\forall x,y\in M\ f(x\circ y)=f(x)\ast f(y)\\
 (M,\circ)\simeq (N,\ast)
 \end{gathered}$$
-% ---
-{\bold Голоморфизм} --- ...
 
 \subsection{Виды структур}
 
@@ -110,11 +118,14 @@ f\colon M\xrightarrow{\sim} N\iff\forall x,y\in M\ f(x\circ y)=f(x)\ast f(y)\\
 \begin{list*}[][\#]
 \item Абелева группа относительно {\ital сложения} $+$.
 \item Дистрибутивность {\ital умножения} относительно {\ital сложения}.
-{\color{desc}\item Полугруппа относительно {\ital умножения} $\cdot$ --- для {\bold ассоциативного кольца}.}
+{\color{desc}\item Ассоциативность {\ital умножения} $\cdot$ --- для {\bold ассоциативного кольца}.}
 {\color{desc}\item Коммутативность {\ital умножения} --- для {\bold коммутативного кольца}.}
+{\color{desc}\item $\exists$ нейтральный элемент от-но $\cdot$ --- для {\bold кольца с~единицей}.}
 {\color{desc}\item Группа относительно {\ital умножения} --- для {\bold поля}.}
 \end{list*}
 % ---
+
+
 {\bold Подгруппа} --- подмножество $H$ аддитивной абелевой группы $G$, которое замкнуто по сложению на всей группе $G$:
 % ---
 $$+\colon H\times G\to H$$

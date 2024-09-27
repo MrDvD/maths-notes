@@ -220,14 +220,14 @@ def fill_blocks(string, blocks):
 \node (neql) [draw, line width=1pt, anchor=east, align=left] at (-2.3,-1) {$LCS(n-1,m)$};
 \node (eq) [draw, line width=1pt, align=left] at (0,-1) {$LCS(n-1,m-1)$};
 \node (neqr) [draw, line width=1pt, anchor=west, align=left] at (2.3,-1) {$LCS(n,m-1)$};
-\draw [-{>[length=6pt]}, line width=.8pt] (start.west) -- (neql.north) node [midway, above, sloped, scale=.8] {$S_1[n]\neq S_2[m]$};
-\draw [-{>[length=6pt]}, line width=.8pt] (start.south) -- (eq.north) node [midway, yshift=2pt, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$S_1[n]=S_2[m]$};
-\draw [-{>[length=6pt]}, line width=.8pt] (start.east) -- (neqr.north) node [midway, above, sloped, scale=.8] {$S_1[n]\neq S_2[m]$};
+\draw [-{>[length=6pt]}, line width=.8pt] (neql.north) -- (start.west) node [midway, above, sloped, scale=.8] {$S_1[n]\neq S_2[m]$};
+\draw [-{>[length=6pt]}, line width=.8pt] (eq.north) -- (start.south) node [midway, yshift=2pt, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$S_1[n]=S_2[m]$};
+\draw [-{>[length=6pt]}, line width=.8pt] (neqr.north) -- (start.east) node [midway, above, sloped, scale=.8] {$S_1[n]\neq S_2[m]$};
 \end{tikzpicture}\par}
 
 \begin{list*}[][\#]
-\item Если $S_1[n]=S_2[m]\implies$инкрементируем прошлый узел.
-\item Если $S_1[n]\neq S_2[m]\implies$максимизируем прошлые узлы.
+\item $S_1[n]=S_2[m]\implies$инкрементируем прошлый узел
+\item $S_1[n]\neq S_2[m]\implies$максимизируем прошлые узлы
 \end{list*}
 
 \subsection{Алгоритм Нидлмана-Вунша}

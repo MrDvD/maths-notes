@@ -185,4 +185,85 @@ $$f(i-1)+x_i-x_{i-1}$$
 % ---
 $$f(k,j)\greater f(i,j)$$
 % ---
-За счёт линейного алгоритма поиска {\ital ближайшего большего} за константу конечный алгоритм станет {\ital линейным}. 
+За счёт линейного алгоритма поиска {\ital ближайшего большего} за константу конечный алгоритм станет {\ital линейным}.
+
+\subsection{Двумерная динамика}
+
+\begin{theorem}
+{\bold Задача.} Дан массив $x$ прейскуранта кафе на $N$ дней. За~чек свыше $100$ единиц выдаётся купон на бесплатный обед. Минимизировать суммарный чек.
+\end{theorem}
+
+{\bold Решение.} Пусть $f(j,i)$ --- минимальная суммарная стоимость обедов на $i$-й день включительно при оставшихся $j$ купонах.
+
+Очевидно, что $f(0,0)=0$.
+
+Используем принцип оптимальности на префиксе:
+
+{\centering\begin{tikzpicture}
+\node (start) [draw, line width=1pt, align=left] at (0,0.5) {$f(j,i)$};
+\node (ifgreat) [draw, line width=1pt, align=left] at (-1.6,-0.5) {$x_i\greater 100$};
+\node (ifless) [draw, line width=1pt, align=right] at (1.6,-0.5) {$x_i\leq 100$};
+\node (get) [draw, line width=1pt, anchor=east, align=left] at (-2.3,-2) {$f(j-1,i-1)+x_i$};
+\node (use) [draw, line width=1pt, align=left] at (0,-2) {$f(j+1,i-1)$};
+\node (buy) [draw, line width=1pt, anchor=west, align=left] at (2.3,-2) {$f(j,i-1)+x_i$};
+\draw [-{>[length=6pt]}, line width=.8pt] (ifgreat.north) -- (start.west);
+\draw [-{>[length=6pt]}, line width=.8pt] (ifless.north) -- (start.east);
+\draw [-{>[length=6pt]}, line width=.8pt] (get.north) -- (ifgreat.south west);
+\draw [-{>[length=6pt]}, line width=.8pt] (use.north) -- (ifgreat.south east);
+\draw [-{>[length=6pt]}, line width=.8pt] (use.north) -- (ifless.south west);
+\draw [-{>[length=6pt]}, line width=.8pt] (buy.north) -- (ifless.south east);
+\end{tikzpicture}\par}
+
+Минимизируя $f$, ответ будет лежать в $f(i,N)$ при определённом $i$.
+
+\begin{theorem}
+{\bold Задача.} Дана шахматная доска $N\times M$. Сколькими способами конь из $(1,1)$ может добраться до $(N,M)$, если он ходит из клетки $(j,i)$ в клетки $(j+2,i-1)$, $(j+2,i+1)$, $(j+1,i+2)$, $(j-1,i+2)$.
+\end{theorem}
+
+{\bold Решение.} Пусть $f(j,i)$ --- число способов добраться до клетки $(j,i)$ из начальной.
+
+Очевидно, что $f(0,0)=1$.
+
+Используем принцип оптимальности на префиксе:
+
+{\centering\begin{tikzpicture}
+\node (start) [draw, line width=1pt, align=left] at (0,0.5) {$f(j,i)$};
+\node (c1) [draw, line width=1pt, anchor=east, align=left] at (-2.3,-0.5) {$f(j+1,i-2)$};
+\node (c2) [draw, line width=1pt, anchor=east, align=left] at (-0.4,-2.1) {$f(j-1,i-2)$};
+\node (c3) [draw, line width=1pt, anchor=west, align=left] at (0.4,-2.1) {$f(j-2,i+1)$};
+\node (c4) [draw, line width=1pt, anchor=west, align=left] at (2.3,-0.5) {$f(j-2,i-1)$};
+\draw [-{>[length=6pt]}, line width=.8pt] (c1.north) -- (start.west) node [midway, above, sloped, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$j\less N,i\greater 2$};
+\draw [-{>[length=6pt]}, line width=.8pt] (c2.north) -- (start.south west) node [midway, above, sloped, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$j\greater 1,i\greater 2$};
+\draw [-{>[length=6pt]}, line width=.8pt] (c3.north) -- (start.south east) node [midway, above, sloped, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$j\greater 1,i\less M$};
+\draw [-{>[length=6pt]}, line width=.8pt] (c4.north) -- (start.east) node [midway, above, sloped, scale=.8, fill=white, fill opacity=.6, text opacity=1] {$j\greater 2,i\greater 1$};
+\end{tikzpicture}\par}
+
+Суммируя $f$, ответ будет лежать в $f(N,M)$.
+
+\begin{theorem}
+{\bold Задача.} Очередь из $N$ человек покупает билеты в театр. $i$-ый человек покупает 1 билет за $A_i$ времени, 2 билета --- за $B_i$, 3 билета --- за $C_i$. Минимизировать время.
+\end{theorem}
+
+{\bold Решение.} Пусть $f(j,i)$ --- минимальное время, за которое обслужат $i$-го человека, причём у него останется $j$ билетов.
+
+Очевидно, что $f(0,0)=0$.
+
+Используем принцип оптимальности на префиксе:
+
+{\centering\begin{tikzpicture}
+\node (start) [draw, line width=1pt, align=center] at (0,0.5) {$f(j,i)$};
+\node (zero) [draw, line width=1pt, align=right] at (-1.7,-0.5) {$j=0$};
+\node (one) [draw, line width=1pt, align=center] at (0,-0.5) {$j=1$};
+\node (two) [draw, line width=1pt, align=left] at (1.7,-0.5) {$j=2$};
+\node (zeroo) [draw, line width=1pt, anchor=east, align=center] at (-2.3,-2.4) {min\\$\begin{gathered}f(0,i-1)+A_i\\f(1,i-1)\end{gathered}$};
+\node (onee) [draw, line width=1pt, align=center] at (0,-2.4) {min\\$\begin{gathered}f(0,i-1)+B_i\\f(2,i-1)\end{gathered}$};
+\node (twoo) [draw, line width=1pt, anchor=south west, align=left] at (2.3,-2.4) {$f(0,i-1)+C_i$};
+\draw [-{>[length=6pt]}, line width=.8pt] (zero.north) -- (start.west);
+\draw [-{>[length=6pt]}, line width=.8pt] (one.north) -- (start.south);
+\draw [-{>[length=6pt]}, line width=.8pt] (two.north) -- (start.east);
+\draw [-{>[length=6pt]}, line width=.8pt] (zeroo.north) -- (zero.south);
+\draw [-{>[length=6pt]}, line width=.8pt] (onee.north) -- (one.south);
+\draw [-{>[length=6pt]}, line width=.8pt] (twoo.north) -- (two.south);
+\end{tikzpicture}\par}
+
+Минимизируя $f$, ответ будет лежать в $f(0,N-1)$.
