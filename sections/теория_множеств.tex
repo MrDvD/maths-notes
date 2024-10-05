@@ -304,13 +304,13 @@ $$\forall x\in M\ x\leq\max M$$
 $$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon-}(\sup M)$$
 % ---
 \begin{theorem}
-{\bold Связь супремума с максимумом.} Если у множества $M$ существует $\max M$, то:
-% ---
-$$\sup M=\max M$$ 
+{\bold Принцип точной грани.} Если непустое множество $M$ ограничено сверху, то существует {\ital единственный} $\sup M$.
 \end{theorem}
 % ---
 \begin{theorem}
-{\bold Принцип точной грани.} Если непустое множество $M$ ограничено сверху, то существует {\ital единственный} $\sup M$.
+{\bold Связь супремума с максимумом.} Если у множества $M$ существует $\max M$, то:
+% ---
+$$\sup M=\max M$$ 
 \end{theorem}
 % ---
 Множество $M$ {\bold ограничено снизу}, если:
@@ -330,13 +330,13 @@ $$\forall x\in M\ x\geq\min M$$
 $$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon+}(\inf M)$$
 % ---
 \begin{theorem}
-{\bold Связь инфимума с минимумом.} Если у множества $M$ существует $\min M$, то:
-% ---
-$$\inf M=\min M$$ 
+{\bold Принцип точной грани.} Если непустое множество $M$ ограничено снизу, то существует {\ital единственный} $\inf M$.
 \end{theorem}
 % ---
 \begin{theorem}
-{\bold Принцип точной грани.} Если непустое множество $M$ ограничено снизу, то существует {\ital единственный} $\inf M$.
+{\bold Связь инфимума с минимумом.} Если у множества $M$ существует $\min M$, то:
+% ---
+$$\inf M=\min M$$ 
 \end{theorem}
 % ---
 {\bold Ограниченное} множество $M$ ограничено {\ital и сверху, и снизу}:
@@ -352,25 +352,3 @@ $$\forall y\in\mathbb{R}\ \exists!k\in\mathbb{Z}\colon (k-1)x\less y\leq kx$$
 % ---
 $$k\leq x\less k+1\qquad{\color{desc} (k=[x])}$$
 \end{theorem}
-
-\subsection{Принцип Кантора}
-
-Последовательность вложенных отрезков содержит точки $\xi$, которые принадлежат им всем:
-% ---
-$$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]$$
-% ---
-Если $n\to\infty$, $(b_n-a_n)\to 0$, то $\xi$ единственна:
-% ---
-$$\lim_{n\to\infty}a_n=\sup\{a_n\}=\lim_{n\to\infty}b_n=\inf\{b_n\}=\xi$$
-% ---
-{\bold Доказательство.} По теореме Вейерштрасса:
-% ---
-$$\lim_{n\to\infty}a_n=\sup\{a_n\}\quad\quad\lim_{n\to\infty}b_n=\inf\{b_n\}$$
-% ---
-Значит, $\forall(n\in\mathbb{N},\ \xi\in[\sup\{a_n\};\inf\{b_n\}])\ \xi\in[a_n;b_n]$.
-$\qedw$
-
-Если $\inf\{b_n\}=\sup\{a_n\}$, то $\xi$ единственна:
-% ---
-$$0=\inf\{b_n\}-\sup\{a_n\}=\lim_{n\to\infty}b_n-\lim_{n\to\infty}a_n=\lim_{n\to\infty}
-(b_n-a_n)\qedb$$
