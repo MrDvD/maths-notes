@@ -305,7 +305,10 @@ $$\forall x\in M\ x\leq\max M$$
 % ---
 {\bold Супремум} {\ital (точная верхняя граница)} --- такая верхняя граница множества $M$ --- $\sup M$, что:
 % ---
-$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon-}(\sup M)$$
+$$\begin{gathered}
+\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon-}(\sup M)\\
+{\color{desc}(\forall s\less\sup M\ \exists m\in M\colon s\less m\leq\sup M)}
+\end{gathered}$$
 % ---
 \begin{theorem}
 {\bold Принцип точной грани.} Если непустое множество $M$ ограничено сверху, то существует {\ital единственный} $\sup M$.
@@ -331,7 +334,10 @@ $$\forall x\in M\ x\geq\min M$$
 % ---
 {\bold Инфимум} {\ital (точная нижняя граница)} --- такая нижняя граница множества $M$ --- $\inf M$, что:
 % ---
-$$\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon+}(\inf M)$$
+$$\begin{gathered}
+\forall\varepsilon\greater 0\ \exists m\in M\colon m\in U_{\varepsilon+}(\inf M)\\
+{\color{desc}(\forall s\greater\inf M\ \exists m\in M\colon \inf M\leq m\less s)}
+\end{gathered}$$
 % ---
 \begin{theorem}
 {\bold Принцип точной грани.} Если непустое множество $M$ ограничено снизу, то существует {\ital единственный} $\inf M$.
