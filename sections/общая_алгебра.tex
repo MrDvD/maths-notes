@@ -89,15 +89,39 @@ $$\forall x,y,z\in X\
 % ---
 $$(X,\ast_1,\dots,\ast_n)$$
 % ---
-Для {\bold голоморфных} структур $(M,\circ)$, $(N,\ast)$ существует отображение $f$ вида:
-% ---
-$$f\colon M\to N\iff\forall x,y\in M\ f(x\circ y)=f(x)\ast f(y)$$
-% ---
-Для {\bold изоморфных} структур $(M,\circ)$, $(N,\ast)$ существует изоморфизм $f$ вида:
+{\bold Гомоморфизм} из $(X,\circ)$ в $(Y,\ast)$ --- множество вида:
 % ---
 $$\begin{gathered}
-f\colon M\xrightarrow{\sim} N\iff\forall x,y\in M\ f(x\circ y)=f(x)\ast f(y)\\
-(M,\circ)\simeq (N,\ast)
+\Hom(\langle X,\circ\rangle,\langle Y,\ast\rangle)=\\
+\{\varphi\colon X\to Y\mid\forall a,b\in X\ \varphi(a\circ b)=\varphi(a)\ast\varphi(b)\}
+\end{gathered}$$
+% ---
+{\bold Эндоморфизм} $(X,\circ)$ --- гомоморфизм вида:
+% ---
+$$\End(\langle X,\circ\rangle)=\Hom(\langle X,\circ\rangle,\langle X,\circ\rangle)$$
+% ---
+{\bold Мономорфизм} {\ital (monic)} из $(X,\circ)$ в $(Y,\ast)$ --- инъект. $\Hom$:
+% ---
+$$\{\varphi\colon X\hookrightarrow Y\mid\varphi\in\Hom(X,Y)\}$$
+% ---
+{\bold Эпиморфизм} {\ital (epic)} из $(X,\circ)$ в $(Y,\ast)$ --- сюръект. $\Hom$:
+% ---
+$$\{\varphi\colon X\twoheadrightarrow Y\mid\varphi\in\Hom(X,Y)\}$$
+% ---
+{\bold Изоморфизм} {\ital (iso)} $(X,\circ)$ и $(Y,\ast)$ --- биективный $\Hom$:
+% ---
+$$\begin{gathered}
+\{\varphi\colon X\xrightarrow{\sim}Y\mid\varphi\in\Hom(X,Y)\}\\
+\iff(X,\circ)\simeq (Y,\ast)
+\end{gathered}$$
+% ---
+Другими словами, для каждого отношения есть {\ital обратное}.
+
+{\bold Автоморфизм} $(X,\circ)$ --- изоморфный $\End$:
+% ---
+$$\begin{gathered}
+\Aut(\langle X,\circ\rangle)=\\
+\{\varphi\in\End(X)\mid\exists\psi\in\Aut(X)\colon\varphi\circ\psi=\psi\circ\varphi=\Id_X\}
 \end{gathered}$$
 
 \subsection{Виды структур}
@@ -178,6 +202,94 @@ $$I=A$$
 % ---
 $$a\cdot a^{-1}=1\implies 1\in I\iff I=A\cdot$$
 
+\subsection{Модуль над кольцом}
+
+{\bold Модуль над кольцом} $\langle\mathbb{K},+,\cdot\rangle$ --- аддитивная абелева группа $\langle M,\hat{+}\rangle$ с~заданной операцией умножения:
+% ---
+$$\hat{\cdot}\colon\mathbb{K}\times M\to M$$
+
+\begin{list*}[][\#]
+\item Согласованность $\hat{\cdot}$ и $\cdot$:
+% ---
+$$\forall x,y\in\mathbb{K}\ \forall v\in M\ x\hat{\cdot}(y\hat{\cdot}v)=(xy)\hat{\cdot}v$$
+\item Дистрибутивность $\hat{\cdot}$ относительно $+$:
+% ---
+$$\forall x,y\in\mathbb{K}\ \forall v\in M\ (x+y)\hat{\cdot}v=x\hat{\cdot}v\hat{+}y\hat{\cdot}v$$
+\item Дистрибутивность $\hat{\cdot}$ относительно $\hat{+}$:
+% ---
+$$\forall x\in\mathbb{K}\ \forall v,w\in M\ x\hat{\cdot}(v\hat{+}w)=x\hat{\cdot}v\hat{+}x\hat{\cdot}w$$
+\item $\exists$ нейтральный элемент относительно $\hat{\cdot}$:
+% ---
+$$\exists 1_{\mathbb{K}}\in\mathbb{K}\ \forall v\in M\colon 1_{\mathbb{K}}\hat{\cdot}v=v$$
+\end{list*}
+
+\subsection{Делимость в кольце}
+
+{\bold Делитель нуля} в кольце $\mathbb{K}$ --- такое $a\neq 0$, что:
+% ---
+$$\exists b\in\mathbb{K},\ b\neq 0\colon ab=0$$
+% ---
+{\bold Область целостности} --- кольцо без делителей нуля.
+
+{\bold Нильпотентный элемент} кольца $\mathbb{K}$ --- такой $z\neq 0$, что:
+% ---
+$$\exists n\in\mathbb{N}\colon z^n=0$$
+
+\subsection{Остальные термины}
+
+{\bold Внешнее вычитание} --- ...
+
+Пусть $p,q\in\mathbb{A}$, $v\in V$.
+
+{\bold Аффинизация} --- отображение вида:
+% ---
+$$V\to\mathbb{A}\qquad v\mapsto 0_{\mathbb{A}}+v=p$$
+% ---
+{\bold Векторизация} --- отображение вида:
+% ---
+$$\varphi_p\colon\mathbb{A}\to V\qquad q\mapsto v=\varphi_p(q)=\overrightarrow{pq}$$
+% ---
+{\bold Параллельный перенос} на вектор $v\in V$ --- отображение $\tau_v\colon X\to X$ вида:
+% ---
+$$\tau_v(x)=x+v\iff \tau\colon X\times V\to X$$
+% ---
+\begin{theorem}
+{\bold Свойства.}
+% ---
+\begin{list*}
+\item $\tau_0=\Id_X$
+\item $\tau_v\circ\tau_u=\tau_{v+u}$
+\item $\tau_v$ --- биекция
+\end{list*}
+\end{theorem}
+% ---
+{\bold Аффинное пространство} --- тройка $\langle\mathbb{A},V,\tau_v\rangle$ $S$, где $\mathbb{A}$ ассоциировано с $V$.
+
+{\bold Репéр} --- точечный базис аффинного пространства:
+% ---
+$$\langle p,\{e_i\},\tau\rangle$$
+% ---
+{\bold Барицентрическая комбинация} --- комбинация вида:
+% ---
+$$M=P+\sum_{i=0}^n\alpha_i\cdot\overrightarrow{PP_i},\quad\sum_{i=0}^n\alpha_i=1$$
+% ---
+В символике {\ital барицентрического исчисления?} эта запись равносильна:
+% ---
+$$M=\sum_{i=0}^n\alpha_i\cdot P_i$$
+% ---
+{\bold Барицентрическая система} ---
+
+{\bold Аффинная оболочка} ---
+
+{\bold Плоскость} в $\mathbb{A}$ ---
+
+{\bold Размерность пространства}
+
+{\bold Коразмерность пространства} ---
+
+{\bold Аффинная зависимость точек} ---
+
+\newpage
 \subsection{Действительные числа}
 
 {\bold Система действительных чисел} --- алгебраическая структура $\langle\mathbb{R};\ +,\cdot,\leq\rangle$, в которой выполняется следующая {\ital аксиоматика}.
@@ -292,6 +404,8 @@ $$\forall x\in X\ (x+1)\in X$$
 % ---
 Примеры индуктивных множеств: $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{I}$, $\mathbb{R}$.
 
+{\bold Натуральные числа} $\mathbb{N}$ --- пересечение всех индуктивных множеств, содержащих число $1$.
+
 \begin{theorem}
 {\bold Принцип математической индукции.} Пусть $X\subset\mathbb{N}$:
 % ---
@@ -371,13 +485,30 @@ $$z=(a,b)\leftrightarrow M(a,b)$$
 % ---
 $$(a_1,b_1)=(a_2,b_2)\iff a_1=a_2\land b_1=b_2$$
 \end{theorem}
+
+{\bold Формула Эйлера} --- связь комплексной экспоненты с тригонометрическими функциями:
+% ---
+$$e^{i\varphi}=\cos\varphi+i\sin\varphi$$
+% ---
+В частности, верны тождества:
+% ---
+$$\cos\varphi=\frac{e^{i\varphi}+e^{-i\varphi}}{2}\qquad\sin\varphi=\frac{e^{i\varphi}-e^{-i\varphi}}{2i}$$
 % ---
 \begin{theorem}
 {\bold Формы записи.} Пусть $z=(a,b)\in\mathbb{C}$.
 % ---
-\begin{list*}
-\item алгебраическая форма: $z=a+bi$
-\item тригонометрическая форма: $z=\abs{z}(\cos\varphi+i\sin\varphi)$
+\begin{list*}[][\#]
+\item Алгебраическая форма записи:
+$$z=a+bi$$
+\item Тригонометрическая форма записи:
+$$z=\abs{z}(\cos\varphi+i\sin\varphi),\ \varphi=\arg z$$
+\item Экспоненциальная форма записи:
+$$z=\abs{z}e^{i\varphi},\ \varphi=\arg z$$
+\item Матричная форма записи:
+$$z=\begin{pmatrix}
+a & b\\
+-b & a
+\end{pmatrix}$$
 \end{list*}
 \end{theorem}
 

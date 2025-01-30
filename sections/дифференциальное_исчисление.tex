@@ -290,12 +290,12 @@ $$\begin{aligned}
 \subsection{Теоремы о среднем}
 
 \begin{theorem}
-{\bold Теорема Ролля.} Пусть $f$ дифференцируема на $[a;b]$. Тогда:
+{\bold Теорема Ролля.} Пусть $f\in\mathbb{C}[a,b]$, дифференцируема на $(a,b)$:
 % ---
 $$f(a)=f(b)\implies\exists\xi\in(a;b)\colon f'(\xi)=0$$
 \end{theorem}
 % ---
-{\bold Доказательство.} По теореме Вейерштрасса:
+{\bold Доказательство.} По \nameref{sec:weierstrasscontinuity} для непрерывной функции на компакте:
 % ---
 $$f(m)=\inf f([a;b])\quad\quad f(M)=\sup f([a;b])$$
 % ---
@@ -306,7 +306,7 @@ $$f(a)=f(b)=f(m)\implies f'(M)=0\qedw$$
 При $f(m)=f(M)$ функция --- константа на $[a;b]$, произ"=водная которой равна нулю.$\qedb$
 
 \begin{theorem}
-{\bold Теорема Лагранжа.} Пусть $f$ дифференцируема на $[a;b]$. Тогда верно:
+{\bold Теорема Лагранжа.} Пусть $f\in\mathbb{C}[a,b]$, дифференцируема на $(a,b)$:
 % ---
 $$\exists\xi\in(a;b)\colon f'(\xi)=\frac{\Delta f}{\Delta x}$$
 \end{theorem}
@@ -330,9 +330,9 @@ f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
 \subsection{Постоянство функции}
 
 \begin{theorem}
-Пусть $f\in\mathbb{C}[a;b]$ и состоит из стационарных точек на~$(a;b)$. Тогда:
+Пусть $f\in\mathbb{C}[a;b]$ и дифференцируема на $(a,b)$:
 % ---
-$$f([a;b])=C$$
+$$f'((a,b))=0\iff f([a;b])=C$$
 \end{theorem}
 % ---
 {\bold Доказательство.} По теореме Лагранжа:

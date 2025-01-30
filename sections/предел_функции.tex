@@ -144,15 +144,17 @@ $$\begin{aligned}
 \lim_{x\to 0}\frac{\sin x}{x}=1\qquad & \lim_{x\to\infty}\left(1-\frac{1}{x}\right)^x=e
 \end{aligned}$$
 
-\subsection{Теорема о промежуточном значении}
+\subsection{Теорема Больцано-Коши}
 
 \begin{theorem}
-Пусть $f\in\mathbb{C}[a;b]$. Тогда справедливо:
+{\bold Теорема.} {\ital\color{desc}(О промежуточном значении.)}
+
+Пусть $f\in\mathbb{C}[a;b]$, $f(a)\leq f(b)$. Тогда:
 % ---
 $$\forall c\in[f(a);f(b)]\ \exists\xi\in[a;b]\colon c=f(\xi)$$
 \end{theorem}
 % ---
-{\bold Доказательство.} По принципу Кантора:
+{\bold Доказательство.} По \nameref{sec:cantorcontinuity}:
 % ---
 $$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]\subseteq X
 \implies$$
@@ -203,11 +205,13 @@ $$\exists\{x_n\}\in D_f\colon\lim_{n\to\infty}x_n=x_0,\ x_n\neq x_0$$
 % ---
 $$\lim_{x\to x_0}f(x)=a\qedb$$
 
-\subsection{Теорема Вейерштрасса}
+\subsection{Теорема Вейерштрасса}\label{sec:weierstrasscontinuity}
 
 \begin{theorem}
-Пусть $f\in C[a;b]$. Тогда в некоторых точках отрезка функция достигает своих точных 
-верхней и нижней границ на $[a;b]$.
+{\bold Теорема.} {\ital\color{desc} (О непрерывной функции на компакте.)}
+
+Пусть $f\in\mathbb{C}[a;b]$, тогда она на нём {\ital ограничена} и достигает своих точных 
+верхней и нижней границ.
 \end{theorem}
 % ---
 {\bold Доказательство.} Пусть $\sup f([a;b])=:M$, $\inf f([a;b])=:m$.

@@ -21,6 +21,7 @@
 \usepackage{tabularx,multicol,multirow,makecell}                % таблицы
 \usepackage{tabularray}                                         % tblr environment
 \usepackage{tikz}                                               % графика
+\usepackage{hyperref}                                           % ссылки
 \usetikzlibrary{intersections}                                  % 'name intersections'
 \usetikzlibrary{patterns}                                       % 'pattern'
 \usetikzlibrary{arrows.meta}                                    % arrows customization
@@ -70,6 +71,13 @@
 \newcommand\modb[1]{\ \left(\mathrm{mod}\ #1\right)} % modulo w brackets
 \newcommand\modn[1]{\ \mathrm{mod}\ #1}              % modulo w/o brackets
 \newcommand\pluseq{\mathrel{+}=}                     % += operator
+\newcommand\Id{\mathrm{Id}}                          % identity map
+\newcommand\Mat{\mathrm{Mat}}                        % matrix
+
+% new math operators
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
 
 % column types
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}

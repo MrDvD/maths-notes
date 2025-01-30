@@ -165,7 +165,7 @@ $$\abs{x_n-x_m}\leq\abs{x_n-a}+\abs{x_m-a}\less \varepsilon/2+\varepsilon/2=\var
 ограничена $\implies$ по лемме Больцано-Вейерштрасса она частично сходится к $c$
 $\implies$ по условию Коши и по лемме Больцано-Вейерштрасса она сходится к $c$.$\qedb$
 
-\subsection{Теорема Вейерштрасса}
+\subsection{Теорема Вейерштрасса}\label{sec:weierstrassmono}
 
 \begin{theorem}
 {\bold Теорема.} {\ital\color{desc} (О монотонной последовательности)}
@@ -193,7 +193,7 @@ $$\lim_{n\to\infty}x_n=\sup\{x_n\}.\qedw$$
 % ---
 Для $\{y_n\}\kern-4pt\searrow$ доказательство аналогично.$\qedb$
 
-\subsection{Принцип Кантора}
+\subsection{Принцип непрерывности Кантора}\label{sec:cantorcontinuity}
 
 \begin{theorem}
 {\bold Теорема.} Последовательность вложенных отрезков содержит точки $\xi$, которые принадлежат им всем:
@@ -205,17 +205,17 @@ $$\forall n\in\mathbb{N}\ \exists\xi\in[a_n;b_n]\subset[a_{n-1};b_{n-1}]$$
 $$\lim_{n\to\infty}a_n=\sup\{a_n\}=\lim_{n\to\infty}b_n=\inf\{b_n\}=\xi$$
 \end{theorem}
 % ---
-{\bold Доказательство.} По теореме Вейерштрасса:
+{\bold Доказательство.} По \nameref{sec:weierstrassmono} для монотонных последовательностей:
 % ---
 $$\lim_{n\to\infty}a_n=\sup\{a_n\}\quad\quad\lim_{n\to\infty}b_n=\inf\{b_n\}$$
 % ---
 $$\forall n\in\mathbb{N}\colon\xi\in[\sup\{a_n\};\inf\{b_n\}]\implies\xi\in[a_n;b_n]\qedw$$
 % ---
-Если $\inf\{b_n\}=\sup\{a_n\}$, то $\xi$ единственна:
+Если $n\to\infty$, $(b_n-a_n)\to 0$, то $\xi$ единственна:
 % ---
-$$0=\inf\{b_n\}-\sup\{a_n\}=\lim_{n\to\infty}b_n-\lim_{n\to\infty}a_n=\lim_{n\to\infty}(b_n-a_n)\qedb$$
+$$\lim_{n\to\infty}(b_n-a_n)=\inf\{b_n\}-\sup\{a_n\}=0\implies\inf\{b_n\}=\sup\{a_n\}\qedb$$
 
-\subsection{Лемма Больцано-Вейерштрасса}
+\subsection{Лемма Больцано-Вейерштрасса}\label{sec:bolzanoweierstrass}
 
 {\bold Частичный предел} последовательности --- предел её подпоследовательности.
 
@@ -223,21 +223,21 @@ $$0=\inf\{b_n\}-\sup\{a_n\}=\lim_{n\to\infty}b_n-\lim_{n\to\infty}a_n=\lim_{n\to
 {\bold Лемма.} {\ital\color{desc}(О предельной точке)}
 % ---
 \begin{list*}[][\#]
-\item У ограниченной последовательности есть частичный {\ital конечный} предел.
-\item У неограниченной последовательности есть частичный {\ital бесконечный} предел.
+\item У всякой ограниченной последовательности есть частичный {\ital конечный} предел.
+\item У всякой неограниченной последовательности есть частичный {\ital бесконечный} предел.
 \end{list*}
 % ---
 $$\forall\{x_n\}\in[a;b]\ \exists\{n_k\}\kern-4pt\uparrow\colon\lim_{k\to\infty}x_{n_k}=\xi$$
 \end{theorem}
 % ---
-{\bold Доказательство.} По принципу Кантора:
+{\bold Доказательство.} По \nameref{sec:cantorcontinuity}:
 % ---
 $$\forall k\in\mathbb{N}\ \exists!\xi\in[a_k;b_k]\subset[a_{k-1};b_{k-1}]\iff$$
 $$\lim_{k\to\infty}a_k=\lim_{k\to\infty}b_n=\xi$$
 % ---
-Образуем подпоследовательность: {\ital\color{desc} (метод Больцано)}
+Образуем подпоследовательность $x_{n_k}$: {\ital\color{desc} (метод Больцано)}
 % ---
-$$\{x_{n_k}\mid \{n_k\}\kern-4pt\uparrow,\ x_{n_k}\in[a_k;b_k]\}$$
+$$x_{n_k}\in[a_k;b_k]$$
 % ---
 По теореме о зажатой последовательности:
 % ---
@@ -251,8 +251,10 @@ $$\lim_{k\to\infty}x_{n_k}=\lim_{n\to\infty}x_n=a$$
 % ---
 {\bold Доказательство.} Пусть $\{x_n\}$ фундаментальна $\implies$ она ограничена.
 
-По лемме Больцано-Вейерштрасса $\lim_{k\to\infty}x_{n_k}=a$.
-
+По \nameref{sec:bolzanoweierstrass}:
+% ---
+$$\exists\{x_{n_k}\}\colon\lim_{k\to\infty}x_{n_k}=a$$
+% ---
 По условию Коши:
 % ---
 $$\forall\varepsilon/2\greater 0\ \exists N\colon\forall n,m\greater N\ \abs{x_n-x_m}
