@@ -223,3 +223,13 @@ arc=0pt
 \renewcommand\arraystretch{#2}
 \tabularx{\textwidth}[m]{#1}
 }{\endtabularx\par}
+
+% labelling some text for hyperref
+\makeatletter
+\newcommand{\labeltext}[2]{%
+  \@bsphack
+  \MakeLinkTarget*{#1}%
+  \def\@currentlabel{#1}{\label{#2}}%
+  \@esphack
+}
+\makeatother

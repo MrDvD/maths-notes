@@ -290,7 +290,7 @@ $$\begin{aligned}
 \subsection{Теоремы о среднем}
 
 \begin{theorem}
-{\bold Теорема Ролля.} Пусть $f\in\mathbb{C}[a,b]$, дифференцируема на $(a,b)$:
+{\bold Теорема Ролля.} Пусть $f\in\mathbb{C}[a,b]$, дифференцируема на $(a,b)$:\labeltext{Теорема Ролля}{sec:rolletheorem}
 % ---
 $$f(a)=f(b)\implies\exists\xi\in(a;b)\colon f'(\xi)=0$$
 \end{theorem}
@@ -306,9 +306,9 @@ $$f(a)=f(b)=f(m)\implies f'(M)=0\qedw$$
 При $f(m)=f(M)$ функция --- константа на $[a;b]$, произ"=водная которой равна нулю.$\qedb$
 
 \begin{theorem}
-{\bold Теорема Лагранжа.} Пусть $f\in\mathbb{C}[a,b]$, дифференцируема на $(a,b)$:
+{\bold Теорема Лагранжа.} Пусть $f\in\mathbb{C}[a,b]$, дифференцируема на $(a,b)$:\labeltext{Теорема Лагранжа}{sec:lagrangetheorem}
 % ---
-$$\exists\xi\in(a;b)\colon f'(\xi)=\frac{\Delta f}{\Delta x}$$
+$$\exists\xi\in(a;b)\colon f'(\xi)=\frac{f(b)-f(a)}{b-a}$$
 \end{theorem}
 % ---
 {\bold Доказательство.} Пусть $\varphi(x):=f(x)-\lambda x$.
@@ -320,11 +320,11 @@ f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
 \iff\lambda=\frac{f(b)-f(a)}{b-a}
 \end{gather*}
 % ---
-По теореме Ролля:
+По \ref{sec:rolletheorem}:
 % ---
 \begin{gather*}
 \exists\xi\in(a;b)\colon\varphi'(\xi)=0\iff f'(\xi)-\lambda=0\iff\\
-\iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}=\frac{\Delta f}{\Delta x}\qedb
+\iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}\qedb
 \end{gather*}
 
 \subsection{Постоянство функции}
@@ -335,7 +335,7 @@ f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
 $$f'((a,b))=0\iff f([a;b])=C$$
 \end{theorem}
 % ---
-{\bold Доказательство.} По теореме Лагранжа:
+{\bold Доказательство.} По \ref{sec:lagrangetheorem}:
 % ---
 $$\forall x',x''\in[a;b]\ \exists\xi\in(x';x'')\colon f'(\xi)=\frac{f(x'')-f(x')}{x''-x'}
 $$
