@@ -180,16 +180,24 @@ f\kern-4pt\uparrow\text{около }x_0\qedw$$
 
 \subsection{Экстремум}
 
-{\ital Локальный} {\bold максимум} функции $f$ --- такая точка $x_0$, что:
+{\bold Локальный максимум} функции $f$ --- такая точка $x_0$, что:
 % ---
-$$\exists\delta\greater 0\colon\sup U_\delta(x_0)=f(x_0)$$ 
+$$\exists\delta\greater 0\colon\forall x\in U_\delta(x_0)\ f(x)\leq f(x_0)$$ 
 % ---
-{\ital Локальный} {\bold минимум} функции $f$ --- такая точка $x_0$, что:
+{\bold Локальный минимум} функции $f$ --- такая точка $x_0$, что:
 % ---
-$$\exists\delta\greater 0\colon\inf U_\delta(x_0)=f(x_0)$$
+$$\exists\delta\greater 0\colon\forall x\in U_\delta(x_0)\ f(x)\geq f(x_0)$$ 
 % ---
 Их объединяют в точки {\bold экстремума}.
- 
+
+\begin{theorem}
+{\bold Теорема Ферма.} Пусть $f$ дифференцируема в $x_0$ --- точке экстремума. Тогда:
+% ---
+$$f'(x_0)=0$$
+\end{theorem}
+% ---
+{\bold Доказательство.} ...
+
 {\bold Критической} называется такая точка $x_0$, в которой:
 % ---
 $$\begin{sqcases*}
@@ -326,6 +334,14 @@ f(a)-\lambda a=f(b)-\lambda b\iff (b-a)\lambda=f(b)-f(a)\iff\\
 \exists\xi\in(a;b)\colon\varphi'(\xi)=0\iff f'(\xi)-\lambda=0\iff\\
 \iff\lambda=f'(\xi)\implies f'(\xi)=\frac{f(b)-f(a)}{b-a}\qedb
 \end{gather*}
+
+\begin{theorem}
+{\bold Теорема Коши.} Пусть $f,g\in\mathbb{C}[a,b]$, дифференцируемы на $(a,b)$:
+% ---
+$$\exists\xi\in(a,b)\colon\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}$$
+\end{theorem}
+% ---
+{\bold Доказательство.} ...
 
 \subsection{Постоянство функции}
 
